@@ -1,43 +1,48 @@
-# Astro Starter Kit: Minimal
+# Elysia Corp — MadLab Aurora
+
+A frontend site built with Astro. This repository was initialized from the Astro minimal template and prepared for development.
+
+## Prerequisites
+
+- Node.js >= 22.12.0
+- Git
+- (Optional) Git LFS for large binary assets
+
+## Quick start
+
+1. Install dependencies:
 
 ```sh
-npm create astro@latest -- --template minimal
+npm install
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+2. Start development server:
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```sh
+npm run dev
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+3. Build for production:
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+```sh
+npm run build
+```
 
-Any static assets, like images, can be placed in the `public/` directory.
+4. Preview the production build locally:
 
-## 🧞 Commands
+```sh
+npm run preview
+```
 
-All commands are run from the root of the project, from a terminal:
+## Notes about this repository
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+- Git LFS is configured and tracked patterns are in `.gitattributes`. If you need LFS locally, install it and run `git lfs install`.
+- Large unneeded files were removed from history and backup branches were created (e.g. `backup/main-before-clean`, `backup/before-remove-package-lock`).
 
-## 👀 Want to learn more?
+## CI
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+A GitHub Actions workflow was added at `.github/workflows/ci.yml` to run an install and build on pushes and pull requests.
+
+## Learn more
+
+See the Astro docs: https://docs.astro.build
