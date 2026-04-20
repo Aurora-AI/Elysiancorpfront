@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Mono:wght@300;400&family=Syne:wght@400;700;800&display=swap');
+
+:root {
+    /* Palette: Peso Sem Cor */
+    --parchment: #F4F1EA;
+    --abyss: #0A0A0A;
+    --signal: #D4AF37;
+    --ink-dim: #2A2A2A;
+    
+    /* Typography */
+    --font-display: 'Cormorant Garamond', serif;
+    --font-label: 'Syne', sans-serif;
+    --font-mono: 'DM Mono', monospace;
+    
+    /* Spacing: Fibonacci base */
+    --space-1: 8px;
+    --space-2: 13px;
+    --space-3: 21px;
+    --space-5: 34px;
+    --space-8: 55px;
+    --space-13: 89px;
+    
+    /* Z-Index */
+    --z-negative: -1;
+    --z-base: 0;
+    --z-above: 10;
+    --z-nav: 100;
+    --z-modal: 1000;
+
+    /* Transitions */
+    --ease-sovereign: cubic-bezier(0.23, 1, 0.32, 1);
+    --duration-std: 0.6s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--abyss);
+    color: var(--parchment);
+    font-family: var(--font-label);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    text-transform: uppercase;
+}
+
+.mono {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.8rem;
+}

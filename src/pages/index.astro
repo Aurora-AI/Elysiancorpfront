@@ -1,0 +1,59 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CinemaHero from '../components/hero/CinemaHero.astro';
+import { MagneticCursor } from '../components/cursor/MagneticCursor';
+---
+
+<Layout title="ElysianCorp | Sovereign Intelligence">
+	<MagneticCursor client:load />
+
+	<main>
+		<CinemaHero />
+		
+		<!-- Additional sections will be normalized by CEO-Web standards -->
+		<section class="manifesto">
+			<div class="content">
+				<p class="mono">Manifesto v1.0</p>
+				<h2>Sovereign Silence. Absolute Precision.</h2>
+				<p class="description">
+					A ElysianCorp não apenas processa dados. Nós arquitetamos soberania. 
+					Em um mundo de ruído algorítmico, oferecemos o silêncio da clareza legal.
+				</p>
+			</div>
+		</section>
+	</main>
+</Layout>
+
+<style>
+	main {
+		width: 100%;
+		min-height: 200vh; /* Allow for scroll descent */
+	}
+
+	.manifesto {
+		height: 100vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: var(--space-8);
+		background: var(--abyss);
+		color: var(--parchment);
+		border-top: 1px solid rgba(255,255,255,0.05);
+	}
+
+	.content {
+		max-width: 800px;
+	}
+
+	h2 {
+		font-size: 3rem;
+		margin: var(--space-3) 0;
+	}
+
+	.description {
+		font-family: var(--font-label);
+		font-size: 1.25rem;
+		line-height: 1.6;
+		opacity: 0.8;
+	}
+</style>

@@ -1,0 +1,175 @@
+---
+import ShowcaseLayout from '../layouts/ShowcaseLayout.astro';
+import { AssetCard } from '../components/ui/AssetCard';
+import { ShowcaseNavigation } from '../components/ui/ShowcaseNavigation';
+
+// Internal Assets (already in ElysianCorp)
+import { ConcaveScene } from '../components/hero/ConcaveScene';
+import { ScrambleBackground } from '../components/hero/ScrambleBackground';
+import { WavePath } from '../components/ui/wave-path';
+import { HalideTopoHero } from '../components/ui/halide-topo-hero';
+
+// Library Assets (External)
+import { BackgroundPaths } from '@library/backgrounds/background-paths/index.tsx';
+import { GlowCard } from '@library/interactions/spotlight-card/index.tsx';
+---
+
+<ShowcaseLayout title="The Vault // Assets">
+    <ShowcaseNavigation client:load />
+
+    <!-- Hero Section -->
+    <section class="flex flex-col justify-center border-b border-white/5">
+        <div class="max-w-4xl">
+            <span class="mono text-signal mb-4 block opacity-50 tracking-[0.3em]">System_Inventory.v1.5</span>
+            <h1 class="editorial-header text-[12vw] leading-[0.8] mb-8">
+                LIVING<br/>
+                <span class="opacity-30">LIBRARY</span>
+            </h1>
+            <p class="max-w-xl text-lg opacity-60 leading-relaxed font-label uppercase tracking-wider">
+                A CANONICAL REPOSITORY OF HIGH-FIDELITY VISUAL ASSETS, MOTION PHYSICS, AND SHADER INFRASTRUCTURE.
+            </p>
+        </div>
+        
+        <div class="mt-24 flex gap-12 items-center">
+            <div class="flex flex-col">
+                <span class="mono text-[10px] opacity-40">Total_Assets</span>
+                <span class="text-3xl font-display">35+</span>
+            </div>
+            <div class="w-[1px] h-12 bg-white/10"></div>
+            <div class="flex flex-col">
+                <span class="mono text-[10px] opacity-40">DNA_Compliance</span>
+                <span class="text-3xl font-display text-signal">S-TIER</span>
+            </div>
+            <div class="w-[1px] h-12 bg-white/10"></div>
+            <div class="flex flex-col">
+                <span class="mono text-[10px] opacity-40">Last_Sync</span>
+                <span class="text-3xl font-display">2026.04.20</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Heroes Section -->
+    <section id="heroes">
+        <div class="mb-16">
+            <h2 class="text-4xl editorial-header mb-2">HERO_STRUCTURES</h2>
+            <p class="mono opacity-40">Foundational landing sequences and volumetric depth.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <AssetCard 
+                client:load
+                id="hero-concave-001"
+                name="Concave Depth Scene"
+                category="HEROES"
+                techniques={["R3F", "Volumetric_Depth", "GSAP_Parallax"]}
+            >
+                <div class="w-full h-full bg-[#050505] overflow-hidden">
+                     <ConcaveScene client:only="react" />
+                </div>
+            </AssetCard>
+
+            <AssetCard 
+                client:load
+                id="hero-halide-002"
+                name="Halide Topography"
+                category="HEROES"
+                techniques={["SVG_Paths", "Noise_Distortion", "Linear_Easing"]}
+            >
+                <div class="w-full h-full bg-[#0A0A0A] p-12 flex items-center justify-center">
+                    <HalideTopoHero client:load />
+                </div>
+            </AssetCard>
+        </div>
+    </section>
+
+    <!-- Backgrounds Section -->
+    <section id="backgrounds">
+        <div class="mb-16">
+            <h2 class="text-4xl editorial-header mb-2">ATMOSPHERIC_PLANES</h2>
+            <p class="mono opacity-40">Generative noise, procedural grids, and infinite backgrounds.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <AssetCard 
+                client:load
+                id="bg-scramble-001"
+                name="Sovereign Scramble"
+                category="BACKGROUNDS"
+                techniques={["WebGL", "Raw_Shaders", "Grid_Physics"]}
+            >
+                <div class="w-full h-full">
+                    <ScrambleBackground client:only="react" />
+                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                        <span class="text-[10vw] font-display opacity-10 tracking-tighter">AURORA</span>
+                    </div>
+                </div>
+            </AssetCard>
+
+            <AssetCard 
+                client:load
+                id="bg-wave-001"
+                name="Path Wave Physics"
+                category="BACKGROUNDS"
+                techniques={["SVG_Animation", "Math_Sin", "Adaptive_Stroke"]}
+            >
+                <div class="w-full h-full bg-black flex items-center justify-center overflow-hidden">
+                    <WavePath client:load />
+                </div>
+            </AssetCard>
+
+            <AssetCard 
+                client:load
+                id="bg-paths-002"
+                name="Organic Floating Paths"
+                category="BACKGROUNDS"
+                techniques={["Framer_Motion", "SVG_Flow", "Spring_Physics"]}
+            >
+                <div class="w-full h-full scale-[0.6]">
+                    <BackgroundPaths client:only="react" title="AURORA FLOW" />
+                </div>
+            </AssetCard>
+        </div>
+    </section>
+
+    <!-- Interactions Section -->
+    <section id="interactions">
+        <div class="mb-16">
+            <h2 class="text-4xl editorial-header mb-2">DYNAMIC_INTERFACE</h2>
+            <p class="mono opacity-40">Proximity-based effects and interactive surfaces.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <AssetCard 
+                client:load
+                id="int-spotlight-001"
+                name="Glow Spotlight Card"
+                category="INTERACTIONS"
+                techniques={["CSS_Variables", "Pointer_Sync", "Backdrop_Masking"]}
+            >
+                <div class="w-full h-full flex items-center justify-center p-12 bg-black">
+                    <GlowCard client:load glowColor="orange" size="md" className="border-white/10">
+                        <div class="flex flex-col gap-4 p-6">
+                            <div class="w-12 h-12 bg-signal/20 rounded-full flex items-center justify-center">
+                                <span class="text-signal text-xl">✦</span>
+                            </div>
+                            <h4 class="text-2xl font-display">SOVEREIGN_DATA</h4>
+                            <p class="text-xs opacity-50 uppercase font-mono">Encrypted multi-layer storage with real-time sync.</p>
+                        </div>
+                    </GlowCard>
+                </div>
+            </AssetCard>
+        </div>
+    </section>
+
+    <!-- Further sections (Typography, Interactions, etc.) can be added here -->
+    <section class="h-[50vh] flex items-center justify-center border-t border-white/5 opacity-20">
+        <span class="mono tracking-[0.5em]">SYSTEM_END // MORE_ASSETS_IN_VAULT</span>
+    </section>
+
+</ShowcaseLayout>
+
+<style>
+    section {
+        border-bottom: 1px solid rgba(244, 241, 234, 0.05);
+    }
+</style>

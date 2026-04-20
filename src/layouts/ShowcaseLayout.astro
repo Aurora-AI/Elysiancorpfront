@@ -1,0 +1,83 @@
+---
+import '../styles/tokens.css';
+import '../styles/globals.css';
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="pt-BR" class="dark">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Aurora Asset Showcase - Living Gallery of S-Tier Components" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title} | Aurora Showcase</title>
+	</head>
+	<body class="bg-abyss text-parchment antialiased selection:bg-signal selection:text-abyss">
+        <!-- Grain Component -->
+        <div class="grain-overlay" aria-hidden="true"></div>
+        
+        <!-- Header / Logo -->
+        <header class="fixed top-0 left-0 w-full p-8 z-[100] flex justify-between items-end mix-blend-difference">
+            <div class="flex flex-col">
+                <span class="mono opacity-50">Mad Lab Aurora</span>
+                <span class="text-2xl tracking-tighter">ASSET_SHOWCASE.v1</span>
+            </div>
+            <nav class="flex gap-8">
+                <a href="/" class="mono hover:text-signal transition-colors">Exit_Gallery</a>
+            </nav>
+        </header>
+
+		<main class="relative z-10">
+			<slot />
+		</main>
+
+        <style is:global>
+            .grain-overlay {
+                position: fixed;
+                inset: 0;
+                pointer-events: none;
+                z-index: 9999;
+                opacity: 0.04;
+                background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            }
+
+            body {
+                cursor: crosshair;
+                overflow-y: scroll;
+            }
+
+            /* Custom styling for editorial feel */
+            .editorial-header {
+                font-family: var(--font-display);
+                line-height: 0.9;
+                letter-spacing: -0.05em;
+            }
+
+            section {
+                min-height: 100vh;
+                padding: var(--space-13) var(--space-8);
+                border-bottom: 1px solid rgba(244, 241, 234, 0.05);
+            }
+
+            ::-webkit-scrollbar {
+                width: 4px;
+            }
+            ::-webkit-scrollbar-track {
+                background: var(--abyss);
+            }
+            ::-webkit-scrollbar-thumb {
+                background: var(--ink-dim);
+            }
+            ::-webkit-scrollbar-thumb:hover {
+                background: var(--signal);
+            }
+        </style>
+	</body>
+</html>

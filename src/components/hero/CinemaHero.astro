@@ -1,0 +1,45 @@
+---
+import { ScrambleBackground } from './ScrambleBackground';
+import { IndustrialGrid } from './IndustrialGrid';
+import { ConcaveScene } from './ConcaveScene';
+import { Header } from '../ui/Header';
+import { HeroContent } from './HeroContent';
+---
+
+<section class="hero-container">
+    <!-- UI Layer: Navigation -->
+    <Header client:load />
+
+    <!-- Layer 0: Scramble cipher strip — far background -->
+    <div class="bg-layer opacity-40">
+        <ScrambleBackground client:load />
+    </div>
+
+    <!-- Layer 1: Technical Grid -->
+    <IndustrialGrid client:load />
+
+    <!-- Layer 2: Concave Main Scene -->
+    <div class="main-scene">
+        <ConcaveScene client:load />
+    </div>
+
+    <!-- Layer 3: Hero Content & Branding -->
+    <HeroContent client:load />
+
+</section>
+
+<style>
+    .hero-container {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        background: var(--parchment);
+    }
+
+    .bg-layer {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+    }
+</style>
