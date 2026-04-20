@@ -13,14 +13,8 @@ export default function MagneticCursor() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    // After null guards, TypeScript knows these are non-null for the scope below
-    const canvasRef_ = canvas as HTMLCanvasElement;
-    const ctx_ = ctx as CanvasRenderingContext2D;
+    const canvas = canvasRef.current!;
+    const ctx = canvas.getContext('2d')!;
 
     let raf = 0;
     let lastMoveTime = 0;
@@ -34,8 +28,8 @@ export default function MagneticCursor() {
     let lastT = 0;
 
     function resize() {
-      canvasRef_.width = window.innerWidth;
-      canvasRef_.height = window.innerHeight;
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     }
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -52,7 +46,7 @@ export default function MagneticCursor() {
       const dt = Math.min((now - lastT) / 1000, 0.05);
       lastT = now;
 
-      ctx_.clearRect(0, 0, canvasRef_.width, canvasRef_.height);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       const idleMs = now - lastMoveTime;
       const speed = Math.sqrt(mouseState.vx ** 2 + mouseState.vy ** 2);
@@ -85,40 +79,40 @@ export default function MagneticCursor() {
       const my = mouseState.y;
 
       // Dot
-      ctx_.beginPath();
-      ctx_.arc(mx, my, 3, 0, Math.PI * 2);
-      ctx_.fillStyle = 'rgba(255,255,255,1)';
-      ctx_.fill();
+      ctx.beginPath();
+      ctx.arc(mx, my, 3, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(255,255,255,1)';
+      ctx.fill();
 
       // Crosshair
       if (crosshairOpacity > 0.01) {
-        ctx_.strokeStyle = `rgba(255,255,255,${crosshairOpacity.toFixed(3)})`;
-        ctx_.lineWidth = 0.8;
-        ctx_.beginPath(); ctx_.moveTo(mx - 50, my); ctx_.lineTo(mx - 8, my); ctx_.stroke();
-        ctx_.beginPath(); ctx_.moveTo(mx + 8, my); ctx_.lineTo(mx + 50, my); ctx_.stroke();
-        ctx_.beginPath(); ctx_.moveTo(mx, my - 50); ctx_.lineTo(mx, my - 8); ctx_.stroke();
-        ctx_.beginPath(); ctx_.moveTo(mx, my + 8); ctx_.lineTo(mx, my + 50); ctx_.stroke();
+        ctx.strokeStyle = `rgba(255,255,255,${crosshairOpacity.toFixed(3)})`;
+        ctx.lineWidth = 0.8;
+        ctx.beginPath(); ctx.moveTo(mx - 50, my); ctx.lineTo(mx - 8, my); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(mx + 8, my); ctx.lineTo(mx + 50, my); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(mx, my - 50); ctx.lineTo(mx, my - 8); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(mx, my + 8); ctx.lineTo(mx, my + 50); ctx.stroke();
       }
 
       // Inner ring
-      ctx_.beginPath();
-      ctx_.arc(inner.x, inner.y, Math.max(1, innerRadius), 0, Math.PI * 2);
-      ctx_.strokeStyle = 'rgba(255,255,255,0.75)';
-      ctx_.lineWidth = 1;
-      ctx_.stroke();
+      ctx.beginPath();
+      ctx.arc(inner.x, inner.y, Math.max(1, innerRadius), 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(255,255,255,0.75)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
 
       // Outer ring
-      ctx_.beginPath();
-      ctx_.arc(outer.x, outer.y, outerRadius, 0, Math.PI * 2);
-      ctx_.strokeStyle = 'rgba(255,255,255,0.25)';
-      ctx_.lineWidth = 0.6;
-      ctx_.stroke();
+      ctx.beginPath();
+      ctx.arc(outer.x, outer.y, outerRadius, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(255,255,255,0.25)';
+      ctx.lineWidth = 0.6;
+      ctx.stroke();
 
       // Coordinates
       if (coordsOpacity > 0.01) {
-        ctx_.font = `9px 'DM Mono', 'Courier New', monospace`;
-        ctx_.fillStyle = `rgba(255,255,255,${coordsOpacity.toFixed(3)})`;
-        ctx_.fillText(`X: ${Math.round(mx)}  Y: ${Math.round(my)}`, mx + 12, my + 16);
+        ctx.font = `9px 'DM Mono', 'Courier New', monospace`;
+        ctx.fillStyle = `rgba(255,255,255,${coordsOpacity.toFixed(3)})`;
+        ctx.fillText(`X: ${Math.round(mx)}  Y: ${Math.round(my)}`, mx + 12, my + 16);
       }
 
       raf = requestAnimationFrame(step);
