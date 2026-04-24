@@ -1,11 +1,12 @@
 # DESIGN.md — ElysianCorp Trustware
 Este documento define as diretrizes determinísticas de design para a ElysianCorp, 
-agora sob a constituição do **Elysian Brand Kit v1.1.0**.
+integrado ao **Elysian Design System v1.2.0**.
 
 ---
 design-tokens:
   project: "ElysianCorp Trustware"
-  version: "1.1.1"
+  version: "1.2.0"
+  source: "C:\Projetos\Aurora\ElysianLex\docs\Elysian Design System"
   governance: "./docs/brand/ELYSIAN_BRAND_KIT_v1.1.md"
   
   colors:
@@ -20,7 +21,28 @@ design-tokens:
     accent:
       emerald: "#10B981" # Integrity Emerald
       emerald-hover: "#059669"
+      emerald-muted: "rgba(16, 185, 129, 0.08)"
       
+    verticals:
+      crm:
+        paper: "#fbf9f5"
+        rust: "#984731"
+        steel: "#535f6f"
+        navy: "#041627"
+      lex:
+        sovereign: "#000000"
+        emerald: "#10B981"
+      madlab:
+        amber: "#D97706"
+
+  typography:
+    family:
+      brand: "'Lanche', 'Plus Jakarta Sans', sans-serif"
+      display: "'Plus Jakarta Sans', system-ui, sans-serif"
+      body: "'Plus Jakarta Sans', system-ui, sans-serif"
+      technical: "'JetBrains Mono', monospace"
+      lex-serif: "'Crimson Pro', Georgia, serif"
+
     text:
       primary: "#0A0A0A" # Ink
       secondary: "#1A1A1A"

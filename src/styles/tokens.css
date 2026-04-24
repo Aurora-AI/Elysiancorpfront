@@ -1,11 +1,11 @@
 :root {
-  /* PALETA FUNDACIONAL (Elysian Brand Kit v1.0.0) */
+  /* PALETA FUNDACIONAL (Elysian Brand Kit v1.1.0) */
   --white: #FFFFFF;
-  --off-white: #F8F7F3;
+  --off-white: #F8F7F3; /* Papel Premium / Identidade Luminosa */
   --fog: #F2F1ED;
   --stone: #E8E7E2;
   
-  --obsidian: #000000;
+  --obsidian: #000000; /* Preto Absoluto / Identidade Dark */
   --obsidian-deep: #0A0A0A;
   --obsidian-technical: #0D0D0D;
   --smoke: #1A1A1A;
@@ -15,17 +15,35 @@
   --emerald-hover: #059669;
   --emerald-muted: rgba(16, 185, 129, 0.08);
 
+  /* VERTICAIS (Tokens v1.2.0) */
+  --crm-paper: #fbf9f5;
+  --crm-rust: #984731;
+  --crm-steel: #535f6f;
+  --crm-navy: #041627;
+  
+  --lex-sovereign: #000000;
+  --lex-serif: 'Crimson Pro', Georgia, serif;
+  
+  --madlab-amber: #D97706;
+
   /* TEXTO */
   --ink: #0A0A0A;
   --parchment-text: #F2F2F2;
   --dim-text: rgba(242, 242, 242, 0.6);
 
-  /* TIPOGRAFIA (Grotesco Humanista) */
-  --font-display: 'Plus Jakarta Sans', 'Söhne', system-ui, -apple-system, sans-serif;
-  --font-body: 'Plus Jakarta Sans', 'Söhne', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Söhne Mono', monospace;
+  /* TIPOGRAFIA (Elysian Unified) */
+  --font-brand: 'Lanche', 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 
-  /* ESPAÇAMENTO (Fibonacci-esque Scale) */
+  /* MOTION (Elysian Dual-Phase) */
+  --ease-hero-transition: cubic-bezier(0.76, 0, 0.24, 1);
+  --duration-hero-dark: 5s;
+  --duration-hero-transition: 2s;
+  --duration-rest: 0.8s;
+
+  /* ESPAÇAMENTO */
   --space-4: 4px;
   --space-8: 8px;
   --space-16: 16px;
@@ -34,13 +52,16 @@
   --space-64: 64px;
   --space-96: 96px;
   --space-128: 128px;
-
-  /* EFEITOS */
-  --ease-monumental: cubic-bezier(0.85, 0, 0.15, 1);
-  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-/* UTILITÁRIOS DE TIPO */
+/* UTILITÁRIOS DE TIPO REFINADOS */
+.t-brand {
+  font-family: var(--font-brand);
+  font-weight: normal;
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+}
+
 .t-display {
   font-family: var(--font-display);
   font-weight: 800;
@@ -58,5 +79,6 @@
 .t-mono {
   font-family: var(--font-mono);
   font-weight: 500;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
