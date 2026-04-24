@@ -20,7 +20,7 @@ export const HeroContent: React.FC = () => {
         // Tagline Reveal
         tl.fromTo(taglineRef.current, 
             { opacity: 0, x: -20 },
-            { opacity: 0.8, x: 0, duration: 1.5, ease: "power2.out" },
+            { opacity: 0.4, x: 0, duration: 1.5, ease: "power2.out" },
             "-=1.2"
         );
 
@@ -44,19 +44,23 @@ export const HeroContent: React.FC = () => {
 
     return (
         <div ref={containerRef} className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-10 px-6">
-            <div className="hidden">
-                {/* Hero text removed to focus on the IdentityFragmenter */}
+            <div className="flex flex-col items-center space-y-4 mb-24">
+                <span ref={taglineRef} className="t-mono text-[10px] text-ink/40 tracking-[0.6em] opacity-0">
+                    Sovereign Intelligence
+                </span>
+                <h1 ref={titleRef} className="t-brand text-[15vw] lg:text-[12vw] text-ink text-center opacity-0">
+                    ELYSIAN
+                </h1>
             </div>
-
 
             <div 
                 ref={scrollRef}
                 className="absolute bottom-12 flex flex-col items-center opacity-0"
             >
-                <span className="text-[0.6rem] uppercase tracking-[0.4em] text-[#D4AF37] mb-2" style={{ fontFamily: 'DM Mono, monospace' }}>
+                <span className="t-mono text-[8px] text-ink/40 mb-2">
                     Descend
                 </span>
-                <div className="w-[1px] h-12 bg-gradient-to-b from-[#D4AF37] to-transparent" />
+                <div className="w-[1px] h-12 bg-gradient-to-b from-emerald to-transparent" />
             </div>
         </div>
     );

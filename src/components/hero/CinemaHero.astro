@@ -1,18 +1,13 @@
 ---
 import { ScrambleBackground } from './ScrambleBackground';
 import { IndustrialGrid } from './IndustrialGrid';
-import { ConcaveScene } from './ConcaveScene';
-import { Header } from '../ui/Header';
 import { HeroContent } from './HeroContent';
-import { IdentityFragmenter } from '../fx/IdentityFragmenter';
 import { ScramblePortrait } from '../fx/ScramblePortrait';
-
 
 ---
 
 <section class="hero-container">
-    <!-- UI Layer: Navigation -->
-    <Header client:load />
+    <!-- UI Layer: Navigation handled by Layout/Index -->
 
     <!-- Layer 0: Scramble cipher strip — far background -->
     <div class="bg-layer opacity-40">
@@ -29,9 +24,6 @@ import { ScramblePortrait } from '../fx/ScramblePortrait';
         </div>
     </div>
 
-
-
-
     <!-- Layer 3: Hero Content & Branding -->
     <HeroContent client:load />
 
@@ -43,7 +35,7 @@ import { ScramblePortrait } from '../fx/ScramblePortrait';
         width: 100%;
         height: 100vh;
         overflow: hidden;
-        background: var(--parchment);
+        background: var(--off-white);
     }
 
     .bg-layer {
@@ -58,19 +50,14 @@ import { ScramblePortrait } from '../fx/ScramblePortrait';
         right: 8%;
         transform: translateY(-50%);
         width: 100%;
-        max-width: 650px; /* Expandido para acomodar a nova alta resolução */
+        max-width: 650px;
         z-index: 10;
         pointer-events: none;
         opacity: 0.9;
     }
-
-
-
-
 
     .main-scene {
         z-index: 5;
     }
 
 </style>
-

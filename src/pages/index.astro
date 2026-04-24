@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { GazeForensicHero } from '../components/hero/GazeForensicHero';
+import CinemaHero from '../components/hero/CinemaHero.astro';
 import { MagneticCursor } from '../components/cursor/MagneticCursor';
 import { TrustwareReality } from '../components/sections/TrustwareReality';
 import { TrustwareArchitecture } from '../components/sections/TrustwareArchitecture';
@@ -15,8 +15,8 @@ import { Header } from '../components/ui/Header';
 	<Header client:load />
 
 	<main>
-		{/* SEÇÃO 1: HERO REFINADO (DARK STOP-MOTION -> LIGHT ELYSIAN) */}
-		<GazeForensicHero client:load />
+		{/* SEÇÃO 1: HERO ORIGINAL (CINEMA / SCRAMBLE) */}
+		<CinemaHero />
 		
 		{/* SEÇÃO 2: PROVA DE REALIDADE (LIGHT) */}
 		<TrustwareReality client:visible />

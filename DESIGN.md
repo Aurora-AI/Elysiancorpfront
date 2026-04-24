@@ -58,19 +58,13 @@ design-tokens:
     unit: "px"
 
   hero:
-    dark-phase:
-      duration: "5s"
-      rain-opacity: "0.18"
-    luminous-phase:
-      wordmark-tracking: "-0.04em"
-      wordmark-weight: 800
-    transition:
-      duration: "2s"
-      easing: "cubic-bezier(0.76, 0, 0.24, 1)"
+    style: "Cinema / Scramble Architecture"
+    background: "#F8F7F3" # Mundo Luminoso
+    elements: ["Scramble Portrait", "Industrial Grid", "Technical Rain"]
+    reveal-duration: "3s"
 
   motion:
     resting-state: "0.8s" # R6: Silêncio obrigatório antes de qualquer movimento
-    hero-transition: "2s"
     
 ---
 
@@ -92,8 +86,8 @@ O **Integrity Emerald** (#10B981) é o único acento permitido. Singularidade po
 
 ## 2. Componentes Críticos
 
-### 2.1 Hero Stop-Motion Architecture
-O Hero executa o fluxo **Forense (Dark) → Autoridade (Luminous)**. Inicia em **Dark (#000000)** com o Rain System técnico (5s) e transiciona (2s) para o **Luminous (#F8F7F3)** com o wordmark ELYSIAN massivo.
+### 2.1 Hero Cinema Architecture (Original)
+O Hero utiliza o sistema de **Scramble Portrait** e **Industrial Grid** sobre fundo **Luminoso (#F8F7F3)**. É uma composição de camadas técnicas que revelam a identidade através de fragmentação ASCII.
 
 ### 2.2 Resting State (Silêncio Operacional)
 Todo componente interativo ou animado deve respeitar um estado de repouso mínimo de **0.8s** antes de iniciar qualquer movimento. O silêncio precede o impacto.
