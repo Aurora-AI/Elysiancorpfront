@@ -1,0 +1,71 @@
+{
+  "skill_name": "product-integrity-engineer",
+  "last_updated": "2026-03-08T17:02:18.548819+00:00",
+  "version": "1.0.6",
+  "github_repo": "https://github.com/Aurora-AI/Ozzmosis",
+  "platform_contexts": {
+    "antigravity": {
+      "notes": [
+        "Monitorar divergência entre PLAN.md e execução real de workflows."
+      ],
+      "patterns": []
+    },
+    "codex": {
+      "notes": [
+        "Garantir que agentes especializados não sofram downgrade cognitivo."
+      ],
+      "patterns": []
+    }
+  },
+  "interaction_log": [
+    {
+      "date": "2026-03-05T11:04:20.824719+00:00",
+      "summary": "Initial registration and self-test",
+      "learnings": [
+        "Detection of NLU vs ML divergence enabled",
+        "Trustware integration validated"
+      ]
+    },
+    {
+      "date": "2026-03-05T11:32:15.633348+00:00",
+      "summary": "Auditoria de Integridade - CRM Chatbot (Lacuna de Cobertura)",
+      "learnings": [
+        "Identificada lacuna de cobertura onde o modulo CRM ainda nao detem o recurso NLU/Chatbot no codigo base",
+        "Escalado ao Comandante para aprovacao do novo feature"
+      ]
+    },
+    {
+      "date": "2026-03-05T19:32:22.624190+00:00",
+      "summary": "Auditoria da Fase 11 - SDR Soberano WhatsApp ACP - Sucesso total sem divergências.",
+      "learnings": [
+        "Plano sovereign_sdr_plan.md seguido integralmente",
+        "Axiomas Trustware AXIOM-01,02,03 respeitados",
+        "Build TypeScript do Gateway mantido íntegro"
+      ]
+    },
+    {
+      "date": "2026-03-08T15:42:37.865478+00:00",
+      "summary": "\"repair_conflict_summary\"",
+      "learnings": [
+        "\"conflict_detected",
+        "repair_routed\""
+      ]
+    },
+    {
+      "date": "2026-03-08T15:43:03.847080+00:00",
+      "summary": "\"repair_conflict_summary\"",
+      "learnings": [
+        "\"conflict_detected",
+        "repair_routed\""
+      ]
+    },
+    {
+      "date": "2026-03-08T17:02:18.548819+00:00",
+      "summary": "Seed_operacional_telemetria_mesh",
+      "learnings": [
+        "Conflito_integridade_seed_telemetria"
+      ]
+    }
+  ],
+  "accumulated_patterns": []
+}

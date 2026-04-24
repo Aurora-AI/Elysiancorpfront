@@ -1,0 +1,30 @@
+{
+  "version": "1.0.0",
+  "description": "Catálogo de agentes suportados pela Master Skill Aurora",
+  "agents": {
+    "antigravity": {
+      "name": "Antigravity (Gemini CLI)",
+      "skills_path": "~/.gemini/antigravity/skills/",
+      "commands_path": "~/.gemini/antigravity/commands/",
+      "detection_marker": ".gemini",
+      "install_command": "xcopy"
+    },
+    "claude-code": {
+      "name": "Claude Code",
+      "skills_path": "~/.claude/skills/",
+      "commands_path": "~/.claude/commands/",
+      "detection_marker": ".claude",
+      "install_command": "xcopy"
+    },
+    "codex": {
+      "name": "Codex",
+      "skills_path": "~/.codex/skills/",
+      "commands_path": "~/.codex/commands/",
+      "detection_marker": ".codex",
+      "install_command": "xcopy"
+    }
+  },
+  "aurora_agents_path": "C:\\Aurora\\.skills",
+  "catalog_path": "catalog.json",
+  "auto_detect": true
+}

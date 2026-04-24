@@ -1,60 +1,62 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Mono:wght@300;400&family=Syne:wght@400;700;800&display=swap');
-
 :root {
-    /* Palette: Peso Sem Cor */
-    --parchment: #F4F1EA;
-    --abyss: #0A0A0A;
-    --signal: #D4AF37;
-    --ink-dim: #2A2A2A;
-    
-    /* Typography */
-    --font-display: 'Cormorant Garamond', serif;
-    --font-label: 'Syne', sans-serif;
-    --font-mono: 'DM Mono', monospace;
-    
-    /* Spacing: Fibonacci base */
-    --space-1: 8px;
-    --space-2: 13px;
-    --space-3: 21px;
-    --space-5: 34px;
-    --space-8: 55px;
-    --space-13: 89px;
-    
-    /* Z-Index */
-    --z-negative: -1;
-    --z-base: 0;
-    --z-above: 10;
-    --z-nav: 100;
-    --z-modal: 1000;
+  /* PALETA FUNDACIONAL (Elysian Brand Kit v1.0.0) */
+  --white: #FFFFFF;
+  --off-white: #F8F7F3;
+  --fog: #F2F1ED;
+  --stone: #E8E7E2;
+  
+  --obsidian: #000000;
+  --obsidian-deep: #0A0A0A;
+  --obsidian-technical: #0D0D0D;
+  --smoke: #1A1A1A;
 
-    /* Transitions */
-    --ease-sovereign: cubic-bezier(0.23, 1, 0.32, 1);
-    --duration-std: 0.6s;
+  /* ACENTO: INTEGRITY EMERALD */
+  --emerald: #10B981;
+  --emerald-hover: #059669;
+  --emerald-muted: rgba(16, 185, 129, 0.08);
+
+  /* TEXTO */
+  --ink: #0A0A0A;
+  --parchment-text: #F2F2F2;
+  --dim-text: rgba(242, 242, 242, 0.6);
+
+  /* TIPOGRAFIA (Grotesco Humanista) */
+  --font-display: 'Plus Jakarta Sans', 'Söhne', system-ui, -apple-system, sans-serif;
+  --font-body: 'Plus Jakarta Sans', 'Söhne', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Söhne Mono', monospace;
+
+  /* ESPAÇAMENTO (Fibonacci-esque Scale) */
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-40: 40px;
+  --space-64: 64px;
+  --space-96: 96px;
+  --space-128: 128px;
+
+  /* EFEITOS */
+  --ease-monumental: cubic-bezier(0.85, 0, 0.15, 1);
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* UTILITÁRIOS DE TIPO */
+.t-display {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
 }
 
-body {
-    background-color: var(--abyss);
-    color: var(--parchment);
-    font-family: var(--font-label);
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
+.t-editorial {
+  font-family: var(--font-body);
+  font-weight: 300;
+  letter-spacing: 0;
+  line-height: 1.65;
 }
 
-h1, h2, h3, h4 {
-    font-family: var(--font-display);
-    font-weight: 300;
-    text-transform: uppercase;
-}
-
-.mono {
-    font-family: var(--font-mono);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-size: 0.8rem;
+.t-mono {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  letter-spacing: 0.12em;
 }

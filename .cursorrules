@@ -1,0 +1,26 @@
+# ElysianCorp Trustware - Agent Execution Rules
+
+**AUTHORITY OVERRIDE:** This file acts as the ultimate structural and visual law for all agents operating within the ElysianCorp project. Any code generation, component creation, refactoring, or UI modification MUST adhere to these rules without exception.
+
+## 1. The Design System is Law
+Before executing any UI/UX or styling task, you MUST read the `DESIGN.md` file located in the root of this repository. 
+- You are **PROHIBITED** from using generic Tailwind colors (e.g., `bg-blue-500`, `text-gray-900`) or standard SaaS patterns.
+- You are **PROHIBITED** from using pure black (`#000000`). All dark backgrounds must use the "Carvão Abissal" palette (e.g., `#0A0A0B` or `#05070A`).
+- All spacing must adhere to the Fibonacci scale defined in `DESIGN.md` (e.g., `8px`, `13px`, `21px`, `34px`, `55px`, `89px`). Do not use arbitrary padding or margins.
+- All typography must use `Cormorant Garamond` for Display, `Syne` for Body/Labels, and `DM Mono` for Meta/Data. 
+- You must always implement "Stealth UI" principles: glass camouflage, `.halftone-noise`, and atmospheric glows rather than flat, dead backgrounds.
+
+## 2. CEO-Design & CEO-Effects Governance
+- Any new section or component must be designed under the "Dark Editorial" and "Quiet Luxury" aesthetics.
+- Animations must follow the physics defined in `DESIGN.md` (e.g., `power4.out`, GSAP ScrollTrigger parallax). Elements should never just "appear" statically.
+- When splitting text for animations, always split by words first, then characters, using `inline-flex` or `whitespace-nowrap` logic to prevent mid-syllable line breaks.
+
+## 3. Trustware Terminology (CEO-Copy Override)
+- The product is "Trustware", not "Software" or "AI Platform".
+- Terminology must be deterministic, analytical, and authoritative. Do not use probabilistic or generic SaaS words (e.g., "seamless", "magical", "AI-powered"). Use terms like "Audit-First", "Deterministic", "Sovereign".
+
+## 4. Execution Protocol
+Whenever an agent (e.g., site-builder, ceo-web, stitch-design) is asked to build or modify a visual component:
+1. Parse the `DESIGN.md` file.
+2. Ensure the output strictly utilizes the custom CSS variables defined in `src/styles/tokens.css` and `src/styles/globals.css`.
+3. Verify that the implementation avoids "SaaS genericism" and enforces the Rule of Silence.

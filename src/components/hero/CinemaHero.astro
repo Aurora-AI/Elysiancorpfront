@@ -4,6 +4,10 @@ import { IndustrialGrid } from './IndustrialGrid';
 import { ConcaveScene } from './ConcaveScene';
 import { Header } from '../ui/Header';
 import { HeroContent } from './HeroContent';
+import { IdentityFragmenter } from '../fx/IdentityFragmenter';
+import { ScramblePortrait } from '../fx/ScramblePortrait';
+
+
 ---
 
 <section class="hero-container">
@@ -18,10 +22,15 @@ import { HeroContent } from './HeroContent';
     <!-- Layer 1: Technical Grid -->
     <IndustrialGrid client:load />
 
-    <!-- Layer 2: Concave Main Scene -->
+    <!-- Layer 2: Scramble Portrait Scene -->
     <div class="main-scene">
-        <ConcaveScene client:load />
+        <div class="scramble-portrait-wrapper">
+            <ScramblePortrait client:load />
+        </div>
     </div>
+
+
+
 
     <!-- Layer 3: Hero Content & Branding -->
     <HeroContent client:load />
@@ -42,4 +51,26 @@ import { HeroContent } from './HeroContent';
         inset: 0;
         z-index: 0;
     }
+
+    .scramble-portrait-wrapper {
+        position: absolute;
+        top: 50%;
+        right: 8%;
+        transform: translateY(-50%);
+        width: 100%;
+        max-width: 650px; /* Expandido para acomodar a nova alta resolução */
+        z-index: 10;
+        pointer-events: none;
+        opacity: 0.9;
+    }
+
+
+
+
+
+    .main-scene {
+        z-index: 5;
+    }
+
 </style>
+

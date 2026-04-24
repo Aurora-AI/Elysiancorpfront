@@ -44,23 +44,10 @@ export const HeroContent: React.FC = () => {
 
     return (
         <div ref={containerRef} className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-10 px-6">
-            <div className="text-center">
-                <h1 
-                    ref={titleRef}
-                    className="text-[clamp(3rem,10vw,8rem)] font-extrabold text-[#F4F1EA] tracking-tighter leading-[0.9] mb-4"
-                    style={{ fontFamily: 'Syne, sans-serif' }}
-                >
-                    ELYSIAN<br />CORP
-                </h1>
-                
-                <p 
-                    ref={taglineRef}
-                    className="text-[clamp(1rem,2vw,1.5rem)] italic text-[#F4F1EA] opacity-0 max-w-[600px] mx-auto"
-                    style={{ fontFamily: 'Cormorant Garamond, serif' }}
-                >
-                    Sovereign Intelligence. Absolute Determinism.
-                </p>
+            <div className="hidden">
+                {/* Hero text removed to focus on the IdentityFragmenter */}
             </div>
+
 
             <div 
                 ref={scrollRef}

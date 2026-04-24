@@ -8,9 +8,13 @@ export default defineConfig({
   integrations: [react(), tailwind()],
   vite: {
     resolve: {
+      modules: [path.resolve('./node_modules'), 'node_modules'],
       alias: {
         '@': path.resolve('./src'),
         '@library': path.resolve('../aurora-visual-assets'),
+        'framer-motion': path.resolve('./node_modules/framer-motion'),
+        'class-variance-authority': path.resolve('./node_modules/class-variance-authority'),
+        'lucide-react': path.resolve('./node_modules/lucide-react'),
       },
     },
     server: {
@@ -20,6 +24,9 @@ export default defineConfig({
           path.resolve('../aurora-visual-assets'),
         ],
       },
+    },
+    ssr: {
+      noExternal: ['@library', 'framer-motion', 'class-variance-authority', 'lucide-react'],
     },
   },
 });

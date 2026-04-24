@@ -1,0 +1,22 @@
+{
+  "agents": {
+    "antigravity": {
+      "skills_path": "~/.gemini/antigravity/skills/",
+      "commands_path": "~/.gemini/antigravity/commands/",
+      "detection_marker": ".gemini"
+    },
+    "claude-code": {
+      "skills_path": "~/.claude/skills/",
+      "commands_path": "~/.claude/commands/",
+      "detection_marker": ".claude"
+    },
+    "codex": {
+      "skills_path": "~/.codex/skills/",
+      "commands_path": "~/.codex/commands/",
+      "detection_marker": ".codex"
+    }
+  },
+  "aurora_agents_path": "C:\\Aurora\\.agent-skills",
+  "catalog_path": "catalog.json",
+  "auto_detect": true
+}

@@ -1,0 +1,10 @@
+{
+  "agent": "antigravity",
+  "skills_repo": "C:\\Projetos\\Aurora\\.agent-skills",
+  "install_path": "C:\\Users\\rodri\\.gemini\\antigravity\\skills",
+  "commands_path": "C:\\Users\\rodri\\.gemini\\antigravity\\commands",
+  "detected_at": "2026-04-22T17:22:46+00:00",
+  "detection_method": "manual_override",
+  "ambiguous_environment": false,
+  "version": "1.0.0"
+}

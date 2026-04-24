@@ -1,4 +1,5 @@
 ---
+import '../styles/globals.css';
 import '../styles/tokens.css';
 
 interface Props {
@@ -9,30 +10,41 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-br">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="ElysianCorp - Sovereign AI for Legal Excellence" />
+		<meta name="description" content="ElysianCorp — Sovereign Intelligence Architecture" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 		<title>{title}</title>
 	</head>
-	<body>
+	<body class="bg-obsidian text-parchment-text font-body selection:bg-emerald selection:text-obsidian halftone-noise overflow-x-hidden">
 		<slot />
+		
+		<style is:global>
+			:root {
+				--accent: #10B981; /* Sincronizado com Emerald */
+			}
+			
+			html {
+				font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+				background: #000000;
+				scroll-behavior: smooth;
+			}
+
+			/* Prevenção de FOUC e Layout Shifts */
+			body {
+				opacity: 0;
+				animation: fadeIn 0.8s var(--ease-out-expo) forwards;
+			}
+
+			@keyframes fadeIn {
+				to { opacity: 1; }
+			}
+		</style>
 	</body>
 </html>
-<style is:global>
-	/* Custom Smooth Scroll */
-	html {
-		scroll-behavior: smooth;
-		background-color: var(--parchment);
-	}
-	body {
-		background-color: var(--parchment);
-		color: var(--abyss);
-	}
-</style>

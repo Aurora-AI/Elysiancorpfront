@@ -2,6 +2,259 @@
   "schema_version": "1.0.0",
   "repository_root": "C:\\Projetos\\Aurora\\.agent-skills",
   "project_root": "C:\\Projetos\\Aurora\\MadLabAurora\\ElysianCorp",
-  "updated_at": "2026-04-20T13:19:31+00:00",
-  "installed_skills": {}
+  "updated_at": "2026-04-22T20:54:23+00:00",
+  "installed_skills": {
+    "ceo-marketing": {
+      "version": "1.0.0",
+      "status": "production",
+      "installed_at": "2026-04-22T20:54:21+00:00",
+      "installed_path": "C:\\Projetos\\Aurora\\MadLabAurora\\ElysianCorp\\.aurora\\skills\\ceo-marketing",
+      "source_path": "C:\\Projetos\\Aurora\\.agent-skills\\ceo-marketing"
+    },
+    "ceo-product-owner": {
+      "version": "1.1.0",
+      "status": "production",
+      "installed_at": "2026-04-22T20:54:21+00:00",
+      "installed_path": "C:\\Projetos\\Aurora\\MadLabAurora\\ElysianCorp\\.aurora\\skills\\ceo-product-owner",
+      "source_path": "C:\\Projetos\\Aurora\\.agent-skills\\ceo-product-owner"
+    },
+    "ceo-business-partner": {
+      "version": "1.0.0",
+      "status": "production",
+      "installed_at": "2026-04-22T20:54:22+00:00",
+      "installed_path": "C:\\Projetos\\Aurora\\MadLabAurora\\ElysianCorp\\.aurora\\skills\\ceo-business-partner",
+      "source_path": "C:\\Projetos\\Aurora\\.agent-skills\\ceo-business-partner"
+    },
+    "ceo-web": {
+      "version": "1.1.0",
+      "status": "production",
+      "installed_at": "2026-04-22T20:54:22+00:00",
+      "installed_path": "C:\\Projetos\\Aurora\\MadLabAurora\\ElysianCorp\\.aurora\\skills\\ceo-web",
+      "source_path": "C:\\Projetos\\Aurora\\.agent-skills\\ceo-web"
+    },
+    "ceo-copy": {
+      "version": "1.1.0",
+      "status": "production",
+      "installed_at": "2026-04-22T20:54:22+00:00",
+      "installed_path": "C:\\Projetos\\Aurora\\MadLabAurora\\ElysianCorp\\.aurora\\skills\\ceo-copy",
+      "source_path": "C:\\Projetos\\Aurora\\.agent-skills\\ceo-copy"
+    },
+    "master-skill": {
+      "version": "1.0.0",
+      "status": "production",
+      "installed_at": "2026-04-22T20:54:22+00:00",
+      "installed_path": "C:\\Projetos\\Aurora\\MadLabAurora\\ElysianCorp\\.aurora\\skills\\master-skill",
+      "source_path": "C:\\Projetos\\Aurora\\.agent-skills\\master-skill"
+    },
+    "devil-advocate-auditor": {
+      "version": "1.0.0",
+      "status": "production",
+      "installed_at": "2026-04-22T20:54:22+00:00",
+      "installed_path": "C:\\Projetos\\Aurora\\MadLabAurora\\ElysianCorp\\.aurora\\skills\\devil-advocate-auditor",
+      "source_path": "C:\\Projetos\\Aurora\\.agent-skills\\devil-advocate-auditor"
+    },
+    "loop-balance-analyzer": {
+      "version": "1.0.0",
+      "status": "production",
+      "installed_at": "2026-04-22T20:54:22+00:00",
+      "installed_path": "C:\\Projetos\\Aurora\\MadLabAurora\\ElysianCorp\\.aurora\\skills\\loop-balance-analyzer",
+      "source_path": "C:\\Projetos\\Aurora\\.agent-skills\\loop-balance-analyzer"
+    },
+    "agent-red-team-sales": {
+      "version": "2.0.0",
+      "status": "production",
+      "installed_at": "2026-04-22T20:54:22+00:00",
+      "installed_path": "C:\\Projetos\\Aurora\\MadLabAurora\\ElysianCorp\\.aurora\\skills\\agent-red-team-sales",
+      "source_path": "C:\\Projetos\\Aurora\\.agent-skills\\agent-red-team-sales"
+    },
+    "qa-review": {
+      "version": "1.0.0",
+      "status": "production",
+      "installed_at": "2026-04-22T20:54:22+00:00",
+      "installed_path": "C:\\Projetos\\Aurora\\MadLabAurora\\ElysianCorp\\.aurora\\skills\\qa-review",
+      "source_path": "C:\\Projetos\\Aurora\\.agent-skills\\qa-review"
+    },
+    "product-integrity-engineer": {
+      "version": "1.0.0",
+      "status": "production",
+      "installed_at": "2026-04-22T20:54:22+00:00",
+      "installed_path": "C:\\Projetos\\Aurora\\MadLabAurora\\ElysianCorp\\.aurora\\skills\\product-integrity-engineer",
+      "source_path": "C:\\Projetos\\Aurora\\.agent-skills\\product-integrity-engineer"
+    },
+    "ingestor": {
+      "version": "2.0.0",
+      "status": "production",
+      "installed_at": "2026-04-22T20:54:22+00:00",
+      "installed_path": "C:\\Projetos\\Aurora\\MadLabAurora\\ElysianCorp\\.aurora\\skills\\ingestor",
+      "source_path": "C:\\Projetos\\Aurora\\.agent-skills\\ingestor"
+    },
+    "bibliotecario": {
+      "version": "2.0.0",
+      "status": "production",
+      "installed_at": "2026-04-22T20:54:22+00:00",
+      "installed_path": "C:\\Projetos\\Aurora\\MadLabAurora\\ElysianCorp\\.aurora\\skills\\bibliotecario",
+      "source_path": "C:\\Projetos\\Aurora\\.agent-skills\\bibliotecario"
+    },
+    "cientista": {
+      "version": "2.0.0",
+      "status": "production",
+      "installed_at": "2026-04-22T20:54:22+00:00",
+      "installed_path": "C:\\Projetos\\Aurora\\MadLabAurora\\ElysianCorp\\.aurora\\skills\\cientista",
+      "source_path": "C:\\Projetos\\Aurora\\.agent-skills\\cientista"
+    },
+    "agent-reflexion-code": {
+      "version": "1.0.0",
+      "status": "production",
+      "installed_at": "2026-04-22T20:54:22+00:00",
+      "installed_path": "C:\\Projetos\\Aurora\\MadLabAurora\\ElysianCorp\\.aurora\\skills\\agent-reflexion-code",
+      "source_path": "C:\\Projetos\\Aurora\\.agent-skills\\agent-reflexion-code"
+    },
+    "ceo-design": {
+      "version": "1.0.0",
+      "status": "production",
+      "installed_at": "2026-04-22T20:54:23+00:00",
+      "installed_path": "C:\\Projetos\\Aurora\\MadLabAurora\\ElysianCorp\\.aurora\\skills\\ceo-design",
+      "source_path": "C:\\Projetos\\Aurora\\.agent-skills\\ceo-design"
+    },
+    "ceo-effects": {
+      "version": "1.1.0",
+      "status": "production",
+      "installed_at": "2026-04-22T20:54:23+00:00",
+      "installed_path": "C:\\Projetos\\Aurora\\MadLabAurora\\ElysianCorp\\.aurora\\skills\\ceo-effects",
+      "source_path": "C:\\Projetos\\Aurora\\.agent-skills\\ceo-effects"
+    },
+    "agente-awwwards": {
+      "version": "1.1.0",
+      "status": "production",
+      "installed_at": "2026-04-22T20:54:23+00:00",
+      "installed_path": "C:\\Projetos\\Aurora\\MadLabAurora\\ElysianCorp\\.aurora\\skills\\agente-awwwards",
+      "source_path": "C:\\Projetos\\Aurora\\.agent-skills\\agente-awwwards"
+    },
+    "refinar-cognicao": {
+      "version": "1.1.0",
+      "status": "production",
+      "installed_at": "2026-04-22T20:54:23+00:00",
+      "installed_path": "C:\\Projetos\\Aurora\\MadLabAurora\\ElysianCorp\\.aurora\\skills\\refinar-cognicao",
+      "source_path": "C:\\Projetos\\Aurora\\.agent-skills\\refinar-cognicao"
+    },
+    "design-md": {
+      "version": "1.1.0",
+      "status": "production",
+      "installed_at": "2026-04-22T20:54:23+00:00",
+      "installed_path": "C:\\Projetos\\Aurora\\MadLabAurora\\ElysianCorp\\.aurora\\skills\\design-md",
+      "source_path": "C:\\Projetos\\Aurora\\.agent-skills\\design-md"
+    },
+    "taste-design": {
+      "version": "1.1.0",
+      "status": "production",
+      "installed_at": "2026-04-22T20:54:23+00:00",
+      "installed_path": "C:\\Projetos\\Aurora\\MadLabAurora\\ElysianCorp\\.aurora\\skills\\taste-design",
+      "source_path": "C:\\Projetos\\Aurora\\.agent-skills\\taste-design"
+    },
+    "stitch-design": {
+      "version": "1.1.0",
+      "status": "production",
+      "installed_at": "2026-04-22T20:54:23+00:00",
+      "installed_path": "C:\\Projetos\\Aurora\\MadLabAurora\\ElysianCorp\\.aurora\\skills\\stitch-design",
+      "source_path": "C:\\Projetos\\Aurora\\.agent-skills\\stitch-design"
+    },
+    "skill-creator": {
+      "version": "1.0.0",
+      "status": "production",
+      "installed_at": "2026-04-22T20:54:23+00:00",
+      "installed_path": "C:\\Projetos\\Aurora\\MadLabAurora\\ElysianCorp\\.aurora\\skills\\skill-creator",
+      "source_path": "C:\\Projetos\\Aurora\\.agent-skills\\skill-creator"
+    },
+    "shadcn-ui": {
+      "version": "1.0.0",
+      "status": "production",
+      "installed_at": "2026-04-22T20:54:23+00:00",
+      "installed_path": "C:\\Projetos\\Aurora\\MadLabAurora\\ElysianCorp\\.aurora\\skills\\shadcn-ui",
+      "source_path": "C:\\Projetos\\Aurora\\.agent-skills\\shadcn-ui"
+    },
+    "stitch-loop": {
+      "version": "1.0.0",
+      "status": "production",
+      "installed_at": "2026-04-22T20:54:23+00:00",
+      "installed_path": "C:\\Projetos\\Aurora\\MadLabAurora\\ElysianCorp\\.aurora\\skills\\stitch-loop",
+      "source_path": "C:\\Projetos\\Aurora\\.agent-skills\\stitch-loop"
+    },
+    "design-taste-frontend": {
+      "version": "1.0.0",
+      "status": "production",
+      "installed_at": "2026-04-22T20:54:23+00:00",
+      "installed_path": "C:\\Projetos\\Aurora\\MadLabAurora\\ElysianCorp\\.aurora\\skills\\design-taste-frontend",
+      "source_path": "C:\\Projetos\\Aurora\\.agent-skills\\design-taste-frontend"
+    },
+    "find-skills": {
+      "version": "1.0.0",
+      "status": "production",
+      "installed_at": "2026-04-22T20:54:23+00:00",
+      "installed_path": "C:\\Projetos\\Aurora\\MadLabAurora\\ElysianCorp\\.aurora\\skills\\find-skills",
+      "source_path": "C:\\Projetos\\Aurora\\.agent-skills\\find-skills"
+    },
+    "full-output-enforcement": {
+      "version": "1.0.0",
+      "status": "production",
+      "installed_at": "2026-04-22T20:54:23+00:00",
+      "installed_path": "C:\\Projetos\\Aurora\\MadLabAurora\\ElysianCorp\\.aurora\\skills\\full-output-enforcement",
+      "source_path": "C:\\Projetos\\Aurora\\.agent-skills\\full-output-enforcement"
+    },
+    "gpt-taste": {
+      "version": "1.0.0",
+      "status": "production",
+      "installed_at": "2026-04-22T20:54:23+00:00",
+      "installed_path": "C:\\Projetos\\Aurora\\MadLabAurora\\ElysianCorp\\.aurora\\skills\\gpt-taste",
+      "source_path": "C:\\Projetos\\Aurora\\.agent-skills\\gpt-taste"
+    },
+    "high-end-visual-design": {
+      "version": "1.0.0",
+      "status": "production",
+      "installed_at": "2026-04-22T20:54:23+00:00",
+      "installed_path": "C:\\Projetos\\Aurora\\MadLabAurora\\ElysianCorp\\.aurora\\skills\\high-end-visual-design",
+      "source_path": "C:\\Projetos\\Aurora\\.agent-skills\\high-end-visual-design"
+    },
+    "image-taste-frontend": {
+      "version": "1.0.0",
+      "status": "production",
+      "installed_at": "2026-04-22T20:54:23+00:00",
+      "installed_path": "C:\\Projetos\\Aurora\\MadLabAurora\\ElysianCorp\\.aurora\\skills\\image-taste-frontend",
+      "source_path": "C:\\Projetos\\Aurora\\.agent-skills\\image-taste-frontend"
+    },
+    "industrial-brutalist-ui": {
+      "version": "1.0.0",
+      "status": "production",
+      "installed_at": "2026-04-22T20:54:23+00:00",
+      "installed_path": "C:\\Projetos\\Aurora\\MadLabAurora\\ElysianCorp\\.aurora\\skills\\industrial-brutalist-ui",
+      "source_path": "C:\\Projetos\\Aurora\\.agent-skills\\industrial-brutalist-ui"
+    },
+    "minimalist-ui": {
+      "version": "1.0.0",
+      "status": "production",
+      "installed_at": "2026-04-22T20:54:23+00:00",
+      "installed_path": "C:\\Projetos\\Aurora\\MadLabAurora\\ElysianCorp\\.aurora\\skills\\minimalist-ui",
+      "source_path": "C:\\Projetos\\Aurora\\.agent-skills\\minimalist-ui"
+    },
+    "redesign-existing-projects": {
+      "version": "1.0.0",
+      "status": "production",
+      "installed_at": "2026-04-22T20:54:23+00:00",
+      "installed_path": "C:\\Projetos\\Aurora\\MadLabAurora\\ElysianCorp\\.aurora\\skills\\redesign-existing-projects",
+      "source_path": "C:\\Projetos\\Aurora\\.agent-skills\\redesign-existing-projects"
+    },
+    "stitch-design-taste": {
+      "version": "1.0.0",
+      "status": "production",
+      "installed_at": "2026-04-22T20:54:23+00:00",
+      "installed_path": "C:\\Projetos\\Aurora\\MadLabAurora\\ElysianCorp\\.aurora\\skills\\stitch-design-taste",
+      "source_path": "C:\\Projetos\\Aurora\\.agent-skills\\stitch-design-taste"
+    },
+    "emil-design-eng": {
+      "version": "1.0.0",
+      "status": "production",
+      "installed_at": "2026-04-22T20:54:23+00:00",
+      "installed_path": "C:\\Projetos\\Aurora\\MadLabAurora\\ElysianCorp\\.aurora\\skills\\emil-design-eng",
+      "source_path": "C:\\Projetos\\Aurora\\.agent-skills\\emil-design-eng"
+    }
+  }
 }

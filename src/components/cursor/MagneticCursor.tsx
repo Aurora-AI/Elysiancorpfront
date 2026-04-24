@@ -96,15 +96,13 @@ export function MagneticCursor() {
       const mx = mouseState.x;
       const my = mouseState.y;
 
-      // Central Dot
-      ctx.beginPath();
-      ctx.arc(mx, my, 3, 0, Math.PI * 2);
-      ctx.fillStyle = '#0A0A0A'; // Digital Ink (Abyss)
-      ctx.fill();
+      // Central Dot (Square)
+      ctx.fillStyle = '#FFFFFF';
+      ctx.fillRect(mx - 2, my - 2, 4, 4);
 
       // Crosshair
       if (crosshairOpacity > 0.01) {
-        ctx.strokeStyle = `rgba(10,10,10,${crosshairOpacity.toFixed(3)})`;
+        ctx.strokeStyle = `rgba(255,255,255,${crosshairOpacity.toFixed(3)})`;
         ctx.lineWidth = 0.8;
         ctx.beginPath(); ctx.moveTo(mx - 50, my); ctx.lineTo(mx - 8, my); ctx.stroke();
         ctx.beginPath(); ctx.moveTo(mx + 8, my); ctx.lineTo(mx + 50, my); ctx.stroke();
@@ -112,25 +110,23 @@ export function MagneticCursor() {
         ctx.beginPath(); ctx.moveTo(mx, my + 8); ctx.lineTo(mx, my + 50); ctx.stroke();
       }
 
-      // Inner ring (GSAP Optimized)
-      ctx.beginPath();
-      ctx.arc(inner.x, inner.y, Math.max(1, innerRadius), 0, Math.PI * 2);
-      ctx.strokeStyle = 'rgba(10,10,10,0.55)';
+      // Inner Square (GSAP Optimized)
+      ctx.strokeStyle = 'rgba(255,255,255,0.55)';
       ctx.lineWidth = 1;
-      ctx.stroke();
+      const ir = Math.max(1, innerRadius);
+      ctx.strokeRect(inner.x - ir, inner.y - ir, ir * 2, ir * 2);
 
-      // Outer ring (GSAP Optimized)
-      ctx.beginPath();
-      ctx.arc(outer.x, outer.y, outerRadius, 0, Math.PI * 2);
-      ctx.strokeStyle = 'rgba(10,10,10,0.18)';
+      // Outer Square (GSAP Optimized)
+      ctx.strokeStyle = 'rgba(255,255,255,0.18)';
       ctx.lineWidth = 0.6;
-      ctx.stroke();
+      const or = outerRadius;
+      ctx.strokeRect(outer.x - or, outer.y - or, or * 2, or * 2);
 
       // Coordinates
       if (coordsOpacity > 0.01) {
         ctx.font = `9px 'DM Mono', monospace`;
-        ctx.fillStyle = `rgba(10,10,10,${coordsOpacity.toFixed(3)})`;
-        ctx.fillText(`X: ${Math.round(mx)}  Y: ${Math.round(my)}`, mx + 12, my + 16);
+        ctx.fillStyle = `rgba(255,255,255,${coordsOpacity.toFixed(3)})`;
+        ctx.fillText(`X: ${Math.round(mx)}  Y: ${Math.round(my)}`, mx + 16, my + 24);
       }
 
       raf = requestAnimationFrame(step);
@@ -160,7 +156,8 @@ export function MagneticCursor() {
         height: '100%',
         display: 'block',
         pointerEvents: 'none',
-        zIndex: 50,
+        zIndex: 9999,
+        mixBlendMode: 'difference'
       }}
     />
   );

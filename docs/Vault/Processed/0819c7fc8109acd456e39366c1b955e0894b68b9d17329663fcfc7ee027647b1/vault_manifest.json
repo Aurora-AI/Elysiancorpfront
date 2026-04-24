@@ -1,0 +1,46 @@
+{
+  "manifest_version": "2.0",
+  "ingestion_id": "0819c7fc8109acd456e39366c1b955e0894b68b9d17329663fcfc7ee027647b1",
+  "timestamp": "2026-04-24T09:13:00Z",
+  "source": "C:\\Users\\rodri\\OneDrive\\Pessoal\\Desktop\\Skill de Orquestração para Empresa Unicórnio.md",
+  "classification": "Nova Skill | Hibrido",
+  "title": "Arquitetura de Superagentes para Empresa Autoevolutiva de US$ 1B",
+  "metadata": {
+    "tags": ["solopreneur-unicorn", "orchestration", "holarchy", "selection-as-power", "trustware", "r-mcts", "nats"],
+    "impacted_skills": ["agent-forge", "master-skill", "ceo-business-partner"]
+  },
+  "content_structure": {
+    "sections": [
+      "Análise Comparativa do Modelo Organizacional",
+      "Estado da Arte em Agentes Compostos e Orquestração",
+      "Tecnologias Convergentes para Viabilização do Orquestrador",
+      "Arquitetura Organizacional Homólogo-Máquina e a Holarquia",
+      "Autoevolução do Sistema e Salvaguardas Cognitivas",
+      "Especificação Técnica Pydantic: solopreneur-unicorn-orchestrator"
+    ]
+  },
+  "indexing": {
+    "qdrant": {
+      "collection": "aurora_business_intel_matrices",
+      "payload_sample": {
+        "concept_id": "concept_holarchic_sovereignty_01",
+        "category": "organizational_architecture",
+        "key_assertion": "Holarchies allow contextual sovereignty, balancing autonomy and central alignment."
+      }
+    },
+    "neo4j": {
+      "nodes": [
+        {"label": "Domain", "properties": {"name": "SolopreneurUnicorn"}},
+        {"label": "Agent", "properties": {"name": "Orchestrator"}},
+        {"label": "Department", "properties": {"name": "Node"}},
+        {"label": "Contract", "properties": {"name": "SLA"}}
+      ],
+      "relationships": [
+        {"start": "Orchestrator", "type": "MANAGES", "end": "Node"},
+        {"start": "Orchestrator", "type": "ENFORCES", "end": "SLA"},
+        {"start": "Node", "type": "NEGOTIATES_WITH", "end": "Node"}
+      ]
+    }
+  },
+  "status": "CUSTODY_COMPLETE"
+}

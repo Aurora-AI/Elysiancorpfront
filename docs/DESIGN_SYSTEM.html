@@ -1,19 +1,1179 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>ElysianCorp | Design System v1.0</title>
-    <style>
-        :root {
-            --parchment: #F4F1EA;
-            --abyss: #0A0A0A;
-            --signal: #D4AF37;
-            --font-display: 'Cormorant Garamond', serif;
-            --font-label: 'Syne', sans-serif;
-            --font-mono: 'DM Mono', monospace;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ElysianCorp | Design System v2.0 — Sovereign by Design</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Mono:wght@300;400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+
+    /* ═══════════════════════════════════════════════════════════
+       DESIGN TOKENS — THE SINGLE SOURCE OF TRUTH
+    ═══════════════════════════════════════════════════════════ */
+    :root {
+      /* DARK WORLD — Hero, Problem, Footer */
+      --obsidian:        #0A0A0B;
+      --obsidian-alt:    #05070A;
+      --gold:            #D4AF37;
+      --gold-mid:        #F3E5AB;
+      --gold-deep:       #997A15;
+      --parchment-on-dark: rgba(244,241,234,0.92);
+      --dim-on-dark:     rgba(244,241,234,0.38);
+      --hairline-dark:   rgba(255,255,255,0.05);
+      --hairline-dark-md:rgba(255,255,255,0.10);
+
+      /* LIGHT WORLD — Answer, Solution */
+      --parchment:       #F4F1EA;
+      --ink:             #0D0D0D;
+      --sapphire:        #1B4DA0;
+      --sapphire-bright: #4A7FD4;
+      --dim-on-light:    rgba(13,13,13,0.40);
+      --hairline-light:  rgba(13,13,13,0.08);
+      --hairline-light-md:rgba(13,13,13,0.15);
+
+      /* TYPOGRAPHY */
+      --font-display: 'Cormorant Garamond', serif;
+      --font-label:   'Syne', sans-serif;
+      --font-meta:    'DM Mono', monospace;
+
+      /* SPACING — Fibonacci */
+      --s1:   8px;
+      --s2:  13px;
+      --s3:  21px;
+      --s5:  34px;
+      --s8:  55px;
+      --s13: 89px;
+
+      /* Z-AXIS */
+      --z-neg:   -1;
+      --z-base:   0;
+      --z-above: 10;
+      --z-nav:  100;
+      --z-modal:1000;
+
+      /* MOTION */
+      --ease-sovereign: cubic-bezier(0.23, 1, 0.32, 1);
+      --ease-enter:     cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-clip:      cubic-bezier(0.87, 0, 0.13, 1);
+      --duration-fast:  0.4s;
+      --duration-std:   0.7s;
+      --duration-long:  1.4s;
+      --duration-cinematic: 2.0s;
+      --silence: 0.8s;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       RESET & BASE
+    ═══════════════════════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--obsidian);
+      color: var(--parchment-on-dark);
+      font-family: var(--font-label);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       LAYOUT UTILITIES
+    ═══════════════════════════════════════════════════════════ */
+    .page       { max-width: 1400px; margin: 0 auto; padding: 0 8vw; }
+    .ch-section { padding: var(--s13) 0; border-bottom: 1px solid var(--hairline-dark); }
+    .ch-section.light { background: var(--parchment); color: var(--ink); border-bottom-color: var(--hairline-light); }
+    .ch-section:last-child { border-bottom: none; }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s5); }
+    .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: var(--s5); }
+    .grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: var(--s3); }
+    @media (max-width: 900px) { .grid-2,.grid-3,.grid-4 { grid-template-columns: 1fr; } }
+
+    /* ═══════════════════════════════════════════════════════════
+       SECTION LABEL
+    ═══════════════════════════════════════════════════════════ */
+    .lbl {
+      display: flex; align-items: center; gap: var(--s2);
+      font-family: var(--font-meta);
+      font-size: 0.5625rem; letter-spacing: 0.45em; text-transform: uppercase;
+      color: var(--dim-on-dark);
+      margin-bottom: var(--s8);
+    }
+    .lbl.light { color: var(--dim-on-light); }
+    .lbl::after { content:''; width:40px; height:1px; background: currentColor; opacity:0.4; }
+
+    /* ═══════════════════════════════════════════════════════════
+       TYPOGRAPHY PRIMITIVES
+    ═══════════════════════════════════════════════════════════ */
+    .t-display-hero {
+      font-family: var(--font-display); font-weight: 300;
+      font-size: clamp(4rem, 12vw, 11rem);
+      line-height: 0.86; text-transform: uppercase; letter-spacing: -0.015em;
+    }
+    .t-display-section {
+      font-family: var(--font-display); font-weight: 300;
+      font-size: clamp(2.5rem, 7vw, 6.5rem);
+      line-height: 0.88; text-transform: uppercase; letter-spacing: -0.01em;
+    }
+    .t-display-ghost {
+      font-family: var(--font-display); font-weight: 300;
+      font-size: clamp(5rem, 18vw, 18rem);
+      line-height: 0.84; text-transform: uppercase; letter-spacing: -0.02em;
+      pointer-events: none; user-select: none;
+    }
+    .t-subtitle {
+      font-family: var(--font-label); font-weight: 700;
+      font-size: clamp(1rem, 2vw, 1.625rem);
+      line-height: 1.3; text-transform: uppercase;
+    }
+    .t-body {
+      font-family: var(--font-label); font-size: 0.9375rem; line-height: 1.78;
+    }
+    .t-label {
+      font-family: var(--font-label);
+      font-size: 0.625rem; letter-spacing: 0.5em; text-transform: uppercase;
+    }
+    .t-meta {
+      font-family: var(--font-meta);
+      font-size: 0.5625rem; letter-spacing: 0.35em; text-transform: uppercase;
+    }
+    .accent-gold { color: var(--gold); font-style: italic; }
+    .accent-sapphire { color: var(--sapphire); font-style: italic; }
+    .accent-sapphire-bright { color: var(--sapphire-bright); font-style: italic; }
+
+    /* ═══════════════════════════════════════════════════════════
+       COVER
+    ═══════════════════════════════════════════════════════════ */
+    .cover {
+      min-height: 100vh; background: var(--obsidian-alt);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 8vw; position: relative; overflow: hidden;
+    }
+    .cover-ghost {
+      position: absolute; top: -5%; right: -2%;
+      font-family: var(--font-display);
+      font-size: 38vw; line-height: 0.88; font-weight: 300;
+      color: var(--gold); opacity: 0.032;
+      pointer-events: none; user-select: none; letter-spacing: -0.02em;
+    }
+    .cover-kicker {
+      font-family: var(--font-meta);
+      font-size: 0.5625rem; letter-spacing: 0.5em; text-transform: uppercase;
+      color: var(--gold); opacity: 0.7; margin-bottom: var(--s3);
+    }
+    .cover-title {
+      font-family: var(--font-display); font-weight: 300;
+      font-size: clamp(4rem, 10vw, 9rem);
+      line-height: 0.86; text-transform: uppercase; letter-spacing: -0.015em;
+      color: var(--parchment-on-dark);
+    }
+    .cover-title em { color: var(--gold); font-style: italic; }
+    .cover-rule { height: 1px; background: var(--hairline-dark-md); margin: var(--s8) 0 var(--s5); }
+    .cover-footer {
+      display: flex; gap: var(--s5); flex-wrap: wrap; align-items: center;
+    }
+    .cover-pill {
+      font-family: var(--font-meta);
+      font-size: 0.5rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--dim-on-dark);
+      border: 1px solid var(--hairline-dark-md); padding: 5px 14px;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       COLOR SWATCHES
+    ═══════════════════════════════════════════════════════════ */
+    .swatch { position: relative; }
+    .swatch-block { height: 140px; position: relative; }
+    .swatch-cross {
+      position: absolute; bottom: 12px; right: 12px;
+      font-family: var(--font-meta); font-size: 0.4375rem; letter-spacing: 0.3em;
+      text-transform: uppercase;
+    }
+    .swatch-info { padding: var(--s2) 0; }
+    .swatch-name { font-family: var(--font-label); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+    .swatch-hex  { font-family: var(--font-meta); font-size: 0.5625rem; letter-spacing: 0.25em; text-transform: uppercase; }
+    .swatch-role { font-family: var(--font-label); font-size: 0.625rem; line-height: 1.55; margin-top: 5px; color: var(--dim-on-dark); }
+    .ch-section.light .swatch-role { color: var(--dim-on-light); }
+
+    /* ═══════════════════════════════════════════════════════════
+       WORLD DIVIDER
+    ═══════════════════════════════════════════════════════════ */
+    .world-header {
+      padding: var(--s5) 0;
+      border-top: 1px solid var(--hairline-dark);
+      margin-bottom: var(--s8);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .world-header.light { border-top-color: var(--hairline-light); }
+    .world-tag {
+      font-family: var(--font-meta); font-size: 0.5rem; letter-spacing: 0.5em; text-transform: uppercase;
+    }
+    .world-tag.gold { color: var(--gold); }
+    .world-tag.sapphire { color: var(--sapphire); }
+    .world-tag.sapphire-bright { color: var(--sapphire-bright); }
+
+    /* ═══════════════════════════════════════════════════════════
+       SPACING
+    ═══════════════════════════════════════════════════════════ */
+    .sp-row {
+      display: grid; grid-template-columns: 160px 1fr 180px;
+      align-items: center; gap: var(--s5);
+      padding: var(--s2) 0; border-bottom: 1px solid var(--hairline-dark);
+    }
+    .sp-row.light { border-bottom-color: var(--hairline-light); }
+    .sp-row:last-child { border-bottom: none; }
+    .sp-bar { height: 2px; background: var(--gold); }
+    .ch-section.light .sp-bar { background: var(--sapphire); }
+
+    /* ═══════════════════════════════════════════════════════════
+       COMPONENT CARDS
+    ═══════════════════════════════════════════════════════════ */
+    .comp-label {
+      font-family: var(--font-meta); font-size: 0.4375rem;
+      letter-spacing: 0.4em; text-transform: uppercase;
+      color: var(--dim-on-dark); margin-bottom: var(--s3);
+    }
+    .ch-section.light .comp-label { color: var(--dim-on-light); }
+    .comp-card {
+      border: 1px solid var(--hairline-dark);
+      padding: var(--s5);
+    }
+    .comp-card.light { border-color: var(--hairline-light); background: var(--parchment); }
+    .comp-card.dark  { background: var(--obsidian-alt); }
+    .comp-spec {
+      font-family: var(--font-meta); font-size: 0.4375rem;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      margin-top: var(--s3); line-height: 1.8;
+    }
+    .comp-spec.on-dark { color: rgba(244,241,234,0.25); }
+    .comp-spec.on-light { color: rgba(13,13,13,0.3); }
+
+    /* ═══════════════════════════════════════════════════════════
+       SECTION LABEL COMPONENT
+    ═══════════════════════════════════════════════════════════ */
+    .ds-section-label {
+      display: inline-flex; align-items: center; gap: 16px;
+    }
+    .ds-section-label-line { width: 48px; height: 1px; }
+
+    /* ═══════════════════════════════════════════════════════════
+       BUTTON COMPONENT
+    ═══════════════════════════════════════════════════════════ */
+    .btn {
+      display: inline-block; border: none; cursor: pointer;
+      font-family: var(--font-label); font-weight: 600;
+      font-size: 0.6875rem; letter-spacing: 0.4em; text-transform: uppercase;
+      padding: 18px 56px;
+      transition: background var(--duration-std) var(--ease-sovereign),
+                  color     var(--duration-std) var(--ease-sovereign);
+    }
+    /* Dark World Button */
+    .btn-dark-world {
+      background: var(--parchment); color: var(--ink);
+    }
+    .btn-dark-world:hover { background: var(--gold); color: var(--ink); }
+    /* Light World Button */
+    .btn-light-world {
+      background: var(--ink); color: var(--parchment);
+    }
+    .btn-light-world:hover { background: var(--sapphire); color: var(--parchment); }
+
+    /* ═══════════════════════════════════════════════════════════
+       GHOST WORD DEMO
+    ═══════════════════════════════════════════════════════════ */
+    .ghost-wrap {
+      position: relative; overflow: hidden; min-height: 280px;
+      display: flex; align-items: center;
+    }
+    .ghost-bg {
+      position: absolute; top: -10%; right: -2%;
+      font-family: var(--font-display); font-weight: 300;
+      font-size: clamp(6rem, 20vw, 16rem); line-height: 1;
+      text-transform: uppercase; letter-spacing: -0.015em;
+      pointer-events: none; user-select: none;
+    }
+    .ghost-content { position: relative; z-index: 1; }
+
+    /* ═══════════════════════════════════════════════════════════
+       IMAGE CONTAINER DEMO
+    ═══════════════════════════════════════════════════════════ */
+    .img-frame { overflow: hidden; position: relative; background: var(--obsidian); }
+    .img-frame img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transform: scale(1.06);
+      transition: transform var(--duration-cinematic) var(--ease-sovereign),
+                  filter 800ms ease;
+      filter: grayscale(0.25);
+    }
+    .img-frame:hover img { transform: scale(1); filter: grayscale(0); }
+
+    /* ═══════════════════════════════════════════════════════════
+       MOTION TABLE
+    ═══════════════════════════════════════════════════════════ */
+    .motion-table { width: 100%; border-collapse: collapse; }
+    .motion-table th {
+      font-family: var(--font-meta); font-size: 0.4375rem;
+      letter-spacing: 0.4em; text-transform: uppercase;
+      color: var(--dim-on-dark); text-align: left;
+      padding: var(--s2) var(--s2) var(--s2) 0;
+      border-bottom: 1px solid var(--hairline-dark-md);
+    }
+    .motion-table.light th { color: var(--dim-on-light); border-bottom-color: var(--hairline-light-md); }
+    .motion-table td {
+      font-family: var(--font-label); font-size: 0.8125rem; line-height: 1.5;
+      padding: var(--s2) var(--s2) var(--s2) 0;
+      border-bottom: 1px solid var(--hairline-dark);
+      vertical-align: top; color: var(--dim-on-dark);
+    }
+    .motion-table.light td { border-bottom-color: var(--hairline-light); color: var(--dim-on-light); }
+    .motion-table td.name { font-weight: 700; color: var(--parchment-on-dark); min-width: 200px; }
+    .motion-table.light td.name { color: var(--ink); }
+    code {
+      font-family: var(--font-meta); font-size: 0.5rem; letter-spacing: 0.1em;
+      padding: 2px 8px; background: rgba(255,255,255,0.06);
+    }
+    .ch-section.light code { background: rgba(13,13,13,0.07); }
+
+    /* ═══════════════════════════════════════════════════════════
+       STAT BLOCK
+    ═══════════════════════════════════════════════════════════ */
+    .stat-group { display: flex; gap: var(--s8); flex-wrap: wrap; }
+    .stat { padding-top: var(--s3); border-top: 1px solid var(--hairline-dark); }
+    .ch-section.light .stat { border-top-color: var(--hairline-light); }
+    .stat-lbl { font-family: var(--font-label); font-size: 0.5625rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--dim-on-dark); margin-bottom: 6px; }
+    .ch-section.light .stat-lbl { color: var(--dim-on-light); }
+    .stat-val { font-family: var(--font-display); font-size: 1.75rem; font-weight: 300; }
+
+    /* ═══════════════════════════════════════════════════════════
+       COPY VOICE
+    ═══════════════════════════════════════════════════════════ */
+    .voice-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s3); margin-bottom: var(--s2); }
+    .voice-banned, .voice-approved {
+      font-family: var(--font-label); font-size: 0.875rem; padding: var(--s3);
+      border: 1px solid var(--hairline-dark);
+      display: flex; align-items: flex-start; gap: var(--s2);
+    }
+    .voice-banned { color: rgba(244,241,234,0.35); text-decoration: line-through; }
+    .voice-approved { color: var(--parchment-on-dark); }
+    .voice-marker { font-family: var(--font-meta); font-size: 0.5rem; flex-shrink:0; margin-top:3px; letter-spacing:0.1em; }
+    .voice-marker.x { color: #8B2020; }
+    .voice-marker.ok { color: var(--gold); }
+
+    /* ═══════════════════════════════════════════════════════════
+       ANTI-PATTERN LIST
+    ═══════════════════════════════════════════════════════════ */
+    .ban-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s2); }
+    @media (max-width: 768px) { .ban-grid { grid-template-columns: 1fr; } }
+    .ban-item {
+      display: flex; align-items: flex-start; gap: var(--s2);
+      font-family: var(--font-label); font-size: 0.8125rem; line-height: 1.5;
+      color: var(--dim-on-dark); padding: var(--s3);
+      border: 1px solid var(--hairline-dark);
+    }
+    .ban-item::before { content:'✕'; font-family: var(--font-meta); font-size:0.5rem; color:#8B2020; flex-shrink:0; margin-top:3px; }
+
+    /* ═══════════════════════════════════════════════════════════
+       NOTE / CALLOUT
+    ═══════════════════════════════════════════════════════════ */
+    .note {
+      font-family: var(--font-label); font-size: 0.875rem; line-height: 1.7;
+      color: var(--dim-on-dark); border-left: 2px solid var(--gold);
+      padding-left: var(--s3); margin: var(--s5) 0;
+    }
+    .ch-section.light .note { color: var(--dim-on-light); border-left-color: var(--sapphire); }
+    .note strong { color: var(--parchment-on-dark); }
+    .ch-section.light .note strong { color: var(--ink); }
+
+    /* ═══════════════════════════════════════════════════════════
+       NARRATIVE SEQUENCE DIAGRAM
+    ═══════════════════════════════════════════════════════════ */
+    .narrative-seq { display: flex; gap: 0; width: 100%; }
+    .narrative-node {
+      flex: 1; display: flex; flex-direction: column;
+      border-right: 1px solid var(--hairline-dark);
+      padding: var(--s5) var(--s5) var(--s5) 0;
+    }
+    .narrative-node:last-child { border-right: none; padding-right: 0; }
+    .narrative-world { font-family: var(--font-meta); font-size: 0.4375rem; letter-spacing:0.4em; text-transform:uppercase; margin-bottom: var(--s2); }
+    .narrative-name { font-family: var(--font-display); font-size: clamp(1.2rem,2.5vw,2rem); font-weight:300; text-transform:uppercase; line-height:1; margin-bottom: var(--s2); }
+    .narrative-desc { font-family: var(--font-label); font-size: 0.75rem; color: var(--dim-on-dark); line-height:1.6; }
+    .narrative-accent { display: inline-block; width: 24px; height: 2px; margin-bottom: var(--s3); }
+
+    /* ═══════════════════════════════════════════════════════════
+       RULE OF SILENCE DISPLAY
+    ═══════════════════════════════════════════════════════════ */
+    .silence-bar { display: flex; align-items: center; gap: var(--s3); margin: var(--s5) 0; }
+    .silence-fill { height: 2px; background: var(--gold); }
+    .silence-label { font-family: var(--font-meta); font-size: 0.4375rem; letter-spacing:0.4em; text-transform:uppercase; white-space:nowrap; }
+
+    /* DOC FOOTER */
+    .doc-footer {
+      padding: var(--s8) 0 var(--s13);
+      display: flex; justify-content: space-between; align-items: flex-end;
+      border-top: 1px solid var(--hairline-dark);
+    }
+
+  </style>
 </head>
 <body>
-    <h1>Elysian Design System</h1>
+
+<!-- ═══════════════════════════════════════════════════════════
+     COVER — THE DARK WORLD OPENS
+═══════════════════════════════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-ghost">E</div>
+  <div>
+    <p class="cover-kicker">ElysianCorp · Design System · v2.0 · Sovereign by Design</p>
+    <h1 class="cover-title">
+      TWO WORLDS.<br>
+      ONE <em>SOVEREIGN</em><br>
+      IDENTITY.
+    </h1>
+    <div class="cover-rule"></div>
+    <div class="cover-footer">
+      <span class="cover-pill">Dark World — Obsidian + Gold</span>
+      <span class="cover-pill">Light World — Parchment + Sapphire</span>
+      <span class="cover-pill">Cormorant Garamond + Syne</span>
+      <span class="cover-pill">Fluid Editorial · Density 3 · Motion 8</span>
+      <span class="cover-pill">2026-04-22</span>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- ═══════════════════════════════════════════════════════
+       00 — NARRATIVE ARCHITECTURE
+  ═══════════════════════════════════════════════════════ -->
+  <div class="ch-section">
+    <div class="lbl">00 — Narrative Architecture</div>
+
+    <div class="note" style="margin-bottom:var(--s8);">
+      <strong>O sistema tem dois mundos deliberados.</strong> O Hero vive no Mundo Escuro — cinema alquímico, ouro e obsidiana. As seções de conteúdo transitam para o Mundo Claro — editorial, pergaminho e safira. Esta não é inconsistência: é o arco narrativo do produto. A marca revela uma segunda dimensão ao longo do scroll.
+    </div>
+
+    <!-- Narrative Sequence -->
+    <div class="narrative-seq" style="margin-bottom: var(--s8);">
+
+      <div class="narrative-node">
+        <div class="narrative-world" style="color: var(--gold);">Mundo Escuro — Hero</div>
+        <div class="narrative-accent" style="background: var(--gold);"></div>
+        <div class="narrative-name">GAZE<br>FORENSIC<br>HERO</div>
+        <div class="narrative-desc">Stop-motion cinema. Letras e retratos em ciclo. Silêncio obrigatório. Ouro como assinatura. Transição para branco após 10s.</div>
+      </div>
+
+      <div class="narrative-node" style="padding-left: var(--s5);">
+        <div class="narrative-world" style="color: var(--gold);">Mundo Escuro — Problem</div>
+        <div class="narrative-accent" style="background: var(--sapphire-bright);"></div>
+        <div class="narrative-name">ANATOMIA<br>DA<br>INCERTEZA</div>
+        <div class="narrative-desc">Ponte entre mundos. Obsidiana como fundo, safira brilhante como acento. Clip reveal da imagem. Paralaxe scrub.</div>
+      </div>
+
+      <div class="narrative-node" style="padding-left: var(--s5);">
+        <div class="narrative-world" style="color: var(--sapphire);">Mundo Claro — Answer</div>
+        <div class="narrative-accent" style="background: var(--sapphire);"></div>
+        <div class="narrative-name">O ALQUIMISTA<br>DA<br>VERDADE</div>
+        <div class="narrative-desc">A promessa cumprida. Pergaminho quente, safira profunda. A seção-âncora visual — todas as outras se calibram por ela.</div>
+      </div>
+
+      <div class="narrative-node" style="padding-left: var(--s5);">
+        <div class="narrative-world" style="color: var(--gold);">Mundo Escuro — Footer</div>
+        <div class="narrative-accent" style="background: var(--sapphire-bright);"></div>
+        <div class="narrative-name">FUTURE IS<br>DETER&shy;MINISTIC</div>
+        <div class="narrative-desc">Fechamento narrativo. Retorno ao obsidian. CTA de alta intenção. Navegação editorial limpa.</div>
+      </div>
+
+    </div>
+
+    <!-- Dual Accent Logic -->
+    <div class="grid-2" style="gap: var(--s5);">
+      <div class="comp-card dark">
+        <div class="comp-label">Lógica do Acento Duplo</div>
+        <p class="t-body" style="color: var(--dim-on-dark); font-size: 0.875rem;">
+          O Hero usa <span style="color: var(--gold); font-weight: 700;">Ouro (#D4AF37)</span> — é o assinatura alquímica, intocável. O acento ouro emerge da textura, do gradiente de letra, do metadata.<br><br>
+          As seções claras usam <span style="color: var(--sapphire-bright); font-weight: 700;">Safira (#1B4DA0 / #4A7FD4)</span> — o acento do mundo revelado. A transição Hero → Seções é a transição Ouro → Safira.
+        </p>
+      </div>
+      <div class="comp-card dark">
+        <div class="comp-label">O Teste de Autoridade (Manual da Agência)</div>
+        <p class="t-body" style="color: var(--dim-on-dark); font-size: 0.875rem;">
+          <em style="color: var(--parchment-on-dark);">"Se eu remover o efeito, a narrativa ainda existe?"</em><br><br>
+          Se não — o efeito é a narrativa. Isso é o que queremos.<br>
+          Se sim — o efeito é decoração. Não entra.<br><br>
+          <em style="color: var(--parchment-on-dark);">"Se o design precisa do fundo escuro para parecer premium, ele falhou."</em>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       01 — COLOR PALETTE
+  ═══════════════════════════════════════════════════════ -->
+  <div class="ch-section">
+    <div class="lbl">01 — Color Palette</div>
+
+    <!-- DARK WORLD -->
+    <div class="world-header">
+      <span class="world-tag gold">Dark World — Hero · Problem · Footer</span>
+      <span class="t-meta" style="color: var(--dim-on-dark);">Obsidian canvas · Gold accent</span>
+    </div>
+
+    <div class="grid-4" style="margin-bottom: var(--s8);">
+      <div class="swatch">
+        <div class="swatch-block" style="background:#05070A;">
+          <span class="swatch-cross" style="color:rgba(255,255,255,0.2);">OBSIDIAN ALT</span>
+        </div>
+        <div class="swatch-info">
+          <div class="swatch-name" style="color:var(--parchment-on-dark);">Obsidian Alt</div>
+          <div class="swatch-hex" style="color:var(--dim-on-dark);">#05070A</div>
+          <div class="swatch-role">Canvas Hero. Ligeiramente mais frio que o obsidian principal — profundidade máxima.</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#0A0A0B; border:1px solid rgba(255,255,255,0.05);">
+          <span class="swatch-cross" style="color:rgba(255,255,255,0.2);">OBSIDIAN</span>
+        </div>
+        <div class="swatch-info">
+          <div class="swatch-name" style="color:var(--parchment-on-dark);">Obsidian</div>
+          <div class="swatch-hex" style="color:var(--dim-on-dark);">#0A0A0B</div>
+          <div class="swatch-role">Canvas Problem + Footer. Nunca pure black. Tom azulado sutil — sofisticação não-industrial.</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background: linear-gradient(135deg, #D4AF37, #F3E5AB, #997A15);">
+          <span class="swatch-cross" style="color:rgba(0,0,0,0.4);">SOVEREIGN GOLD</span>
+        </div>
+        <div class="swatch-info">
+          <div class="swatch-name" style="color:var(--parchment-on-dark);">Sovereign Gold</div>
+          <div class="swatch-hex" style="color:var(--dim-on-dark);">#D4AF37 → #F3E5AB → #997A15</div>
+          <div class="swatch-role">Acento do Mundo Escuro. Gradiente nos titulares Hero. Metadata no hover. Intocável — vem do Hero.</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center;">
+          <span style="font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:300; color:rgba(255,255,255,0.05);">hairline</span>
+        </div>
+        <div class="swatch-info">
+          <div class="swatch-name" style="color:var(--parchment-on-dark);">Hairline Dark</div>
+          <div class="swatch-hex" style="color:var(--dim-on-dark);">rgba(255,255,255,0.05)</div>
+          <div class="swatch-role">Divisores e bordas estruturais em seções escuras. Nunca mais opaco que 0.10.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIGHT WORLD -->
+    <div class="world-header" style="border-top-color: var(--hairline-dark);">
+      <span class="world-tag sapphire">Light World — Answer</span>
+      <span class="t-meta" style="color: var(--dim-on-dark);">Parchment canvas · Sapphire accent</span>
+    </div>
+
+    <div class="grid-4">
+      <div class="swatch">
+        <div class="swatch-block" style="background:#F4F1EA; border:1px solid rgba(13,13,13,0.08);">
+          <span class="swatch-cross" style="color:rgba(13,13,13,0.2);">PARCHMENT</span>
+        </div>
+        <div class="swatch-info">
+          <div class="swatch-name" style="color:var(--parchment-on-dark);">Warm Parchment</div>
+          <div class="swatch-hex" style="color:var(--dim-on-dark);">#F4F1EA</div>
+          <div class="swatch-role">Canvas das seções claras. Tom quente — nunca branco frio. A contraparte viva do obsidian.</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#0D0D0D; border:1px solid rgba(255,255,255,0.05);">
+          <span class="swatch-cross" style="color:rgba(255,255,255,0.2);">INK</span>
+        </div>
+        <div class="swatch-info">
+          <div class="swatch-name" style="color:var(--parchment-on-dark);">Ink Black</div>
+          <div class="swatch-hex" style="color:var(--dim-on-dark);">#0D0D0D</div>
+          <div class="swatch-role">Texto principal nas seções claras. Próximo do preto mas com calor de tinta — não sintético.</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#1B4DA0;">
+          <span class="swatch-cross" style="color:rgba(255,255,255,0.35);">SAPPHIRE</span>
+        </div>
+        <div class="swatch-info">
+          <div class="swatch-name" style="color:var(--parchment-on-dark);">Sapphire</div>
+          <div class="swatch-hex" style="color:var(--dim-on-dark);">#1B4DA0</div>
+          <div class="swatch-role">Acento do Mundo Claro. Palavra-chave italic no H2, protocolo em destaque, link hover no rodapé claro.</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#4A7FD4;">
+          <span class="swatch-cross" style="color:rgba(255,255,255,0.35);">SAPPHIRE BRIGHT</span>
+        </div>
+        <div class="swatch-info">
+          <div class="swatch-name" style="color:var(--parchment-on-dark);">Sapphire Bright</div>
+          <div class="swatch-hex" style="color:var(--dim-on-dark);">#4A7FD4</div>
+          <div class="swatch-role">Variante de maior luminosidade para seções escuras (Problem, Footer). Mesma família — mais legível no obsidian.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note">
+      <strong>Regra de um acento por mundo.</strong> Ouro (#D4AF37) existe exclusivamente no Mundo Escuro. Safira (#1B4DA0) existe exclusivamente no Mundo Claro. Usar os dois na mesma seção é violação do sistema narrativo.
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       02 — TYPOGRAPHY
+  ═══════════════════════════════════════════════════════ -->
+  <div class="ch-section">
+    <div class="lbl">02 — Typography</div>
+
+    <!-- Font Families -->
+    <div class="grid-3" style="margin-bottom: var(--s8);">
+      <div>
+        <div class="comp-label">Display — Cormorant Garamond</div>
+        <p style="font-family:'Cormorant Garamond',serif; font-size:4rem; font-weight:300; line-height:1; letter-spacing:-0.01em; color:var(--parchment-on-dark);">Aa Bb<br>Cc Dd</p>
+        <p style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-style:italic; font-weight:300; margin-top:8px; color:var(--gold);">Italic — Sovereign Gold</p>
+        <p style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-style:italic; font-weight:300; color:var(--sapphire-bright);">Italic — Sapphire Bright</p>
+        <div class="comp-spec on-dark" style="margin-top: var(--s3);">Pesos: 300 · 400 · 600<br>Italic disponível em todos os pesos<br>Exclusiva para display e titulares</div>
+      </div>
+      <div>
+        <div class="comp-label">Label / Body — Syne</div>
+        <p style="font-family:'Syne',sans-serif; font-size:3.5rem; font-weight:800; line-height:1; color:var(--parchment-on-dark);">Aa Bb<br>Cc Dd</p>
+        <p style="font-family:'Syne',sans-serif; font-size:0.9rem; margin-top:8px; color:var(--dim-on-dark); line-height:1.75;">Corpo e labels com fluidez e caráter. Nunca Inter, nunca Roboto.</p>
+        <div class="comp-spec on-dark" style="margin-top: var(--s3);">Pesos: 400 · 600 · 700 · 800<br>Sem italic — use weight para hierarquia<br>Labels sempre uppercase + tracking</div>
+      </div>
+      <div>
+        <div class="comp-label">Metadata — DM Mono (restrita)</div>
+        <p style="font-family:'DM Mono',monospace; font-size:2rem; line-height:1.3; letter-spacing:0.1em; color:var(--gold);">v2.0.26<br>#D4AF37</p>
+        <p style="font-family:'DM Mono',monospace; font-size:0.5625rem; letter-spacing:0.3em; text-transform:uppercase; margin-top:8px; color:var(--dim-on-dark);">Confinada a: versões, IDs, coordenadas, hexes<br>Proibida em: nav, body, section labels, H2–H4</p>
+        <div class="comp-spec on-dark" style="margin-top:var(--s3);">Pesos: 300 · 400<br>Uppercase obrigatório<br>Tracking: mínimo 0.25em</div>
+      </div>
+    </div>
+
+    <!-- Type Scale — Dark World -->
+    <div class="world-header">
+      <span class="world-tag gold">Escala Tipográfica — Mundo Escuro</span>
+    </div>
+
+    <div style="margin-bottom: var(--s8);">
+
+      <div style="padding: var(--s5) 0; border-bottom: 1px solid var(--hairline-dark);">
+        <div class="comp-label">Level 0 — Ghost Word (decorativo, não-legível)</div>
+        <div class="t-display-ghost" style="color: var(--parchment-on-dark); opacity: 0.05;">ELYSIAN</div>
+        <div class="comp-spec on-dark" style="margin-top: var(--s2);">Cormorant Garamond 300 · 16–20vw · uppercase · opacity 0.04–0.05 · absolute positioned · pointer-events: none · user-select: none</div>
+      </div>
+
+      <div style="padding: var(--s5) 0; border-bottom: 1px solid var(--hairline-dark);">
+        <div class="comp-label">Level 1 — Hero Cinematic (exclusivo do Hero)</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-weight:300; font-size:clamp(4rem,18vw,14rem); line-height:0.84; text-transform:uppercase; letter-spacing:-0.015em; background: linear-gradient(135deg, #D4AF37, #F3E5AB, #997A15); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">E</div>
+        <div class="comp-spec on-dark" style="margin-top: var(--s2);">Cormorant Garamond 300 · 35vw no Hero · gradient Gold #D4AF37→#F3E5AB→#997A15 · webkit-background-clip: text</div>
+      </div>
+
+      <div style="padding: var(--s5) 0; border-bottom: 1px solid var(--hairline-dark);">
+        <div class="comp-label">Level 2 — Section Display (Problem, Footer)</div>
+        <div class="t-display-section" style="color:var(--parchment-on-dark);">ANATOMIA DA <span class="accent-sapphire-bright">INCERTEZA</span></div>
+        <div class="comp-spec on-dark" style="margin-top: var(--s2);">Cormorant Garamond 300 · clamp(2.5rem, 7vw, 6.5rem) · uppercase · palavra-chave em italic Sapphire Bright (#4A7FD4)</div>
+      </div>
+
+      <div style="padding: var(--s5) 0; border-bottom: 1px solid var(--hairline-dark);">
+        <div class="comp-label">Level 3 — Subtitle (Problem, Footer)</div>
+        <div class="t-subtitle" style="color: var(--dim-on-dark); max-width: 600px;">In a world of generative noise, the truth is no longer a given. It is a prize to be defended.</div>
+        <div class="comp-spec on-dark" style="margin-top: var(--s2);">Syne 700 · clamp(1rem, 2vw, 1.625rem) · uppercase · color: dim-on-dark (0.38 opacity)</div>
+      </div>
+
+      <div style="padding: var(--s5) 0; border-bottom: 1px solid var(--hairline-dark);">
+        <div class="comp-label">Level 4 — Body (Problem)</div>
+        <div class="t-body" style="color: var(--dim-on-dark); max-width: 55ch;">Ordinary systems fail at the edge of hallucination. They process data, but they lack the sovereign integrity to certify reality. We define the gap between what is probable and what is certain.</div>
+        <div class="comp-spec on-dark" style="margin-top: var(--s2);">Syne 400 · 0.9375rem · line-height: 1.78 · color: dim-on-dark · max-width: 55ch</div>
+      </div>
+
+      <div style="padding: var(--s5) 0;">
+        <div class="comp-label">Level 5 — Section Label</div>
+        <div class="ds-section-label">
+          <span style="font-family:'Syne',sans-serif; font-size:0.625rem; letter-spacing:0.5em; text-transform:uppercase; color:var(--dim-on-dark);">The Challenge</span>
+          <div class="ds-section-label-line" style="background:rgba(255,255,255,0.08);"></div>
+        </div>
+        <div class="comp-spec on-dark" style="margin-top: var(--s2);">Syne 400 · 0.625rem · tracking 0.5em · uppercase · sempre com hairline rule · color: dim-on-dark</div>
+      </div>
+
+    </div>
+
+    <!-- Type Scale — Light World -->
+    <div class="world-header">
+      <span class="world-tag sapphire">Escala Tipográfica — Mundo Claro</span>
+    </div>
+
+    <div style="background: var(--parchment); padding: var(--s5);">
+
+      <div style="padding: var(--s5) 0; border-bottom: 1px solid var(--hairline-light);">
+        <div class="comp-label" style="color: var(--dim-on-light);">Level 0 — Ghost Word (decorativo)</div>
+        <div class="t-display-ghost" style="color: var(--ink); opacity: 0.07;">TRUST</div>
+        <div class="comp-spec on-light" style="margin-top: var(--s2);">Cormorant Garamond 300 · 16–20vw · uppercase · opacity 0.07 (mais visível que no dark) · top/right edge</div>
+      </div>
+
+      <div style="padding: var(--s5) 0; border-bottom: 1px solid var(--hairline-light);">
+        <div class="comp-label" style="color: var(--dim-on-light);">Level 2 — Section Display (Answer)</div>
+        <div class="t-display-section" style="color:var(--ink);">O ALQUIMISTA DA <span class="accent-sapphire">VERDADE</span></div>
+        <div class="comp-spec on-light" style="margin-top: var(--s2);">Cormorant Garamond 300 · clamp(2.5rem, 7vw, 6.5rem) · uppercase · palavra-chave em italic Sapphire (#1B4DA0)</div>
+      </div>
+
+      <div style="padding: var(--s5) 0; border-bottom: 1px solid var(--hairline-light);">
+        <div class="comp-label" style="color: var(--dim-on-light);">Level 3 — Subtitle (Answer)</div>
+        <div class="t-subtitle" style="color: var(--ink); max-width: 600px;">Trustware: Where math meets morality in a sovereign chain.</div>
+        <div class="comp-spec on-light" style="margin-top: var(--s2);">Syne 700 · clamp(1rem, 2vw, 1.625rem) · uppercase · color: ink (full)</div>
+      </div>
+
+      <div style="padding: var(--s5) 0; border-bottom: 1px solid var(--hairline-light);">
+        <div class="comp-label" style="color: var(--dim-on-light);">Level 4 — Body (Answer)</div>
+        <div class="t-body" style="color: var(--dim-on-light); max-width: 55ch;">We transform the chaotic flow of generative information into a stable, audited reality. Our protocol doesn't just process; it certifies. It is the architectural anchor for an era of decentralized excellence.</div>
+        <div class="comp-spec on-light" style="margin-top: var(--s2);">Syne 400 · 0.9375rem · line-height: 1.78 · color: dim-on-light (rgba(13,13,13,0.4)) · max-width: 55ch</div>
+      </div>
+
+      <div style="padding: var(--s5) 0;">
+        <div class="comp-label" style="color: var(--dim-on-light);">Level 5 — Section Label</div>
+        <div class="ds-section-label">
+          <span style="font-family:'Syne',sans-serif; font-size:0.625rem; letter-spacing:0.5em; text-transform:uppercase; color:var(--dim-on-light);">The Solution</span>
+          <div class="ds-section-label-line" style="background:rgba(13,13,13,0.08);"></div>
+        </div>
+        <div class="comp-spec on-light" style="margin-top: var(--s2);">Syne 400 · 0.625rem · tracking 0.5em · uppercase · sempre com hairline rule · color: dim-on-light</div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       03 — SPACING
+  ═══════════════════════════════════════════════════════ -->
+  <div class="ch-section">
+    <div class="lbl">03 — Spacing System</div>
+
+    <div class="note" style="margin-bottom: var(--s5);">Sequência de Fibonacci. Ritmo previsível, proporcional. Nenhum valor de pixel arbitrário fora desta escala.</div>
+
+    <div>
+      <div class="sp-row"><span class="t-meta" style="color:var(--dim-on-dark);">--s1 · 8px</span><div class="sp-bar" style="width:8px;"></div><span class="t-meta" style="color:rgba(255,255,255,0.2);">Gap de ícones, padding mínimo</span></div>
+      <div class="sp-row"><span class="t-meta" style="color:var(--dim-on-dark);">--s2 · 13px</span><div class="sp-bar" style="width:13px;"></div><span class="t-meta" style="color:rgba(255,255,255,0.2);">Gap label-conteúdo, chips</span></div>
+      <div class="sp-row"><span class="t-meta" style="color:var(--dim-on-dark);">--s3 · 21px</span><div class="sp-bar" style="width:21px;"></div><span class="t-meta" style="color:rgba(255,255,255,0.2);">Gap entre itens de lista densa</span></div>
+      <div class="sp-row"><span class="t-meta" style="color:var(--dim-on-dark);">--s5 · 34px</span><div class="sp-bar" style="width:34px;"></div><span class="t-meta" style="color:rgba(255,255,255,0.2);">Gap de coluna, padding interno de card</span></div>
+      <div class="sp-row"><span class="t-meta" style="color:var(--dim-on-dark);">--s8 · 55px</span><div class="sp-bar" style="width:55px;"></div><span class="t-meta" style="color:rgba(255,255,255,0.2);">Entre blocos de conteúdo na mesma seção</span></div>
+      <div class="sp-row"><span class="t-meta" style="color:var(--dim-on-dark);">--s13 · 89px</span><div class="sp-bar" style="width:89px;"></div><span class="t-meta" style="color:rgba(255,255,255,0.2);">Padding vertical de seção (py-40 / 10rem)</span></div>
+    </div>
+
+    <div class="grid-3" style="margin-top: var(--s8); gap: var(--s3);">
+      <div class="comp-card dark">
+        <div class="comp-label">Horizontal</div>
+        <p class="t-body" style="color:var(--dim-on-dark); font-size:0.8125rem;">Padding: <strong style="color:var(--parchment-on-dark);">8vw</strong> fluido. Max-width: <strong style="color:var(--parchment-on-dark);">1400px</strong> centered. Gap de coluna: <strong style="color:var(--parchment-on-dark);">gap-24</strong> (6rem).</p>
+      </div>
+      <div class="comp-card dark">
+        <div class="comp-label">Vertical</div>
+        <p class="t-body" style="color:var(--dim-on-dark); font-size:0.8125rem;">Seção: <strong style="color:var(--parchment-on-dark);">py-40</strong>. Blocos: <strong style="color:var(--parchment-on-dark);">space-y-12</strong> ou <strong style="color:var(--parchment-on-dark);">space-y-16</strong>. Min-height: <strong style="color:var(--parchment-on-dark);">min-h-[100dvh]</strong>. Nunca h-screen.</p>
+      </div>
+      <div class="comp-card dark">
+        <div class="comp-label">Grid</div>
+        <p class="t-body" style="color:var(--dim-on-dark); font-size:0.8125rem;">CSS Grid obrigatório. <strong style="color:var(--parchment-on-dark);">lg:grid-cols-12</strong> para layouts de seção. Colapso single-column abaixo de 768px. Proibido flexbox com calc().</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       04 — COMPONENTS — DARK WORLD
+  ═══════════════════════════════════════════════════════ -->
+  <div class="ch-section">
+    <div class="lbl">04 — Components — Dark World</div>
+
+    <!-- GHOST WORD -->
+    <div style="margin-bottom: var(--s8);">
+      <div class="comp-label">Ghost Word — Decorativo de Fundo</div>
+      <div class="ghost-wrap comp-card dark">
+        <div class="ghost-bg" style="color: var(--parchment-on-dark); opacity: 0.045;">DOUBT</div>
+        <div class="ghost-content" style="padding: var(--s5);">
+          <div class="ds-section-label" style="margin-bottom: var(--s3);">
+            <span style="font-family:'Syne',sans-serif; font-size:0.625rem; letter-spacing:0.5em; text-transform:uppercase; color:var(--dim-on-dark);">The Challenge</span>
+            <div class="ds-section-label-line" style="background: rgba(255,255,255,0.07);"></div>
+          </div>
+          <div class="t-display-section" style="color: var(--parchment-on-dark);">ANATOMIA DA <span class="accent-sapphire-bright">INCERTEZA</span></div>
+        </div>
+      </div>
+      <div class="comp-spec on-dark" style="margin-top: var(--s2);">Posição: absolute top-0 left-0 (dark) ou top-0 right-0 (light) · Opacity: 0.04 (dark) · Font: Cormorant Garamond · Size: 16–20vw · pointer-events:none · user-select:none · NUNCA sobrepõe conteúdo legível</div>
+    </div>
+
+    <!-- SECTION LABEL PAIR -->
+    <div style="margin-bottom: var(--s8);">
+      <div class="comp-label">Section Label Pattern — ambos os mundos</div>
+      <div class="grid-2">
+        <div class="comp-card dark">
+          <div class="comp-label">No Obsidian</div>
+          <div class="ds-section-label">
+            <span style="font-family:'Syne',sans-serif; font-size:0.625rem; letter-spacing:0.5em; text-transform:uppercase; color:var(--dim-on-dark);">The Challenge</span>
+            <div class="ds-section-label-line" style="background:rgba(255,255,255,0.07);"></div>
+          </div>
+          <div class="comp-spec on-dark" style="margin-top: var(--s3);">Syne 400 · 0.625rem · tracking 0.5em · color: dim-on-dark · hairline: rgba(255,255,255,0.07)</div>
+        </div>
+        <div style="background:var(--parchment); padding: var(--s5);">
+          <div class="comp-label" style="color: var(--dim-on-light);">No Parchment</div>
+          <div class="ds-section-label">
+            <span style="font-family:'Syne',sans-serif; font-size:0.625rem; letter-spacing:0.5em; text-transform:uppercase; color:var(--dim-on-light);">The Solution</span>
+            <div class="ds-section-label-line" style="background:rgba(13,13,13,0.08);"></div>
+          </div>
+          <div class="comp-spec on-light" style="margin-top: var(--s3);">Syne 400 · 0.625rem · tracking 0.5em · color: dim-on-light · hairline: rgba(13,13,13,0.08)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IMAGE FRAMES -->
+    <div style="margin-bottom: var(--s8);">
+      <div class="comp-label">Image Container — hover para ver escala</div>
+      <div class="grid-2">
+        <div>
+          <div class="img-frame" style="aspect-ratio: 3/4;">
+            <img src="https://picsum.photos/seed/forensic/600/800" alt="" />
+            <div style="position:absolute; bottom:0; left:0; right:0; height:40%; background: linear-gradient(to top, var(--obsidian), transparent);"></div>
+          </div>
+          <div class="comp-spec on-dark" style="margin-top: var(--s2);">Aspect 3:4 · Dark sections · Gradient overlay bottom · clipPath entrance (inset 100%→0)</div>
+        </div>
+        <div>
+          <div class="img-frame" style="aspect-ratio: 4/5;">
+            <img src="https://picsum.photos/seed/editorial/600/750" alt="" />
+          </div>
+          <div class="comp-spec on-dark" style="margin-top: var(--s2);">Aspect 4:5 · Light sections · Sem gradient · scale-down hover 2000ms ease-out</div>
+        </div>
+      </div>
+      <div class="note">Containers de imagem: overflow:hidden obrigatório · border-radius: 0 · scale(1.05–1.10) em repouso, escala para 1.0 no hover · grayscale(0.2–0.3) em repouso, remove no hover · Nenhum glow, sombra ou filtro adicional.</div>
+    </div>
+
+    <!-- BUTTONS -->
+    <div style="margin-bottom: var(--s8);">
+      <div class="comp-label">CTA Button — ambos os mundos</div>
+      <div class="grid-2">
+        <div class="comp-card dark">
+          <div class="comp-label">Dark World Button — hover para ver estado</div>
+          <button class="btn btn-dark-world">Start Protocol</button>
+          <div class="comp-spec on-dark" style="margin-top: var(--s3);">Rest: bg-parchment text-ink · Hover: bg-gold text-ink · 700ms --ease-sovereign · Syne 600 · 0.6875rem · tracking 0.4em · border-radius: 0 · padding 18px 56px · Sem glow, sem borda, sem sombra</div>
+        </div>
+        <div style="background: var(--parchment); padding: var(--s5);">
+          <div class="comp-label" style="color: var(--dim-on-light);">Light World Button — hover para ver estado</div>
+          <button class="btn btn-light-world">Start Protocol</button>
+          <div class="comp-spec on-light" style="margin-top: var(--s3);">Rest: bg-ink text-parchment · Hover: bg-sapphire text-parchment · 700ms --ease-sovereign · Mesmos parâmetros de forma</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAT BLOCK -->
+    <div>
+      <div class="comp-label">Stat Block — ambos os mundos</div>
+      <div class="grid-2">
+        <div class="comp-card dark">
+          <div class="comp-label">Dark World Stats</div>
+          <div class="stat-group">
+            <div class="stat">
+              <div class="stat-lbl">Latency</div>
+              <div class="stat-val" style="color:var(--parchment-on-dark);">12ms</div>
+            </div>
+            <div class="stat">
+              <div class="stat-lbl">Protocol</div>
+              <div class="stat-val" style="color: var(--sapphire-bright);">Active</div>
+            </div>
+          </div>
+          <div class="comp-spec on-dark" style="margin-top: var(--s3);">Rótulo: Syne 400 · 0.5625rem · tracking 0.4em · linguagem natural (sem underscores) · Valor accent: sapphire-bright</div>
+        </div>
+        <div style="background: var(--parchment); padding: var(--s5);">
+          <div class="comp-label" style="color: var(--dim-on-light);">Light World Stats</div>
+          <div class="stat-group">
+            <div class="stat" style="border-top-color: var(--hairline-light);">
+              <div class="stat-lbl" style="color: var(--dim-on-light);">Integrity Rate</div>
+              <div class="stat-val" style="color: var(--ink);">100.0%</div>
+            </div>
+            <div class="stat" style="border-top-color: var(--hairline-light);">
+              <div class="stat-lbl" style="color: var(--dim-on-light);">Protocol Status</div>
+              <div class="stat-val" style="color: var(--sapphire);">Sovereign</div>
+            </div>
+          </div>
+          <div class="comp-spec on-light" style="margin-top: var(--s3);">Valor accent: sapphire (#1B4DA0) · Divisor top: hairline-light</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       05 — MOTION LANGUAGE
+  ═══════════════════════════════════════════════════════ -->
+  <div class="ch-section">
+    <div class="lbl">05 — Motion Language</div>
+
+    <!-- Rule of Silence -->
+    <div class="note" style="margin-bottom: var(--s8);">
+      <strong>A Regra do Silêncio (Manual da Agência, R6):</strong> Todo ativo ElysianCorp tem estado de repouso de mínimo 0.8s antes de qualquer animação. O visitante precisa sentir o peso do silêncio antes de sentir o peso do efeito.
+    </div>
+
+    <div class="silence-bar" style="margin-bottom: var(--s8);">
+      <span class="silence-label" style="color: var(--dim-on-dark); min-width:100px;">Silêncio</span>
+      <div class="silence-fill" style="width: 80px;"></div>
+      <span class="silence-label" style="color: var(--gold);">0.8s mínimo</span>
+      <div style="flex:1; height:1px; background: var(--hairline-dark);"></div>
+      <span class="silence-label" style="color: var(--dim-on-dark);">Efeito inicia</span>
+    </div>
+
+    <!-- Easing Library -->
+    <div style="margin-bottom: var(--s8);">
+      <div class="comp-label">Biblioteca de Easing</div>
+      <div class="grid-3" style="gap: var(--s3);">
+        <div class="comp-card dark">
+          <div class="comp-label">--ease-sovereign</div>
+          <p class="t-body" style="color:var(--parchment-on-dark); font-size:0.875rem; font-weight:600;">cubic-bezier<br>(0.23, 1, 0.32, 1)</p>
+          <div class="comp-spec on-dark" style="margin-top: var(--s2);">Principal. Botões, hover states, transições de cor. Fluidez com chegada suave.</div>
+        </div>
+        <div class="comp-card dark">
+          <div class="comp-label">--ease-enter (power4.out)</div>
+          <p class="t-body" style="color:var(--parchment-on-dark); font-size:0.875rem; font-weight:600;">cubic-bezier<br>(0.16, 1, 0.3, 1)</p>
+          <div class="comp-spec on-dark" style="margin-top: var(--s2);">Entradas de palavras/chars. GSAP power4.out equivalente. Alto impulso inicial, pouso dramático.</div>
+        </div>
+        <div class="comp-card dark">
+          <div class="comp-label">--ease-clip (expo.inOut)</div>
+          <p class="t-body" style="color:var(--parchment-on-dark); font-size:0.875rem; font-weight:600;">cubic-bezier<br>(0.87, 0, 0.13, 1)</p>
+          <div class="comp-spec on-dark" style="margin-top: var(--s2);">Clip-path reveals nas imagens escuras. Impulso simétrico — cinematográfico.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Animation Specs Table -->
+    <table class="motion-table">
+      <thead>
+        <tr>
+          <th>Animação</th>
+          <th>Engine</th>
+          <th>Parâmetros GSAP</th>
+          <th>Observação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="name">Hero — Rule of Silence</td>
+          <td>GSAP</td>
+          <td><code>opacity:0→1, scale:1.1→1, duration:1.2s, delay:0.8s, ease:power4.out</code></td>
+          <td>Delay obrigatório. Nunca animar imediatamente no load.</td>
+        </tr>
+        <tr>
+          <td class="name">Headline chars (split por letra)</td>
+          <td>GSAP ScrollTrigger</td>
+          <td><code>yPercent:100→0, rotateX:±45→0, opacity:0→1, duration:1.5–1.8s, stagger:0.05s, ease:power4.out</code></td>
+          <td>Trigger: <code>top 60%</code>. Chars individuais via <code>.char</code> class.</td>
+        </tr>
+        <tr>
+          <td class="name">Imagem light (Answer)</td>
+          <td>GSAP ScrollTrigger</td>
+          <td><code>opacity:0→1, scale:0.9→1, duration:2s, ease:expo.out</code></td>
+          <td>Overlap com headline: <code>-=1.5</code></td>
+        </tr>
+        <tr>
+          <td class="name">Imagem dark (Problem)</td>
+          <td>GSAP ScrollTrigger</td>
+          <td><code>clipPath: inset(0 100% 0 0)→inset(0 0% 0 0), scale:1.2→1, duration:2s, ease:expo.inOut</code></td>
+          <td>Clip reveal cinematográfico. Apenas em seções escuras.</td>
+        </tr>
+        <tr>
+          <td class="name">Parallax de imagem</td>
+          <td>GSAP ScrollTrigger</td>
+          <td><code>yPercent:±15–20, ease:none, scrub:true</code></td>
+          <td>Start: <code>top bottom</code> → End: <code>bottom top</code>. Oposto à direção do scroll.</td>
+        </tr>
+        <tr>
+          <td class="name">Blocos de conteúdo</td>
+          <td>GSAP ScrollTrigger</td>
+          <td><code>opacity:0→1, y:30–40→0, duration:1.2–1.5s, ease:power3.out</code></td>
+          <td>Overlap com headline: <code>-=1</code> a <code>-=1.2</code></td>
+        </tr>
+        <tr>
+          <td class="name">Header entrance</td>
+          <td>GSAP</td>
+          <td><code>opacity:0→1, y:-20→0, duration:1.5s, delay:1.2s, ease:expo.out</code></td>
+          <td>Delay: logo após o Hero background iniciar reveal.</td>
+        </tr>
+        <tr>
+          <td class="name">Botão hover</td>
+          <td>CSS Transition</td>
+          <td><code>background + color, 700ms, cubic-bezier(0.23,1,0.32,1)</code></td>
+          <td>CSS puro — não precisa de GSAP. Sem transform. Sem sombra.</td>
+        </tr>
+        <tr>
+          <td class="name">Hero — Abyss Tide (scroll)</td>
+          <td>GSAP ScrollTrigger</td>
+          <td><code>clipPath: inset(100% 0 0 0)→inset(0% 0 0 0), opacity:0→1, scrub:true</code></td>
+          <td>Start: <code>10% top</code>. mask: gradient to bottom. Exclusivo do Hero — não replicar.</td>
+        </tr>
+        <tr>
+          <td class="name">Hero — stop-motion flicker</td>
+          <td>setInterval</td>
+          <td><code>80ms normal · 320ms onHover</code></td>
+          <td>Sequência alternada: letra → retrato, para cada char de ELYSIAN. Exclusivo do Hero.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note" style="margin-top: var(--s5);">
+      <strong>Performance obrigatória:</strong> Animar exclusivamente via <code>transform</code> e <code>opacity</code>. Nunca <code>top</code>, <code>left</code>, <code>width</code>, <code>height</code>. Meta: 60fps em mid-range (iPhone 13, Android 4GB RAM). Fallback CSS para todos os efeitos GSAP.
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       06 — LAYOUT PATTERNS
+  ═══════════════════════════════════════════════════════ -->
+  <div class="ch-section">
+    <div class="lbl">06 — Layout Patterns</div>
+
+    <div class="grid-2" style="margin-bottom: var(--s8);">
+      <!-- Dark Section Layout -->
+      <div class="comp-card dark">
+        <div class="comp-label">Dark Section Grid — Problem / Footer</div>
+        <div style="display:grid; grid-template-columns:7fr 5fr; gap:var(--s5); align-items:center; margin: var(--s3) 0;">
+          <div style="display:flex; flex-direction:column; gap:var(--s2);">
+            <div style="height:1px; background:rgba(255,255,255,0.06); width:60%;"></div>
+            <div style="height:4px; background:rgba(255,255,255,0.1); width:85%;"></div>
+            <div style="height:4px; background:rgba(74,127,212,0.6); width:60%;"></div>
+            <div style="height:2px; background:rgba(255,255,255,0.06); width:100%; margin-top:var(--s2);"></div>
+            <div style="height:2px; background:rgba(74,127,212,0.4); width:40%;"></div>
+          </div>
+          <div style="background:rgba(255,255,255,0.04); aspect-ratio:3/4; display:flex; align-items:center; justify-content:center; border:1px solid rgba(255,255,255,0.04);">
+            <span class="t-meta" style="color:rgba(255,255,255,0.2);">5 cols</span>
+          </div>
+        </div>
+        <div class="comp-spec on-dark">Conteúdo esquerda (7) · Imagem direita (5) · gap-24 · lg:grid-cols-12</div>
+      </div>
+      <!-- Light Section Layout -->
+      <div style="background: var(--parchment); padding: var(--s5);">
+        <div class="comp-label" style="color: var(--dim-on-light);">Light Section Grid — Answer</div>
+        <div style="display:grid; grid-template-columns:5fr 7fr; gap:var(--s5); align-items:center; margin: var(--s3) 0;">
+          <div style="background:rgba(13,13,13,0.06); aspect-ratio:4/5; display:flex; align-items:center; justify-content:center; border:1px solid rgba(13,13,13,0.05);">
+            <span class="t-meta" style="color:rgba(13,13,13,0.2);">5 cols</span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:var(--s2);">
+            <div style="height:1px; background:rgba(13,13,13,0.07); width:60%;"></div>
+            <div style="height:4px; background:rgba(13,13,13,0.12); width:85%;"></div>
+            <div style="height:4px; background:rgba(27,77,160,0.5); width:60%;"></div>
+            <div style="height:2px; background:rgba(13,13,13,0.07); width:100%; margin-top:var(--s2);"></div>
+            <div style="height:2px; background:rgba(27,77,160,0.3); width:40%;"></div>
+          </div>
+        </div>
+        <div class="comp-spec on-light">Imagem esquerda (5) · Conteúdo direita (7) · Ritmo alternado com dark sections</div>
+      </div>
+    </div>
+
+    <!-- Narrative Layout Diagram -->
+    <div class="comp-label" style="margin-bottom: var(--s3);">Sequência de Página — Ritmo Narrativo</div>
+    <div style="border: 1px solid var(--hairline-dark); overflow:hidden;">
+      <div style="display:grid; grid-template-columns:repeat(4,1fr);">
+        <div style="padding: var(--s5); background: var(--obsidian-alt); border-right: 1px solid var(--hairline-dark);">
+          <div class="t-meta" style="color:var(--gold); margin-bottom:var(--s2);">Hero</div>
+          <div style="font-family:'Cormorant Garamond',serif; font-size:3rem; font-weight:300; line-height:1; background: linear-gradient(135deg, #D4AF37,#F3E5AB,#997A15); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">E</div>
+          <div class="comp-spec on-dark" style="margin-top:var(--s2);">Full-screen · 100vh · stop-motion · gold</div>
+        </div>
+        <div style="padding: var(--s5); background: var(--obsidian); border-right: 1px solid var(--hairline-dark);">
+          <div class="t-meta" style="color:var(--sapphire-bright); margin-bottom:var(--s2);">Problem</div>
+          <div style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:300; line-height:1.1; text-transform:uppercase; color:var(--parchment-on-dark);">ANATOMIA DA <span style="color:var(--sapphire-bright); font-style:italic;">INCERTEZA</span></div>
+          <div class="comp-spec on-dark" style="margin-top:var(--s2);">Obsidian · 100dvh · sapphire-bright · 7+5 grid</div>
+        </div>
+        <div style="padding: var(--s5); background: var(--parchment); border-right: 1px solid var(--hairline-light);">
+          <div class="t-meta" style="color:var(--sapphire); margin-bottom:var(--s2);">Answer</div>
+          <div style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:300; line-height:1.1; text-transform:uppercase; color:var(--ink);">O ALQUIMISTA DA <span style="color:var(--sapphire); font-style:italic;">VERDADE</span></div>
+          <div class="comp-spec on-light" style="margin-top:var(--s2);">Parchment · 100dvh · sapphire · 5+7 grid</div>
+        </div>
+        <div style="padding: var(--s5); background: var(--obsidian);">
+          <div class="t-meta" style="color:var(--sapphire-bright); margin-bottom:var(--s2);">Footer</div>
+          <div style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:300; line-height:1.1; text-transform:uppercase; color:var(--parchment-on-dark);">FUTURE IS <span style="color:var(--sapphire-bright); font-style:italic;">DETERMINISTIC</span></div>
+          <div class="comp-spec on-dark" style="margin-top:var(--s2);">Obsidian · centered · nav 3 cols · CTA</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       07 — COPY VOICE
+  ═══════════════════════════════════════════════════════ -->
+  <div class="ch-section">
+    <div class="lbl">07 — Copy Voice & Vocabulary</div>
+
+    <div class="note" style="margin-bottom: var(--s8);">
+      A ElysianCorp opera no campo de <strong>soberania digital para inteligência jurídica de alto impacto</strong>. O vocabulário do produto reflete autoridade, precisão e ontologia — nunca hype de startup, nunca terminologia tática/militar.
+    </div>
+
+    <div class="voice-row">
+      <div class="voice-banned"><span class="voice-marker x">BAN</span>FACTORY_ID: AURORA_V8_LEX</div>
+      <div class="voice-approved"><span class="voice-marker ok">OK</span>Product: Elysian Lex</div>
+    </div>
+    <div class="voice-row">
+      <div class="voice-banned"><span class="voice-marker x">BAN</span>Vulnerability Detected in [Probabilistic_Logic]</div>
+      <div class="voice-approved"><span class="voice-marker ok">OK</span>We define the gap between what is probable and what is certain.</div>
+    </div>
+    <div class="voice-row">
+      <div class="voice-banned"><span class="voice-marker x">BAN</span>Diagnostic_Node · Integrity_Rate · Protocol_Status</div>
+      <div class="voice-approved"><span class="voice-marker ok">OK</span>Diagnostic Node · Integrity Rate · Protocol Status</div>
+    </div>
+    <div class="voice-row">
+      <div class="voice-banned"><span class="voice-marker x">BAN</span>Elevate your workflow. Unleash AI. Next-Gen Solutions.</div>
+      <div class="voice-approved"><span class="voice-marker ok">OK</span>It is the architectural anchor for an era of decentralized excellence.</div>
+    </div>
+    <div class="voice-row">
+      <div class="voice-banned"><span class="voice-marker x">BAN</span>PROCESSED AT GENEVA_CLUSTER_01</div>
+      <div class="voice-approved"><span class="voice-marker ok">OK</span>© 2026 ELYSIANCORP. All rights reserved.</div>
+    </div>
+    <div class="voice-row">
+      <div class="voice-banned"><span class="voice-marker x">BAN</span>[ Desça para entrar na fábrica ]</div>
+      <div class="voice-approved"><span class="voice-marker ok">OK</span>— (sem scroll indicator. O conteúdo puxa o visitante naturalmente.)</div>
+    </div>
+
+    <div style="margin-top: var(--s5);">
+      <div class="comp-label" style="margin-bottom: var(--s3);">Vocabulário Aprovado — Mundo ElysianCorp</div>
+      <div class="grid-3" style="gap: var(--s2);">
+        <div class="comp-card dark"><p style="font-family:'Cormorant Garamond',serif; font-size:1.25rem; font-style:italic; color:var(--gold);">Sovereign</p><p class="comp-spec on-dark">Adjetivo central. Autonomia com autoridade.</p></div>
+        <div class="comp-card dark"><p style="font-family:'Cormorant Garamond',serif; font-size:1.25rem; font-style:italic; color:var(--sapphire-bright);">Certify</p><p class="comp-spec on-dark">O que o produto faz. Não processa — certifica.</p></div>
+        <div class="comp-card dark"><p style="font-family:'Cormorant Garamond',serif; font-size:1.25rem; font-style:italic; color:var(--parchment-on-dark);">Audited Reality</p><p class="comp-spec on-dark">O estado resultante. A promessa do produto.</p></div>
+        <div class="comp-card dark"><p style="font-family:'Cormorant Garamond',serif; font-size:1.25rem; font-style:italic; color:var(--sapphire-bright);">Deterministic</p><p class="comp-spec on-dark">Oposição ao probabilístico. Certeza, não inferência.</p></div>
+        <div class="comp-card dark"><p style="font-family:'Cormorant Garamond',serif; font-size:1.25rem; font-style:italic; color:var(--parchment-on-dark);">Architectural Anchor</p><p class="comp-spec on-dark">Posicionamento como fundação, não feature.</p></div>
+        <div class="comp-card dark"><p style="font-family:'Cormorant Garamond',serif; font-size:1.25rem; font-style:italic; color:var(--gold);">Alchemist of Truth</p><p class="comp-spec on-dark">Metáfora central. Transformação de caos em certeza.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       08 — ANTI-PATTERNS
+  ═══════════════════════════════════════════════════════ -->
+  <div class="ch-section">
+    <div class="lbl">08 — Anti-Patterns (Banidos)</div>
+
+    <div class="note" style="margin-bottom: var(--s5);">Estes padrões são proibidos. Cada um deles destrói a coerência do sistema ou contradiz a identidade Fluid Editorial da ElysianCorp.</div>
+
+    <div class="ban-grid">
+      <div class="ban-item">Qualquer acento verde ou esmeralda — banido em todas as superfícies</div>
+      <div class="ban-item">Gold (#D4AF37) fora do Hero e seus componentes diretos</div>
+      <div class="ban-item">Pure black #000000 — usar Obsidian #0A0A0B</div>
+      <div class="ban-item">CRT scanlines, glitch retrô, efeito de cintilação na UI de seções</div>
+      <div class="ban-item">Industrial grid ou dot-matrix como background</div>
+      <div class="ban-item">Terminal logs, telemetria ou overlays de diagnóstico visíveis ao usuário</div>
+      <div class="ban-item">Copy com underscore: Integrity_Rate → Integrity Rate</div>
+      <div class="ban-item">Terminologia tática: FACTORY_ID, FORENSIC, VULNERABILITY_DETECTED, CLUSTER</div>
+      <div class="ban-item">Font Inter em qualquer contexto do produto</div>
+      <div class="ban-item">DM Mono fora de versões, IDs e coordenadas (jamais em body ou nav)</div>
+      <div class="ban-item">border-radius em elementos estruturais — somente 0</div>
+      <div class="ban-item">Outer glows, neon box-shadows, blur blobs de cor</div>
+      <div class="ban-item">Hero centrado — sempre assimétrico ou split</div>
+      <div class="ban-item">Scroll indicators: "Scroll to explore", chevrons, setas animadas</div>
+      <div class="ban-item">3 colunas iguais para features — usar zig-zag ou assimétrico</div>
+      <div class="ban-item">Elementos sobrepostos — todo elemento tem sua própria zona espacial</div>
+      <div class="ban-item">h-screen — usar min-h-[100dvh] (bug crítico em iOS Safari)</div>
+      <div class="ban-item">Gradiente de texto em titulares de seção — somente no Hero (via webkit-clip)</div>
+      <div class="ban-item">Clichê AI: "Elevate", "Seamless", "Unleash", "Next-Gen", "Revolutionize"</div>
+      <div class="ban-item">Números redondos falsos: 99.99%, 10x faster, 50% ROI sem contexto</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       DOCUMENT FOOTER
+  ═══════════════════════════════════════════════════════ -->
+  <div class="doc-footer">
+    <div>
+      <p class="t-label" style="color: var(--dim-on-dark);">ElysianCorp — Fluid Editorial Design System</p>
+      <p class="t-body" style="color: var(--dim-on-dark); font-size: 0.75rem; margin-top: 6px;">Referências: Exo Ape · Lusion · Aristide Benoist · R—K Design</p>
+    </div>
+    <div style="text-align: right;">
+      <p class="t-meta" style="color: var(--dim-on-dark);">v2.0 · 2026-04-22</p>
+      <p class="t-meta" style="color: rgba(255,255,255,0.15); margin-top:4px;">Mad Lab Aurora · Authorized by Rodrigo</p>
+    </div>
+  </div>
+
+</div><!-- /page -->
 </body>
 </html>
