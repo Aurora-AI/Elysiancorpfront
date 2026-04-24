@@ -67,9 +67,9 @@ export const TrustwareReality: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className="section-shell bg-parchment py-32 px-px overflow-hidden flex flex-col items-center halftone-noise"
+      className="section-shell world-luminous py-32 px-px overflow-hidden flex flex-col items-center relative"
     >
-      <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-12 gap-20">
+      <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-12 gap-20 relative z-10">
         
         {/* LEFT: TEXT ARCHITECTURE (5/12) */}
         <div className="lg:col-span-5 space-y-12 reality-header">
@@ -80,10 +80,10 @@ export const TrustwareReality: React.FC = () => {
               </span>
               <div className="h-[0.5px] w-12 bg-ink/20" />
             </div>
-            <h2 className="t-headline text-6xl md:text-8xl text-ink leading-[0.9] tracking-tighter">
+            <h2 className="t-display text-6xl md:text-8xl text-ink leading-[0.9] tracking-tighter">
               A Prova <br />
-              <span className="italic">é o</span> <br />
-              <span className="italic text-ink/30">Produto</span>
+              <span className="italic font-light">é o</span> <br />
+              <span className="italic font-light text-emerald">Produto</span>
             </h2>
           </div>
 
@@ -103,7 +103,7 @@ export const TrustwareReality: React.FC = () => {
         <div className="lg:col-span-7 flex items-center justify-center">
           <div 
             ref={terminalRef}
-            className="w-full aspect-video bg-obsidian rounded-sm border border-obsidian-alt shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col relative group"
+            className="w-full aspect-video bg-black rounded-sm border border-white/5 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)] overflow-hidden flex flex-col relative group"
           >
             {/* TERMINAL HEADER */}
             <div className="h-12 bg-white/5 border-b border-white/10 flex items-center justify-between px-6">
@@ -127,8 +127,8 @@ export const TrustwareReality: React.FC = () => {
                     key={i} 
                     className={`flex justify-between transition-all duration-500 ${i <= activeLog ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}
                   >
-                    <span className="text-parchment-text/40">[{log.time}] {log.action}</span>
-                    <span className={log.status === 'OK' || log.status === 'VALID' ? 'text-emerald' : 'text-emerald-hover'}>{log.status}</span>
+                    <span className="text-white/40">[{log.time}] {log.action}</span>
+                    <span className={log.status === 'OK' || log.status === 'VALID' ? 'text-emerald' : 'text-emerald/80'}>{log.status}</span>
                   </div>
                 ))}
               </div>
@@ -136,7 +136,7 @@ export const TrustwareReality: React.FC = () => {
               {activeLog === AUDIT_LOGS.length - 1 && (
                 <div className="mt-12 p-8 bg-emerald/5 border border-emerald/20 rounded-sm animate-pulse">
                   <div className="text-emerald text-[11px] mb-4 uppercase tracking-[0.3em]">Integrity Verified</div>
-                  <div className="text-parchment-text/90 t-editorial italic text-xl md:text-2xl leading-tight">
+                  <div className="text-white/90 t-editorial italic text-xl md:text-2xl leading-tight">
                     "Nenhuma alucinação detectada no corpus de 1.2TB."
                   </div>
                 </div>
@@ -145,17 +145,17 @@ export const TrustwareReality: React.FC = () => {
 
             {/* GRID OVERLAY */}
             <div className="absolute inset-0 bg-[url('/assets/textures/grid-dark.svg')] opacity-[0.05] pointer-events-none" />
-            
-            {/* SCANLINE EFFECT */}
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-emerald/[0.03] to-transparent h-4 w-full animate-scanline pointer-events-none" />
           </div>
         </div>
       </div>
 
       {/* BACKGROUND ELEMENTS */}
-      <div className="absolute top-0 right-0 p-32 opacity-[0.05] pointer-events-none">
-        <span className="t-display text-[22vw] text-ink select-none leading-none">LEX</span>
+      <div className="absolute top-0 right-0 p-32 opacity-[0.03] pointer-events-none">
+        <span className="t-brand text-[22vw] text-ink select-none leading-none">LEX</span>
       </div>
+      
+      {/* Noise Overlay */}
+      <div className="absolute inset-0 pointer-events-none z-0 opacity-[0.02] halftone-noise" />
     </section>
   );
 };

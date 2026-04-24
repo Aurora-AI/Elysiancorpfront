@@ -54,36 +54,36 @@ export const ForensicFooter: React.FC = () => {
     return (
         <footer
             ref={footerRef}
-            className="relative bg-obsidian py-32 px-px overflow-hidden border-t border-emerald/10"
+            className="section-shell world-dark py-32 px-px overflow-hidden relative border-t border-emerald/10"
         >
             <div className="relative z-10 max-w-7xl mx-auto w-full flex flex-col items-center text-center space-y-24">
 
                 {/* FINAL STATEMENT: Monumental Voice */}
                 <div className="space-y-12">
-                    <h2 className="t-display text-[clamp(4rem,10vw,10rem)] text-ink leading-[0.85]">
+                    <h2 className="t-display text-[clamp(4rem,10vw,10rem)] text-white leading-[0.85] font-light">
                         <span className="block italic opacity-30 text-8xl md:text-[6vw]">A autoridade é</span>
-                        <span className="block text-emerald mt-4">{splitText("DEMONSTRADA.")}</span>
+                        <span className="block text-emerald mt-4 font-bold">{splitText("DEMONSTRADA.")}</span>
                     </h2>
 
                     <div className="footer-cta flex flex-col items-center gap-10">
-                        <button className="group relative px-24 py-8 bg-emerald text-obsidian t-mono text-[11px] tracking-[0.4em] overflow-hidden transition-all duration-700 hover:text-white uppercase font-bold rounded-sm">
+                        <button className="group relative px-24 py-8 bg-emerald text-black t-mono text-[11px] tracking-[0.4em] overflow-hidden transition-all duration-700 hover:text-white uppercase font-bold rounded-sm">
                             <span className="relative z-10">Credenciar Perfil Técnico</span>
-                            <div className="absolute inset-0 bg-obsidian translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-monumental" />
+                            <div className="absolute inset-0 bg-black translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-monumental" />
                         </button>
                         
-                        <div className="t-mono text-[10px] text-dim-text tracking-[0.6em] uppercase font-mono">
+                        <div className="t-mono text-[10px] text-emerald/40 tracking-[0.6em] uppercase font-mono">
                             [ STATUS: MAD_LAB_AURORA // SES-ELITE_CERTIFIED ]
                         </div>
                     </div>
                 </div>
 
                 {/* NAVIGATION ARCHITECTURE */}
-                <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-24 pt-32 border-t border-parchment-text/10 text-left">
+                <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-24 pt-32 border-t border-white/10 text-left">
                     <div className="space-y-12">
                         <span className="t-mono text-[11px] text-emerald uppercase tracking-[0.3em]">Sistemas</span>
                         <div className="flex flex-col space-y-5">
                             {["Laboratory", "Trustware", "Elysian Lex", "Sovereign CRM"].map((link, i) => (
-                                <a key={i} href="#" className="footer-link t-editorial text-lg text-dim-text hover:text-emerald transition-colors duration-500">
+                                <a key={i} href="#" className="footer-link t-editorial text-lg text-white/40 hover:text-emerald transition-colors duration-500">
                                     {link}
                                 </a>
                             ))}
@@ -94,7 +94,7 @@ export const ForensicFooter: React.FC = () => {
                         <span className="t-mono text-[11px] text-emerald uppercase tracking-[0.3em]">Frequência</span>
                         <div className="flex flex-col space-y-5">
                             {["Instagram", "Twitter", "LinkedIn", "GitHub"].map((link, i) => (
-                                <a key={i} href="#" className="footer-link t-editorial text-lg text-dim-text hover:text-emerald transition-colors duration-500">
+                                <a key={i} href="#" className="footer-link t-editorial text-lg text-white/40 hover:text-emerald transition-colors duration-500">
                                     {link}
                                 </a>
                             ))}
@@ -104,7 +104,7 @@ export const ForensicFooter: React.FC = () => {
                     <div className="space-y-12 md:text-right">
                         <span className="t-mono text-[11px] text-emerald uppercase tracking-[0.3em]">Governança</span>
                         <div className="space-y-6">
-                            <p className="t-mono text-[10px] text-dim-text leading-loose uppercase tracking-tight font-mono">
+                            <p className="t-mono text-[10px] text-white/30 leading-loose uppercase tracking-tight font-mono">
                                 © 2026 ELYSIANCORP. <br />
                                 OPERAÇÃO SOB OVERRIDE EXECUTIVO <br />
                                 MAD LAB AURORA // ELY-TRUSTWARE-CORP
@@ -114,8 +114,8 @@ export const ForensicFooter: React.FC = () => {
                 </div>
             </div>
 
-            {/* HALFTONE TEXTURE OVERLAY */}
-            <div className="absolute inset-0 halftone-noise opacity-[0.03] pointer-events-none" />
+            {/* Noise Overlay */}
+            <div className="absolute inset-0 pointer-events-none z-0 opacity-[0.03] halftone-noise" />
         </footer>
     );
 };

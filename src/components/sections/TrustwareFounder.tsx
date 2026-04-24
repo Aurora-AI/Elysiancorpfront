@@ -40,13 +40,13 @@ export const TrustwareFounder: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className="section-shell bg-parchment py-32 px-px overflow-hidden halftone-noise border-t border-ink/5"
+      className="section-shell world-luminous py-32 px-px overflow-hidden relative border-t border-ink/5"
     >
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-20 items-center">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-20 items-center relative z-10">
         
         {/* LEFT: PORTRAIT (5/12) */}
         <div className="lg:col-span-5 founder-portrait relative">
-          <div className="aspect-[3/4] bg-ink/5 border border-ink/10 overflow-hidden relative group">
+          <div className="aspect-[3/4] bg-white border border-ink/10 overflow-hidden relative group">
             <img 
               src="/assets/rodrigo-portrait.png" 
               alt="Rodrigo Cesar Winhaski" 
@@ -54,7 +54,7 @@ export const TrustwareFounder: React.FC = () => {
             />
             {/* FORENSIC OVERLAY */}
             <div className="absolute inset-0 border-[24px] border-parchment pointer-events-none" />
-            <div className="absolute bottom-12 left-12 t-mono text-[10px] text-parchment-text bg-obsidian px-4 py-1.5 uppercase tracking-[0.2em] shadow-xl">
+            <div className="absolute bottom-12 left-12 t-mono text-[10px] text-parchment-text bg-black px-4 py-1.5 uppercase tracking-[0.2em] shadow-xl">
               ID: AUR-FOUNDER-01
             </div>
           </div>
@@ -74,10 +74,10 @@ export const TrustwareFounder: React.FC = () => {
               </span>
               <div className="h-[0.5px] w-16 bg-emerald/30" />
             </div>
-            <h2 className="t-headline text-6xl md:text-8xl text-ink leading-[0.9] tracking-tighter">
+            <h2 className="t-display text-6xl md:text-8xl text-ink leading-[0.9] tracking-tighter font-light">
               A Autoridade <br />
-              <span className="italic">do</span> <br />
-              <span className="italic text-ink/30">Repertório</span>
+              <span className="italic font-light">do</span> <br />
+              <span className="italic text-ink/30 font-light">Repertório</span>
             </h2>
           </div>
 
@@ -97,7 +97,7 @@ export const TrustwareFounder: React.FC = () => {
 
             <div className="pt-10 border-t border-ink/10 flex items-center gap-8">
                <div className="space-y-1">
-                 <div className="t-headline text-2xl text-ink">Rodrigo Cesar Winhaski</div>
+                 <div className="t-display text-2xl text-ink font-bold">Rodrigo Cesar Winhaski</div>
                  <div className="t-mono text-[11px] text-emerald uppercase tracking-widest font-mono">Founder & Architect // Mad Lab Aurora</div>
                </div>
                <div className="flex-1 h-[0.5px] bg-ink/10" />
@@ -110,6 +110,9 @@ export const TrustwareFounder: React.FC = () => {
         </div>
 
       </div>
+
+      {/* Noise Overlay */}
+      <div className="absolute inset-0 pointer-events-none z-0 opacity-[0.02] halftone-noise" />
     </section>
   );
 };
