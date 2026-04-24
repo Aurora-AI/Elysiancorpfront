@@ -87,12 +87,15 @@ O **Integrity Emerald** (#10B981) é o único acento permitido. Singularidade po
 ## 2. Componentes Críticos
 
 ### 2.1 Hero Cinema Architecture (Original)
-O Hero utiliza o sistema de **Scramble Portrait** e **Industrial Grid** sobre fundo **Luminoso (#F8F7F3)**. É uma composição de camadas técnicas que revelam a identidade através de fragmentação ASCII.
+O Hero utiliza o sistema de Scramble Portrait e Industrial Grid sobre fundo Luminoso (#F8F7F3). É o ponto de entrada primário e imutável.
 
-### 2.2 Resting State (Silêncio Operacional)
+### 2.2 Forensic Stop-Motion Section (v1.1.0)
+Seção secundária de alto impacto (Stop-Motion) que alterna entre retratos abstratos e wordmark. Utiliza a sequência original de letras e fotos (Protocolo Gaze Forensic). Transiciona do Dark para o Luminous (#F8F7F3) para manter a coerência narrativa.
+
+### 2.3 Resting State (Silêncio Operacional)
 Todo componente interativo ou animado deve respeitar um estado de repouso mínimo de **0.8s** antes de iniciar qualquer movimento. O silêncio precede o impacto.
 
-### 2.3 Typography Adaptive
+### 2.4 Typography Adaptive
 *   **Display:** Sempre `t-display` com peso black/bold e tracking `tighter`.
 *   **Editorial:** Sempre `t-editorial` com peso light e itálico quando apropriado.
 *   **Technical:** Sempre `t-mono` para metadados e tags.

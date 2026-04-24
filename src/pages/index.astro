@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import CinemaHero from '../components/hero/CinemaHero.astro';
+import { GazeForensicHero } from '../components/hero/GazeForensicHero';
 import { MagneticCursor } from '../components/cursor/MagneticCursor';
 import { TrustwareReality } from '../components/sections/TrustwareReality';
 import { TrustwareArchitecture } from '../components/sections/TrustwareArchitecture';
@@ -17,20 +18,23 @@ import { Header } from '../components/ui/Header';
 	<main>
 		{/* SEÇÃO 1: HERO ORIGINAL (CINEMA / SCRAMBLE) */}
 		<CinemaHero />
+
+		{/* SEÇÃO 2: STOP-MOTION ORIGINAL (GAZE FORENSIC V1) */}
+		<GazeForensicHero client:load />
 		
-		{/* SEÇÃO 2: PROVA DE REALIDADE (LIGHT) */}
+		{/* SEÇÃO 3: PROVA DE REALIDADE (LIGHT) */}
 		<TrustwareReality client:visible />
 
-		{/* SEÇÃO 3: ARQUITETURA PROPRIETÁRIA (DARK) */}
+		{/* SEÇÃO 4: ARQUITETURA PROPRIETÁRIA (DARK) */}
 		<TrustwareArchitecture client:visible />
 
-		{/* SEÇÃO 4: PORTFÓLIO DE PRODUTOS (LIGHT) */}
+		{/* SEÇÃO 5: PORTFÓLIO DE PRODUTOS (LIGHT) */}
 		<TrustwarePortfolio client:visible />
 
-		{/* SEÇÃO 5: FOUNDER (LIGHT) */}
+		{/* SEÇÃO 6: FOUNDER (LIGHT) */}
 		<TrustwareFounder client:visible />
 
-		{/* SEÇÃO 6: CTA FINAL (DARK) */}
+		{/* SEÇÃO 7: CTA FINAL (DARK) */}
 		<ForensicFooter client:visible />
 	</main>
 </Layout>
