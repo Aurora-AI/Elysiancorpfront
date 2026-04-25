@@ -6,8 +6,9 @@ export default {
 			colors: {
 				// Base
 				white: '#FFFFFF',
-				'off-white': '#F8F7F3',
-				fog: '#F2F1ED',
+				'off-white': '#F9F8F6',
+				fog: '#F1EFEA',
+				border: '#E5E3DF',
 				stone: '#E8E7E2',
 				
 				// Dark
@@ -16,11 +17,9 @@ export default {
 				'obsidian-technical': '#0D0D0D',
 				smoke: '#1A1A1A',
 				
-				// Accent
-				emerald: {
-					DEFAULT: '#10B981',
-					hover: '#059669',
-					muted: 'rgba(16, 185, 129, 0.08)',
+				moss: {
+					DEFAULT: '#4E5B4B',
+					muted: 'rgba(78, 91, 75, 0.1)',
 				},
 				
 				// System
@@ -29,9 +28,11 @@ export default {
 				'dim-text': 'rgba(242, 242, 242, 0.6)',
 			},
 			fontFamily: {
-				display: ['"Plus Jakarta Sans"', 'Söhne', 'system-ui', 'sans-serif'],
-				body: ['"Plus Jakarta Sans"', 'Söhne', 'system-ui', 'sans-serif'],
+				brand: ['Lanche', 'Instrument Serif', 'serif'],
+				display: ['"Instrument Serif"', 'serif'],
+				body: ['"Public Sans"', 'sans-serif'],
 				mono: ['"JetBrains Mono"', 'monospace'],
+				serif: ['"Crimson Pro"', 'serif'],
 			},
 			transitionTimingFunction: {
 				monumental: 'cubic-bezier(0.85, 0, 0.15, 1)',

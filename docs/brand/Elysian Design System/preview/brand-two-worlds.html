@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+@font-face { font-family: 'Lanche'; src: url('../fonts/Lanche_Demo.ttf') format('truetype'); font-display: swap; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #E8E7E2; font-family: 'Plus Jakarta Sans', sans-serif; }
+.worlds { display: grid; grid-template-columns: 1fr 1fr; height: 260px; }
+.world { padding: 24px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
+.rain { position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; gap: 18px; padding: 8px; pointer-events: none; }
+.rain-col { display: flex; flex-direction: column; gap: 4px; }
+.rain-char { font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.4; }
+.tag { font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; }
+.wordmark { font-family: 'Lanche', 'Plus Jakarta Sans', sans-serif; font-size: clamp(36px, 6vw, 60px); letter-spacing: -0.01em; line-height: 0.92; position: relative; z-index: 2; }
+.world-label { font-family: 'JetBrains Mono', monospace; font-size: 8px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.35; position: relative; z-index: 2; }
+</style>
+</head><body>
+<div class="worlds">
+  <div class="world" style="background:#000000;">
+    <div class="rain">
+      <div class="rain-col">
+        <span class="rain-char" style="color:rgba(242,242,242,0.18)">AURORA</span>
+        <span class="rain-char" style="color:rgba(242,242,242,0.10)">LEX</span>
+        <span class="rain-char" style="color:rgba(242,242,242,0.15)">SVRN</span>
+        <span class="rain-char" style="color:rgba(242,242,242,0.08)">2026</span>
+        <span class="rain-char" style="color:rgba(242,242,242,0.18)">AI</span>
+      </div>
+      <div class="rain-col" style="margin-top:16px;">
+        <span class="rain-char" style="color:rgba(242,242,242,0.12)">ELYSIAN</span>
+        <span class="rain-char" style="color:rgba(242,242,242,0.18)">OPERATOR</span>
+        <span class="rain-char" style="color:rgba(242,242,242,0.08)">TRUST</span>
+      </div>
+    </div>
+    <div style="position:relative;z-index:2;">
+      <div class="tag" style="color:rgba(201,147,58,0.9); margin-bottom:8px;">VERTICAL: LEX</div>
+      <div class="tag" style="color:rgba(242,242,242,0.4); margin-bottom:6px;">INDUSTRIAL INTELLIGENCE // AURORA_V8</div>
+      <div class="tag" style="color:rgba(242,242,242,0.2); font-size:8px;">ARTIFACT: 2026.Q2.CERT</div>
+    </div>
+    <div class="world-label" style="color:#F2F2F2;">FASE 1 — Tensão · Máquina · Sistema</div>
+  </div>
+  <div class="world" style="background:#F8F7F3;">
+    <div class="rain">
+      <div class="rain-col">
+        <span class="rain-char" style="color:rgba(26,26,26,0.07)">AURORA</span>
+        <span class="rain-char" style="color:rgba(26,26,26,0.05)">LEX</span>
+        <span class="rain-char" style="color:rgba(26,26,26,0.09)">SVRN</span>
+        <span class="rain-char" style="color:rgba(26,26,26,0.05)">2026</span>
+        <span class="rain-char" style="color:rgba(26,26,26,0.07)">AI</span>
+      </div>
+    </div>
+    <div class="wordmark" style="color:#0A0A0A;">ELYSIAN</div>
+    <div class="world-label" style="color:#0A0A0A;">FASE 2 — Paz · Humano · Proporção</div>
+  </div>
+</div>
+</body></html>

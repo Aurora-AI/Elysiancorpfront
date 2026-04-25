@@ -52,12 +52,12 @@ export const TrustwareArchitecture: React.FC = () => {
             {/* TOP METADATA BAR */}
             <div className="relative z-10 w-full flex justify-between items-center mb-24 border-b border-parchment-text/10 pb-8">
                 <div className="flex items-center gap-6">
-                    <span className="t-mono text-[11px] text-emerald uppercase tracking-[0.3em]">
-                        Arquitetura Sistêmica // MCP_SVRN_V1.2
+                    <span className="t-mono text-[11px] text-moss uppercase tracking-[0.3em]">
+                        Cognitive Operating System // COS_SVRN_V8.0
                     </span>
                 </div>
                 <div className="t-mono text-[10px] text-parchment-text/40 tracking-tighter uppercase font-mono">
-                    Proprietary_Stack_2026
+                    Agentic_Governance_Layer
                 </div>
             </div>
 
@@ -67,79 +67,79 @@ export const TrustwareArchitecture: React.FC = () => {
                 <div className="lg:col-span-5 space-y-16">
                     <div className="space-y-6">
                         <div className="flex items-center gap-6 arch-element">
-                            <span className="t-mono text-[11px] text-emerald tracking-[0.2em]">
-                                03 // Diferenciação Técnica
+                            <span className="t-mono text-[11px] text-moss tracking-[0.2em]">
+                                03 // Arquitetura
                             </span>
-                            <div className="h-[0.5px] w-16 bg-emerald/30" />
+                            <div className="h-[0.5px] w-16 bg-moss/30" />
                         </div>
                         
                         <h2 className="arch-element t-display text-6xl md:text-8xl text-parchment-text leading-[0.9] tracking-tighter">
-                            Além do <br />
-                            <span className="italic font-light">Prompt</span> <br />
-                            <span className="italic font-light text-emerald">Engin-</span> <br />
-                            <span className="italic font-light text-emerald">eering</span>
+                            O Pipeline de <br />
+                            <span className="italic font-light">Ingestão</span> <br />
+                            <span className="italic font-light text-moss">Cognitiva (CIP).</span>
                         </h2>
                     </div>
 
                     <div className="space-y-8 text-parchment-text/60 t-editorial text-xl leading-relaxed max-w-sm arch-element">
                         <p>
-                            Não construímos camadas de conversa. Construímos camadas de <span className="text-parchment-text italic font-medium">execução determinística</span>.
+                            A infraestrutura Elysian não consome apenas dados; ela metaboliza conhecimento. O nosso pipeline processa inputs complexos — de contratos a registos de áudio.
                         </p>
                         <p className="text-base text-parchment-text/40">
-                            Utilizamos o protocolo MCP para desacoplar a lógica de negócio do modelo de fundação, garantindo que a Aurora opere como um sistema operacional, não um chatbot.
+                            Através de um barramento de eventos (NATS) de alta performance, eliminamos o preenchimento manual do CRM e criamos uma memória corporativa viva e auditável.
                         </p>
                     </div>
                 </div>
 
                 {/* RIGHT COLUMN: THE BLUEPRINT GRID */}
-                <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-px bg-emerald/10 border border-emerald/10">
+                <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-px bg-moss/10 border border-moss/10">
                     
-                    {/* GRID CELL 1: MCP */}
-                    <div className="bg-black p-12 space-y-8 arch-element relative group hover:bg-emerald/[0.02] transition-colors duration-500">
-                        <div className="t-mono text-[10px] text-emerald uppercase mb-4 tracking-[0.3em]">Protocol Layer</div>
-                        <h3 className="t-display text-4xl text-parchment-text font-bold">MCP Sovereign</h3>
+                    {/* GRID CELL 1: SILENT INGESTION */}
+                    <div className="bg-black p-12 space-y-8 arch-element relative group hover:bg-moss/[0.02] transition-colors duration-500">
+                        <div className="t-mono text-[10px] text-moss uppercase mb-4 tracking-[0.3em]">Metabolização</div>
+                        <h3 className="t-display text-4xl text-parchment-text font-bold">Silent Ingestion</h3>
                         <p className="t-mono text-[10px] text-parchment-text/40 leading-relaxed font-mono">
-                            Integração nativa com Model Context Protocol para acesso seguro a ferramentas e dados locais sem exposição de corpus.
+                            Captura e estruturação automática de dados heterogéneos sem intervenção ou fricção humana.
                         </p>
-                        <div className="arch-line absolute bottom-0 left-0 w-full h-[0.5px] bg-emerald/40 origin-left" />
+                        <div className="arch-line absolute bottom-0 left-0 w-full h-[0.5px] bg-moss/40 origin-left" />
                     </div>
 
-                    {/* GRID CELL 2: AGENTIC LOGIC */}
-                    <div className="bg-black p-12 space-y-8 arch-element relative group hover:bg-emerald/[0.02] transition-colors duration-500">
-                        <div className="t-mono text-[10px] text-emerald uppercase mb-4 tracking-[0.3em]">Logic Engine</div>
-                        <h3 className="t-display text-4xl text-parchment-text font-bold">Aurora-Agents</h3>
+                    {/* GRID CELL 2: EVENT BUS (NATS) */}
+                    <div className="bg-black p-12 space-y-8 arch-element relative group hover:bg-moss/[0.02] transition-colors duration-500">
+                        <div className="t-mono text-[10px] text-moss uppercase mb-4 tracking-[0.3em]">Orquestração</div>
+                        <h3 className="t-display text-4xl text-parchment-text font-bold">Event Bus (NATS)</h3>
                         <p className="t-mono text-[10px] text-parchment-text/40 leading-relaxed font-mono">
-                            Orquestração multi-agente com estados de memória persistentes e validação de saída via Pydantic Schemas.
+                            Barramento de eventos de baixa latência para orquestração reativa de agentes em tempo real.
                         </p>
-                        <div className="arch-line absolute bottom-0 left-0 w-full h-[0.5px] bg-emerald/40 origin-left" />
+                        <div className="arch-line absolute bottom-0 left-0 w-full h-[0.5px] bg-moss/40 origin-left" />
                     </div>
 
-                    {/* GRID CELL 3: SECURITY */}
-                    <div className="bg-black p-12 space-y-8 arch-element relative group hover:bg-emerald/[0.02] transition-colors duration-500">
-                        <div className="t-mono text-[10px] text-emerald uppercase mb-4 tracking-[0.3em]">Security Layer</div>
-                        <h3 className="t-display text-4xl text-parchment-text font-bold">Trustware Guard</h3>
+                    {/* GRID CELL 3: DETERMINISTIC LOGIC */}
+                    <div className="bg-black p-12 space-y-8 arch-element relative group hover:bg-moss/[0.02] transition-colors duration-500">
+                        <div className="t-mono text-[10px] text-moss uppercase mb-4 tracking-[0.3em]">Segurança</div>
+                        <h3 className="t-display text-4xl text-parchment-text font-bold">Deterministic Logic</h3>
                         <p className="t-mono text-[10px] text-parchment-text/40 leading-relaxed font-mono">
-                            Camada de firewall semântico que detecta e bloqueia drifts cognitivos e tentativas de injeção de prompt.
+                            Validação rigorosa de tokens via HMAC e filtros semânticos antes de qualquer interação com modelos de linguagem.
                         </p>
                     </div>
 
-                    {/* GRID CELL 4: INFRA */}
-                    <div className="bg-black p-12 space-y-8 arch-element relative group hover:bg-emerald/[0.02] transition-colors duration-500">
-                        <div className="t-mono text-[10px] text-emerald uppercase mb-4 tracking-[0.3em]">Infra Layer</div>
-                        <h3 className="t-display text-4xl text-parchment-text font-bold">Mad Lab Core</h3>
+                    {/* GRID CELL 4: COGNITIVE MEMORY */}
+                    <div className="bg-black p-12 space-y-8 arch-element relative group hover:bg-moss/[0.02] transition-colors duration-500">
+                        <div className="t-mono text-[10px] text-moss uppercase mb-4 tracking-[0.3em]">Persistence</div>
+                        <h3 className="t-display text-4xl text-parchment-text font-bold">Local Vault</h3>
                         <p className="t-mono text-[10px] text-parchment-text/40 leading-relaxed font-mono">
-                            Infraestrutura otimizada para execução local e edge, reduzindo latência operacional para {"<"} 20ms.
+                            Armazenamento local encriptado de segredos industriais e memória corporativa de longo prazo.
                         </p>
                     </div>
 
                 </div>
             </div>
 
+
             {/* BACKGROUND SCHEMATIC */}
             <div className="absolute inset-0 z-0 opacity-[0.04] pointer-events-none select-none flex items-center justify-center">
-                <div className="w-[80%] aspect-square border border-emerald/20 rounded-full animate-slow-spin" />
-                <div className="absolute w-px h-full bg-emerald/20 left-1/2 -translate-x-1/2" />
-                <div className="absolute w-full h-px bg-emerald/20 top-1/2 -translate-y-1/2" />
+                <div className="w-[80%] aspect-square border border-moss/20 rounded-full animate-slow-spin" />
+                <div className="absolute w-px h-full bg-moss/20 left-1/2 -translate-x-1/2" />
+                <div className="absolute w-full h-px bg-moss/20 top-1/2 -translate-y-1/2" />
             </div>
 
             {/* Grain / Noise Overlay */}

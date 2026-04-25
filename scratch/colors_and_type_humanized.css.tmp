@@ -1,0 +1,13 @@
+:root {
+    /* Novo Acento Editorial */
+    --color-elysian-accent: #4E5B4B; 
+    
+    /* Tipografia Humanizada */
+    --font-display: 'Instrument Serif', serif;
+    --font-body: 'Public Sans', sans-serif;
+    --font-technical: 'JetBrains Mono', monospace; /* Mantida apenas para metadados */
+
+    /* Escala de Cinzas (Leve vs Pesado) */
+    --color-luminous-surface: #F9F8F6; /* Um "off-white" levemente aquecido */
+    --color-dark-deep: #0D0D0D;
+}

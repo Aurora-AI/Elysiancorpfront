@@ -81,23 +81,24 @@ export const TrustwareReality: React.FC = () => {
               <div className="h-[0.5px] w-12 bg-ink/20" />
             </div>
             <h2 className="t-display text-6xl md:text-8xl text-ink leading-[0.9] tracking-tighter">
-              A Prova <br />
-              <span className="italic font-light">é o</span> <br />
-              <span className="italic font-light text-emerald">Produto</span>
+              O Fim da <br />
+              <span className="italic font-light">Notificação</span> <br />
+              <span className="italic font-light text-moss">Passiva.</span>
             </h2>
           </div>
 
           <div className="space-y-8 max-w-sm">
             <p className="t-editorial text-xl text-ink/80 leading-relaxed">
-              Enquanto o mercado discute prompts, a Elysian entrega evidência. Nosso motor <span className="italic">ElysianLex</span> audita cada caractere em tempo real.
+              O mercado entrega dados sensíveis a caixas negras probabilísticas na nuvem e utiliza software passivo que depende de humanos para agir. A Elysian inverte esta lógica. Em vez de enviar lembretes, a nossa malha agêntica executa a operação. Em vez de externalizar a memória para a nuvem, mantemos os segredos num <span className="italic">Local Vault</span> encriptado. O especialista decide, o sistema governa, o modelo apenas processa.
             </p>
             <div className="pt-8 border-t border-ink/10">
-              <span className="t-mono text-[10px] text-ink/40 uppercase tracking-tighter font-mono">
-                SVRN_ID: AUR-V8-LEX-DEMO
+              <span className="t-mono text-[11px] text-moss uppercase tracking-widest font-mono font-bold">
+                System Authority: 70% // Cognitive Delegation: 30%
               </span>
             </div>
           </div>
         </div>
+
 
         {/* RIGHT: FORENSIC TERMINAL (7/12) */}
         <div className="lg:col-span-7 flex items-center justify-center">
@@ -108,16 +109,16 @@ export const TrustwareReality: React.FC = () => {
             {/* TERMINAL HEADER */}
             <div className="h-12 bg-white/5 border-b border-white/10 flex items-center justify-between px-6">
               <div className="flex gap-2">
-                <div className="w-2.5 h-2.5 rounded-full bg-emerald/40" />
-                <div className="w-2.5 h-2.5 rounded-full bg-emerald/20" />
-                <div className="w-2.5 h-2.5 rounded-full bg-emerald/10" />
+                <div className="w-2.5 h-2.5 rounded-full bg-moss/40" />
+                <div className="w-2.5 h-2.5 rounded-full bg-moss/20" />
+                <div className="w-2.5 h-2.5 rounded-full bg-moss/10" />
               </div>
               <span className="t-mono text-[10px] text-white/20 uppercase tracking-[0.2em]">ElysianLex_Sovereign_Viewer_v2.1</span>
             </div>
 
             {/* TERMINAL BODY */}
             <div className="flex-1 p-10 font-mono text-[11px] space-y-5">
-              <div className="text-emerald/60 pb-5 border-b border-white/5 mb-5 tracking-widest uppercase">
+              <div className="text-moss/60 pb-5 border-b border-white/5 mb-5 tracking-widest uppercase">
                 {">"} INITIALIZING FORENSIC_AUDIT_SEQUENCE...
               </div>
               
@@ -128,16 +129,16 @@ export const TrustwareReality: React.FC = () => {
                     className={`flex justify-between transition-all duration-500 ${i <= activeLog ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}
                   >
                     <span className="text-white/40">[{log.time}] {log.action}</span>
-                    <span className={log.status === 'OK' || log.status === 'VALID' ? 'text-emerald' : 'text-emerald/80'}>{log.status}</span>
+                    <span className={log.status === 'OK' || log.status === 'VALID' ? 'text-moss' : 'text-moss/80'}>{log.status}</span>
                   </div>
                 ))}
               </div>
 
               {activeLog === AUDIT_LOGS.length - 1 && (
-                <div className="mt-12 p-8 bg-emerald/5 border border-emerald/20 rounded-sm animate-pulse">
-                  <div className="text-emerald text-[11px] mb-4 uppercase tracking-[0.3em]">Integrity Verified</div>
+                <div className="mt-12 p-8 bg-moss/5 border border-moss/20 rounded-sm animate-pulse">
+                  <div className="text-moss text-[11px] mb-4 uppercase tracking-[0.3em]">Integrity Verified</div>
                   <div className="text-white/90 t-editorial italic text-xl md:text-2xl leading-tight">
-                    "Nenhuma alucinação detectada no corpus de 1.2TB."
+                    "O especialista decide, o sistema governa, o modelo apenas processa."
                   </div>
                 </div>
               )}

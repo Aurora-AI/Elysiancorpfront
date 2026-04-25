@@ -84,7 +84,7 @@ export const AuditTrail: React.FC = () => {
                         <div className="pt-4 border-t border-white/10 space-y-4">
                             <div className="flex justify-between items-center">
                                 <span className="text-[10px] tracking-[0.2em] uppercase text-white/30 font-mono">System Health</span>
-                                <span className="text-[10px] tracking-[0.2em] uppercase text-emerald-500 font-mono">Nominal</span>
+                                <span className="text-[10px] tracking-[0.2em] uppercase text-moss-500 font-mono">Nominal</span>
                             </div>
                             <div className="w-full bg-white/5 h-[1px]">
                                 <div className="bg-white/20 h-full w-full animate-pulse" />
@@ -109,8 +109,8 @@ export const AuditTrail: React.FC = () => {
                                 <div key={log.id} className="px-6 py-5 grid grid-cols-12 gap-4 hover:bg-white/[0.02] transition-colors group">
                                     <div className="col-span-3 text-[11px] text-white/60">{log.id}</div>
                                     <div className="col-span-3 flex items-center gap-2">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.4)]" />
-                                        <span className="text-[10px] text-emerald-500/80 tracking-wider uppercase">{log.status}</span>
+                                        <div className="w-1.5 h-1.5 rounded-full bg-moss-500 shadow-[0_0_8px_rgba(16,185,129,0.4)]" />
+                                        <span className="text-[10px] text-moss-500/80 tracking-wider uppercase">{log.status}</span>
                                     </div>
                                     <div className="col-span-6 text-[10px] text-white/30 group-hover:text-white/50 transition-colors truncate">
                                         {log.hash}

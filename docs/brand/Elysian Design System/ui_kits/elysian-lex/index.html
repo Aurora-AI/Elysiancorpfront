@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elysian Lex — Sovereign Audit System</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,600;0,700;1,600;1,700&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+@font-face { font-family: 'Lanche'; src: url('../../fonts/Lanche_Demo.ttf') format('truetype'); font-display: swap; }
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --off-white:#F8F7F3; --white:#FFFFFF; --surface:#F2F1ED; --border:#E8E7E2;
+  --ink:#0A0A0A; --ink-2:#1A1A1A; --ink-muted:#6B6B6B;
+  --gold:#C9933A; --gold-hover:#A67825; --gold-muted:rgba(201,147,58,0.10);
+  --blue-pastel:#93C5FD; --blue-light:#BFDBFE;
+  /* dark — only for pressure sections */
+  --dark:#000000; --dark-deep:#0A0A0A;
+  --on-dark:#F2F2F2; --on-dark-70:rgba(242,242,242,0.70); --on-dark-40:rgba(242,242,242,0.40);
+  --serif:'Crimson Pro',Georgia,serif;
+  --mono:'JetBrains Mono',monospace;
+  --sans:'Plus Jakarta Sans',system-ui,sans-serif;
+  --brand:'Lanche','Plus Jakarta Sans',sans-serif;
+}
+html,body{background:var(--off-white);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;}
+
+/* PRELOADER */
+#preloader{position:fixed;inset:0;background:var(--white);z-index:1000;display:flex;align-items:center;justify-content:center;flex-direction:column;transition:opacity 0.8s ease;}
+#preloader.out{opacity:0;pointer-events:none;}
+.preload-wordmark{font-family:var(--brand);font-size:72px;color:var(--ink);letter-spacing:-0.02em;line-height:1;margin-bottom:24px;}
+.preload-progress{font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:0.4em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:8px;}
+.preload-bar{width:200px;height:1px;background:var(--border);overflow:hidden;margin:0 auto;}
+.preload-bar-fill{height:100%;background:var(--ink);width:0;transition:width 0.05s linear;}
+.preload-footer{position:absolute;bottom:20px;left:20px;font-family:var(--mono);font-size:8px;text-transform:uppercase;letter-spacing:0.3em;color:var(--ink-muted);}
+
+/* SHELL */
+#app{opacity:0;transition:opacity 0.6s ease;}
+#app.visible{opacity:1;}
+.view{display:none;}
+.view.active{display:block;}
+
+/* TOP NAV — luminous */
+nav.topnav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;background:var(--off-white);border-bottom:1px solid var(--ink);display:flex;align-items:center;justify-content:space-between;padding:0 40px;}
+.nav-logo{display:flex;align-items:center;gap:10px;cursor:pointer;}
+.nav-logo-text{font-family:var(--brand);font-size:20px;color:var(--ink);letter-spacing:-0.01em;}
+.nav-links{display:flex;}
+.nav-link{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:0.25em;text-transform:uppercase;color:var(--ink-muted);padding:0 20px;cursor:pointer;border-left:1px solid var(--border);height:56px;display:flex;align-items:center;transition:color 0.15s;}
+.nav-link:hover{color:var(--ink);}
+.nav-link.active{color:var(--ink);border-bottom:2px solid var(--ink);}
+.nav-est{font-family:var(--mono);font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:var(--ink-muted);}
+
+/* ── LANDING ─────────────────────────────────────── */
+#view-landing{padding-top:56px;}
+
+/* HERO — luminous phase (peace) */
+.hero{padding:80px 64px 96px;border-bottom:1px solid var(--ink);position:relative;overflow:hidden;}
+.hero-rain{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;gap:60px;padding:20px 40px;pointer-events:none;opacity:0.07;}
+.hero-rain-col{display:flex;flex-direction:column;gap:14px;}
+.hero-rain-char{font-family:var(--mono);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-2);white-space:nowrap;}
+.session-id{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:0.35em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:28px;}
+.hero-headline{font-family:var(--brand);font-size:clamp(56px,8vw,104px);color:var(--ink);margin-bottom:36px;position:relative;z-index:2;letter-spacing:-0.02em;line-height:0.95;}
+.hero-body{font-size:18px;font-weight:300;color:var(--ink-2);max-width:520px;line-height:1.65;margin-bottom:48px;position:relative;z-index:2;}
+.hero-cta{display:inline-flex;gap:14px;position:relative;z-index:2;}
+.btn-ink{background:var(--ink);color:var(--off-white);font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;padding:14px 40px;border:1px solid var(--ink);cursor:pointer;transition:all 0.15s;}
+.btn-ink:hover{background:var(--off-white);color:var(--ink);}
+.btn-outline{background:transparent;color:var(--ink-muted);font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;padding:14px 32px;border:1px solid var(--border);cursor:pointer;transition:all 0.15s;}
+.btn-outline:hover{border-color:var(--ink);color:var(--ink);}
+.btn-gold{background:var(--gold);color:#fff;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;padding:14px 40px;border:none;cursor:pointer;transition:opacity 0.15s;}
+.btn-gold:hover{opacity:0.88;}
+
+/* INIT — luminous */
+.init-grid{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--ink);}
+.init-col{padding:48px;}
+.init-col:first-child{border-right:1px solid var(--ink);}
+.init-title{font-family:var(--serif);font-size:22px;font-weight:700;text-transform:uppercase;color:var(--ink);margin-bottom:28px;letter-spacing:-0.01em;}
+.sys-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--border);}
+.sys-key{font-family:var(--mono);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-muted);}
+.sys-val{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink);}
+.sys-val.gold{color:var(--gold);}
+.quote-block{border-left:2px solid var(--ink);padding-left:28px;}
+.quote-text{font-family:var(--serif);font-size:24px;font-style:italic;color:var(--ink);line-height:1.4;margin-bottom:14px;}
+.quote-attr{font-family:var(--mono);font-size:9px;letter-spacing:0.28em;text-transform:uppercase;color:var(--ink-muted);}
+
+/* PRESSURE SECTION — dark world (anguish) */
+.pressure{background:var(--dark);padding:64px;border-bottom:1px solid var(--on-dark-40);}
+.pressure-kicker{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:0.25em;text-transform:uppercase;color:rgba(201,147,58,0.9);margin-bottom:20px;}
+.pressure-headline{font-family:var(--brand);font-size:clamp(40px,6vw,72px);color:var(--on-dark);margin-bottom:28px;letter-spacing:-0.02em;line-height:0.95;}
+.pressure-body{font-size:17px;font-weight:300;color:var(--on-dark-70);max-width:600px;line-height:1.65;margin-bottom:40px;}
+.pressure-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid rgba(242,242,242,0.12);margin-top:48px;}
+.pressure-stat{padding:28px 24px;border-right:1px solid rgba(242,242,242,0.08);}
+.pressure-stat:last-child{border-right:none;}
+.pressure-stat-num{font-family:var(--brand);font-size:48px;color:var(--on-dark);letter-spacing:-0.03em;line-height:1;margin-bottom:6px;}
+.pressure-stat-label{font-family:var(--mono);font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--on-dark-40);}
+
+/* PILLARS — luminous */
+.pillars{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--ink);}
+.pillar{padding:48px;cursor:pointer;transition:background 0.15s;}
+.pillar:first-child{border-right:1px solid var(--ink);}
+.pillar:hover{background:var(--ink);}
+.pillar:hover .pillar-icon{color:var(--off-white);}
+.pillar:hover .pillar-title{color:var(--off-white);}
+.pillar:hover .pillar-body{color:rgba(242,242,242,0.65);}
+.pillar-icon{width:32px;height:32px;margin-bottom:28px;color:var(--ink);transition:color 0.15s;}
+.pillar-title{font-family:var(--serif);font-size:30px;font-weight:700;text-transform:uppercase;color:var(--ink);margin-bottom:18px;letter-spacing:-0.01em;transition:color 0.15s;}
+.pillar-body{font-size:15px;font-weight:300;color:var(--ink-muted);line-height:1.6;transition:color 0.15s;}
+
+/* AUDIT STREAM — luminous */
+.audit-stream{padding:48px 64px;}
+.stream-title{font-family:var(--serif);font-size:30px;font-weight:700;text-transform:uppercase;color:var(--ink);margin-bottom:40px;display:flex;align-items:center;gap:20px;}
+.stream-title-line{flex:1;height:1px;background:var(--border);}
+.audit-row{display:grid;grid-template-columns:1fr 2fr 1fr;padding:20px 0;border-bottom:1px solid var(--border);align-items:center;cursor:pointer;transition:background 0.1s;}
+.audit-row:first-child{border-top:1px solid var(--ink);}
+.audit-row:hover{background:var(--surface);margin:0 -16px;padding:20px 16px;}
+.audit-id{font-family:var(--mono);font-size:10px;letter-spacing:0.15em;color:var(--ink-muted);}
+.audit-type{font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink);text-align:center;}
+.audit-ts{font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted);text-align:right;}
+
+/* FOOTER — luminous */
+footer.site-footer{background:var(--off-white);border-top:2px solid var(--ink);display:flex;justify-content:space-between;align-items:center;padding:28px 64px;gap:24px;}
+.footer-copy{font-family:var(--mono);font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--ink-muted);}
+.footer-links{display:flex;gap:28px;}
+.footer-link{font-family:var(--mono);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-muted);cursor:pointer;transition:color 0.1s;}
+.footer-link:hover{color:var(--ink);}
+
+/* ── APP VIEW ─────────────────────────────────────── */
+#view-app{padding-top:56px;display:none;min-height:calc(100vh - 56px);}
+#view-app.active{display:flex;}
+.app-sidebar{width:200px;flex-shrink:0;background:var(--off-white);border-right:1px solid var(--ink);min-height:calc(100vh - 56px);display:flex;flex-direction:column;}
+.app-sidebar-head{padding:24px 20px 20px;border-bottom:1px solid var(--border);}
+.app-sidebar-wordmark{font-family:var(--brand);font-size:18px;color:var(--ink);letter-spacing:-0.01em;margin-bottom:2px;}
+.app-sidebar-sub{font-family:var(--mono);font-size:8px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-muted);}
+.app-nav{padding:16px 8px;flex:1;}
+.app-nav-item{display:flex;align-items:center;gap:10px;padding:10px 12px;cursor:pointer;transition:background 0.1s;border-left:2px solid transparent;margin-bottom:2px;}
+.app-nav-item:hover{background:var(--surface);}
+.app-nav-item.active{border-left-color:var(--ink);background:var(--surface);}
+.app-nav-icon{width:14px;height:14px;opacity:0.35;flex-shrink:0;}
+.app-nav-item.active .app-nav-icon{opacity:1;}
+.app-nav-label{font-family:var(--sans);font-size:12px;font-weight:500;color:var(--ink-muted);}
+.app-nav-item.active .app-nav-label{color:var(--ink);font-weight:600;}
+.app-sidebar-footer{padding:16px 20px;border-top:1px solid var(--border);}
+.app-sidebar-footer span{font-family:var(--mono);font-size:8px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);}
+.app-main{flex:1;overflow-y:auto;background:var(--white);}
+.app-page-header{padding:32px 48px 24px;border-bottom:1px solid var(--border);background:var(--off-white);}
+.app-page-kicker{font-family:var(--mono);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.app-page-title{font-family:var(--brand);font-size:40px;color:var(--ink);letter-spacing:-0.02em;line-height:1;}
+
+/* Cases list */
+.cases-list{padding:0 48px;}
+.cases-header-row{display:grid;grid-template-columns:2fr 1fr 1fr 80px;padding:12px 0;gap:16px;border-bottom:1px solid var(--ink);}
+.cases-col-label{font-family:var(--mono);font-size:8.5px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-muted);}
+.case-row{display:grid;grid-template-columns:2fr 1fr 1fr 80px;align-items:center;padding:16px 0;border-bottom:1px solid var(--border);cursor:pointer;gap:16px;transition:background 0.1s;}
+.case-row:hover{background:var(--off-white);margin:0 -16px;padding:16px;}
+.case-name{font-size:14px;font-weight:500;color:var(--ink);}
+.case-client{font-size:11px;font-weight:300;color:var(--ink-muted);margin-top:2px;}
+.case-status{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;}
+.case-status.active{color:var(--gold);}
+.case-status.active::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--gold);display:block;}
+.case-status.pending{color:var(--ink-muted);}
+.case-status.pending::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--border);display:block;}
+.case-date{font-family:var(--mono);font-size:9px;color:var(--ink-muted);text-align:right;}
+.case-action{font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);border:1px solid var(--border);padding:5px 12px;text-align:center;cursor:pointer;transition:all 0.1s;}
+.case-action:hover{background:var(--ink);color:var(--off-white);border-color:var(--ink);}
+
+/* Dashboard metrics */
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-bottom:1px solid var(--border);border-right:1px solid var(--border);}
+.metric{padding:28px 32px;border-left:1px solid var(--border);border-top:1px solid var(--border);}
+.metric-label{font-family:var(--mono);font-size:8.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:10px;}
+.metric-value{font-family:var(--brand);font-size:52px;color:var(--ink);letter-spacing:-0.03em;line-height:1;margin-bottom:4px;}
+.metric-value.gold{color:var(--gold);}
+.metric-delta{font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);}
+</style>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="preload-wordmark">ELYSIAN</div>
+  <div class="preload-progress" id="pct">EPISTEMIC_LOAD_DETECTION: 000%</div>
+  <div class="preload-bar"><div class="preload-bar-fill" id="bar"></div></div>
+  <div class="preload-footer">Aurora Factory / Sovereign Protocol v1.2</div>
+</div>
+
+<div id="app">
+
+  <!-- TOP NAV -->
+  <nav class="topnav">
+    <div class="nav-logo" onclick="showView('landing')">
+      <span class="nav-logo-text">Elysian Lex</span>
+    </div>
+    <div class="nav-links">
+      <span class="nav-link active" id="nl-terminal" onclick="showView('landing')">Terminal</span>
+      <span class="nav-link" id="nl-ledger" onclick="showView('app')">Ledger</span>
+      <span class="nav-link" onclick="showView('app')">Identity</span>
+    </div>
+    <span class="nav-est">EST. 2026 // SVRN</span>
+  </nav>
+
+  <!-- ── LANDING VIEW ── -->
+  <div class="view active" id="view-landing">
+
+    <!-- Hero — luminous -->
+    <section class="hero">
+      <div class="hero-rain" aria-hidden="true">
+        <div class="hero-rain-col"><span class="hero-rain-char">AURORA</span><span class="hero-rain-char">LEX</span><span class="hero-rain-char">SVRN</span><span class="hero-rain-char">2026</span></div>
+        <div class="hero-rain-col" style="margin-top:30px"><span class="hero-rain-char">OPERATOR</span><span class="hero-rain-char">TRUST</span><span class="hero-rain-char">LEDGER</span></div>
+        <div class="hero-rain-col" style="margin-top:14px"><span class="hero-rain-char">IDENTITY</span><span class="hero-rain-char">ANCHOR</span><span class="hero-rain-char">PROTOCOL</span></div>
+      </div>
+      <div class="session-id">[ SESSION_ID: 0x882A_SYST ]</div>
+      <h1 class="hero-headline">THE SOVEREIGN<br>AUDIT.</h1>
+      <p class="hero-body">Deterministic legal verification for high-stakes environments. We eliminate ambiguity through clinical architectural logic and immutable sovereign ledgers.</p>
+      <div class="hero-cta">
+        <button class="btn-ink" onclick="showView('app')">COMMENCE AUDIT</button>
+        <button class="btn-outline">LOAD PROTOCOL</button>
+      </div>
+    </section>
+
+    <!-- System Init — luminous -->
+    <div class="init-grid">
+      <div class="init-col">
+        <h3 class="init-title">SYSTEM_INITIALIZATION</h3>
+        <div class="sys-row"><span class="sys-key">IDENTITY_ANCHOR</span><span class="sys-val gold">[ VERIFIED ]</span></div>
+        <div class="sys-row"><span class="sys-key">LEX_CRITICAL_PATH</span><span class="sys-val">[ STABLE ]</span></div>
+        <div class="sys-row"><span class="sys-key">ENCRYPTION_LAYER</span><span class="sys-val">AES-256-GCM</span></div>
+        <div class="sys-row"><span class="sys-key">AUDIT_FREQUENCY</span><span class="sys-val">REAL_TIME</span></div>
+        <div class="sys-row"><span class="sys-key">SOVEREIGN_VERSION</span><span class="sys-val">v4.0.1</span></div>
+      </div>
+      <div class="init-col" style="display:flex; align-items:center; background:var(--surface);">
+        <div class="quote-block">
+          <p class="quote-text">"The ledger is not a record of the past; it is the constraint of the future."</p>
+          <span class="quote-attr">— ARCHITECT_V4</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRESSURE SECTION — dark world (anguish) -->
+    <section class="pressure">
+      <div class="pressure-kicker">O problema que você ainda não nomeou</div>
+      <h2 class="pressure-headline">AMBIGUIDADE<br>CUSTA CARO.</h2>
+      <p class="pressure-body">Cada processo sem rastreabilidade é um risco acumulado. Cada decisão sem evidência é uma vulnerabilidade silenciosa. O sistema jurídico não perdoa o que você não pode provar.</p>
+      <button class="btn-gold">VER A SOLUÇÃO</button>
+      <div class="pressure-grid">
+        <div class="pressure-stat">
+          <div class="pressure-stat-num">73%</div>
+          <div class="pressure-stat-label">das decisões adversas têm falha de rastreabilidade</div>
+        </div>
+        <div class="pressure-stat">
+          <div class="pressure-stat-num">4.2×</div>
+          <div class="pressure-stat-label">mais risco em processos sem auditoria contínua</div>
+        </div>
+        <div class="pressure-stat">
+          <div class="pressure-stat-num">0</div>
+          <div class="pressure-stat-label">margem para ambiguidade em ambientes de alto risco</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pillars — luminous -->
+    <div class="pillars">
+      <div class="pillar">
+        <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 2a10 10 0 0 1 0 20A10 10 0 0 1 12 2z"/><path d="M12 8v4l3 3"/></svg>
+        <div class="pillar-title">IMMUTABLE IDENTITY</div>
+        <p class="pillar-body">Establishing non-custodial cryptographic proof of personhood. Every action is signed, every signature is verified, every verification is final.</p>
+      </div>
+      <div class="pillar">
+        <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <div class="pillar-title">LEGISLATIVE RIGOR</div>
+        <p class="pillar-body">Translating complex legal mandates into executable code. Eliminating the friction between intent and enforcement through sovereign logic.</p>
+      </div>
+    </div>
+
+    <!-- Audit Stream — luminous -->
+    <div class="audit-stream">
+      <div class="stream-title">LATEST_AUDITS <div class="stream-title-line"></div></div>
+      <div class="audit-row"><span class="audit-id">#001_8F23A_C</span><span class="audit-type">TRANS_IDENTITY_VERIFY</span><span class="audit-ts">2026-04-21 14:02:11</span></div>
+      <div class="audit-row"><span class="audit-id">#002_9B11E_F</span><span class="audit-type">LEDGER_STATE_COMMIT</span><span class="audit-ts">2026-04-21 13:58:45</span></div>
+      <div class="audit-row"><span class="audit-id">#003_1A09D_X</span><span class="audit-type">SOVEREIGN_KEY_ROTATION</span><span class="audit-ts">2026-04-21 13:42:01</span></div>
+      <div class="audit-row"><span class="audit-id">#004_4D22B_Y</span><span class="audit-type">AUDIT_LOG_SEALED</span><span class="audit-ts">2026-04-21 13:30:12</span></div>
+      <div style="margin-top:40px; text-align:center;">
+        <button class="btn-outline" onclick="showView('app')">LOAD_FULL_HISTORY</button>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <span class="footer-copy">© 2026 ELYSIAN LEX [SOVEREIGN_SYSTEM_v4.0.1]</span>
+      <div class="footer-links">
+        <span class="footer-link">SYSTEM_STATUS: STABLE</span>
+        <span class="footer-link">AUDIT_LOGS</span>
+        <span class="footer-link">TERMINAL_RESET</span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ── APP VIEW ── -->
+  <div id="view-app">
+    <aside class="app-sidebar">
+      <div class="app-sidebar-head">
+        <div class="app-sidebar-wordmark">Lex</div>
+        <div class="app-sidebar-sub">P01 Liberal</div>
+      </div>
+      <nav class="app-nav">
+        <div class="app-nav-item active" onclick="setAppPage('dashboard')">
+          <svg class="app-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          <span class="app-nav-label">Dashboard</span>
+        </div>
+        <div class="app-nav-item" onclick="setAppPage('cases')">
+          <svg class="app-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"/></svg>
+          <span class="app-nav-label">Casos</span>
+        </div>
+        <div class="app-nav-item" onclick="setAppPage('clients')">
+          <svg class="app-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          <span class="app-nav-label">Clientes</span>
+        </div>
+      </nav>
+      <div class="app-sidebar-footer"><span>Sovereign Protocol v4</span></div>
+    </aside>
+
+    <main class="app-main">
+      <!-- DASHBOARD -->
+      <div id="page-dashboard">
+        <div class="app-page-header">
+          <div class="app-page-kicker">Sistema Ativo — IDENTITY_ANCHOR: VERIFIED</div>
+          <div class="app-page-title">Dashboard</div>
+        </div>
+        <div style="padding:32px 48px;">
+          <div class="metrics">
+            <div class="metric"><div class="metric-label">Casos Ativos</div><div class="metric-value">24</div></div>
+            <div class="metric"><div class="metric-label">Auditorias Hoje</div><div class="metric-value">138</div></div>
+            <div class="metric"><div class="metric-label">Integridade</div><div class="metric-value gold">99.8%</div><div class="metric-delta">↑ sistema estável</div></div>
+          </div>
+          <div style="margin-top:32px;">
+            <div style="font-family:var(--mono);font-size:8.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:16px;">Atividade Recente</div>
+            <div class="audit-row" style="border-top:1px solid var(--ink);">
+              <span class="audit-id">#001_8F23A</span><span class="audit-type">IDENTITY VERIFY</span><span class="audit-ts">há 2 min</span>
+            </div>
+            <div class="audit-row"><span class="audit-id">#002_9B11E</span><span class="audit-type">LEDGER COMMIT</span><span class="audit-ts">há 5 min</span></div>
+            <div class="audit-row"><span class="audit-id">#003_1A09D</span><span class="audit-type">KEY ROTATION</span><span class="audit-ts">há 23 min</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CASES -->
+      <div id="page-cases" style="display:none;">
+        <div class="app-page-header">
+          <div class="app-page-kicker">Módulo Jurídico</div>
+          <div class="app-page-title">Casos</div>
+        </div>
+        <div style="padding:24px 48px 0;">
+          <div class="cases-header-row">
+            <span class="cases-col-label">Caso / Cliente</span>
+            <span class="cases-col-label">Status</span>
+            <span class="cases-col-label">Atualização</span>
+            <span class="cases-col-label"></span>
+          </div>
+        </div>
+        <div class="cases-list">
+          <div class="case-row"><div><div class="case-name">Litígio Trabalhista — Construção Civil</div><div class="case-client">LEX-2026-001 · Grupo Henrique & Filhos</div></div><div class="case-status active">ATIVO</div><div class="case-date">24 abr 2026</div><div class="case-action">Abrir</div></div>
+          <div class="case-row"><div><div class="case-name">Revisão Contratual — SaaS Enterprise</div><div class="case-client">LEX-2026-002 · Tech Solutions Ltda</div></div><div class="case-status active">ATIVO</div><div class="case-date">23 abr 2026</div><div class="case-action">Abrir</div></div>
+          <div class="case-row"><div><div class="case-name">Compliance Regulatório — Financeiro</div><div class="case-client">LEX-2026-003 · Banco Meridiano</div></div><div class="case-status pending">PENDENTE</div><div class="case-date">21 abr 2026</div><div class="case-action">Abrir</div></div>
+          <div class="case-row"><div><div class="case-name">M&A — Due Diligence Societária</div><div class="case-client">LEX-2026-004 · Investimentos Aurora</div></div><div class="case-status pending">PENDENTE</div><div class="case-date">18 abr 2026</div><div class="case-action">Abrir</div></div>
+        </div>
+      </div>
+
+      <!-- CLIENTS -->
+      <div id="page-clients" style="display:none;">
+        <div class="app-page-header">
+          <div class="app-page-kicker">Registro de Clientes</div>
+          <div class="app-page-title">Clientes</div>
+        </div>
+        <div style="padding:32px 48px; font-family:var(--mono); font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:var(--ink-muted);">3 clientes ativos · 12 casos históricos</div>
+      </div>
+    </main>
+  </div>
+
+</div>
+
+<script>
+// Preloader
+let prog = 0;
+const bar = document.getElementById('bar');
+const pct = document.getElementById('pct');
+const tick = setInterval(()=>{
+  prog = Math.min(100, prog + Math.random()*4 + 1.5);
+  bar.style.width = prog+'%';
+  pct.textContent = 'EPISTEMIC_LOAD_DETECTION: '+String(Math.floor(prog)).padStart(3,'0')+'%';
+  if(prog>=100){
+    clearInterval(tick);
+    setTimeout(()=>{
+      document.getElementById('preloader').classList.add('out');
+      document.getElementById('app').classList.add('visible');
+    },400);
+  }
+},35);
+
+function showView(name){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
+  if(name==='landing'){
+    document.getElementById('view-landing').classList.add('active');
+    document.getElementById('nl-terminal').classList.add('active');
+    document.getElementById('view-app').style.display='none';
+  } else {
+    document.getElementById('view-landing').classList.remove('active');
+    document.getElementById('view-app').style.display='flex';
+    document.getElementById('nl-ledger').classList.add('active');
+    setAppPage('cases');
+  }
+}
+
+function setAppPage(page){
+  document.querySelectorAll('[id^="page-"]').forEach(p=>p.style.display='none');
+  document.querySelectorAll('.app-nav-item').forEach(i=>i.classList.remove('active'));
+  const pages = {dashboard:0,cases:1,clients:2};
+  const items = document.querySelectorAll('.app-nav-item');
+  if(items[pages[page]??0]) items[pages[page]??0].classList.add('active');
+  const el = document.getElementById('page-'+page);
+  if(el) el.style.display='block';
+}
+</script>
+</body></html>

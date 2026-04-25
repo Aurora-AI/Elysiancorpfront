@@ -1,11 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import CinemaHero from '../components/hero/CinemaHero.astro';
 import { GazeForensicHero } from '../components/hero/GazeForensicHero';
 import { MagneticCursor } from '../components/cursor/MagneticCursor';
 import { TrustwareReality } from '../components/sections/TrustwareReality';
 import { TrustwareArchitecture } from '../components/sections/TrustwareArchitecture';
 import { TrustwarePortfolio } from '../components/sections/TrustwarePortfolio';
+import { TrustwareProblem } from '../components/sections/TrustwareProblem';
 import { TrustwareFounder } from '../components/sections/TrustwareFounder';
 import { ForensicFooter } from '../components/sections/ForensicFooter';
 import { Header } from '../components/ui/Header';
@@ -16,20 +16,20 @@ import { Header } from '../components/ui/Header';
 	<Header client:load />
 
 	<main>
-		{/* SEÇÃO 1: HERO ORIGINAL (CINEMA / SCRAMBLE) */}
-		<CinemaHero />
-
-		{/* SEÇÃO 2: STOP-MOTION ORIGINAL (GAZE FORENSIC V1) */}
+		{/* SEÇÃO 1: STOP-MOTION ORIGINAL (GAZE FORENSIC V1.1.0) */}
 		<GazeForensicHero client:load />
 		
-		{/* SEÇÃO 3: PROVA DE REALIDADE (LIGHT) */}
+		{/* SEÇÃO 2: PROVA DE REALIDADE (LIGHT) */}
 		<TrustwareReality client:visible />
 
-		{/* SEÇÃO 4: ARQUITETURA PROPRIETÁRIA (DARK) */}
+		{/* SEÇÃO 3: ARQUITETURA PROPRIETÁRIA (DARK) */}
 		<TrustwareArchitecture client:visible />
 
-		{/* SEÇÃO 5: PORTFÓLIO DE PRODUTOS (LIGHT) */}
+		{/* SEÇÃO 4: PORTFÓLIO DE PRODUTOS (LIGHT) */}
 		<TrustwarePortfolio client:visible />
+
+		{/* SEÇÃO 5: DIFERENCIAIS SOBERANOS (DARK) */}
+		<TrustwareProblem client:visible />
 
 		{/* SEÇÃO 6: FOUNDER (LIGHT) */}
 		<TrustwareFounder client:visible />
@@ -45,3 +45,4 @@ import { Header } from '../components/ui/Header';
 		min-height: 100vh;
 	}
 </style>
+

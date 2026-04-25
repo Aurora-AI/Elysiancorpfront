@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #F8F7F3; font-family: 'Plus Jakarta Sans', sans-serif; padding: 16px 20px; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.section-title { font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #9B9B9B; margin-bottom: 10px; }
+.radius-row { display: flex; gap: 8px; align-items: center; margin-bottom: 6px; }
+.radius-box { width: 28px; height: 28px; background: #0A0A0A; }
+.radius-label { font-family: 'JetBrains Mono', monospace; font-size: 8px; color: #9B9B9B; }
+.ease-row { margin-bottom: 8px; }
+.ease-name { font-family: 'JetBrains Mono', monospace; font-size: 8px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #0A0A0A; margin-bottom: 2px; }
+.ease-val { font-family: 'JetBrains Mono', monospace; font-size: 7.5px; color: #9B9B9B; }
+</style>
+</head><body>
+<div class="grid">
+  <div>
+    <div class="section-title">Border Radius</div>
+    <div class="radius-row"><div class="radius-box" style="border-radius:0px;"></div><span class="radius-label">none — 0px (brand default)</span></div>
+    <div class="radius-row"><div class="radius-box" style="border-radius:2px;"></div><span class="radius-label">sm — 2px (Lex max)</span></div>
+    <div class="radius-row"><div class="radius-box" style="border-radius:4px;"></div><span class="radius-label">md — 4px</span></div>
+    <div class="radius-row"><div class="radius-box" style="border-radius:8px;"></div><span class="radius-label">lg — 8px</span></div>
+    <div class="radius-row"><div class="radius-box" style="border-radius:24px; background:#535f6f;"></div><span class="radius-label">24px — CRM Aurora only</span></div>
+  </div>
+  <div>
+    <div class="section-title">Motion / Easing</div>
+    <div class="ease-row"><div class="ease-name">Hero Transition</div><div class="ease-val">cubic-bezier(0.76, 0, 0.24, 1)</div></div>
+    <div class="ease-row"><div class="ease-name">Section Enter</div><div class="ease-val">cubic-bezier(0.16, 1, 0.3, 1)</div></div>
+    <div class="ease-row"><div class="ease-name">Hover</div><div class="ease-val">cubic-bezier(0.4, 0, 0.2, 1)</div></div>
+    <div class="ease-row"><div class="ease-name">Rest Before Motion</div><div class="ease-val">0.8s minimum — silence before effect</div></div>
+    <div class="ease-row"><div class="ease-name">Hero Dark Phase</div><div class="ease-val">5s duration</div></div>
+    <div class="ease-row"><div class="ease-name">World Transition</div><div class="ease-val">2s duration</div></div>
+  </div>
+</div>
+</body></html>

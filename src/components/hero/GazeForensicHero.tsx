@@ -136,18 +136,18 @@ export function GazeForensicHero() {
       <ForensicCodeCascade isHovered={isHovered} isFinalState={isFinalState} />
 
       {/* Top Header Label - Adaptive Color */}
-      <div className={`absolute top-0 left-0 right-0 z-40 flex items-center justify-between px-px py-12 transition-colors duration-1000 ${isFinalState ? 'text-ink/40' : 'text-white/40'}`}>
-        <div className="flex items-center gap-12">
-          <span className="t-mono text-[11px] uppercase tracking-widest">
-            ELYSIAN TRUSTWARE // SVRN_ID
+      <div className={`absolute top-0 left-0 right-0 z-40 flex items-center justify-between px-8 py-13 transition-colors duration-1000 ${isFinalState ? 'text-ink/40' : 'text-[var(--silver-technical)]'}`}>
+        <div className="flex items-center gap-13">
+          <span className="t-mono text-[13px] uppercase tracking-widest">
+            [ PROTOCOL: TRUSTWARE ]
           </span>
-          <div className={`w-16 h-px transition-colors duration-1000 ${isFinalState ? 'bg-ink/10' : 'bg-emerald/20'}`} />
-          <span className="t-mono text-[10px] uppercase">
-            INTELIGÊNCIA SOBERANA PARA OPERAÇÕES DE ALTO IMPACTO
+          <div className={`w-21 h-px transition-colors duration-1000 ${isFinalState ? 'bg-ink/10' : 'bg-[var(--gold-muted)]/30'}`} />
+          <span className="t-mono text-[13px] uppercase">
+            [ EXECUTION: HYBRID ZERO-TRUST ]
           </span>
         </div>
-        <span className="t-mono text-[10px]">
-          MAD LAB AURORA © 2026
+        <span className="t-mono text-[13px]">
+          ELYSIAN CORP © 2026
         </span>
       </div>
 
@@ -156,8 +156,8 @@ export function GazeForensicHero() {
         className="absolute inset-0 z-20 flex flex-col items-center justify-center"
         style={{ opacity: 0 }}
       >
-        <div className="absolute top-32 left-px z-50">
-          <span className={`t-mono text-[11px] transition-colors duration-1000 ${isFinalState ? 'text-ink/30' : 'text-emerald'}`}>
+        <div className="absolute top-34 left-8 z-50">
+          <span className={`t-mono text-[13px] transition-colors duration-1000 ${isFinalState ? 'text-ink/30' : 'text-[var(--gold-sovereign)]'}`}>
             VERTICAL: {SEQUENCE[frameIndex].vertical}
           </span>
         </div>
@@ -172,8 +172,8 @@ export function GazeForensicHero() {
               >
                 {frame.type === 'letter' ? (
                   <div
-                    className="t-display text-[28vw] md:text-[22vw] select-none text-emerald"
-                    style={{ filter: 'contrast(1.1) brightness(1.2) drop-shadow(0 0 40px rgba(16, 185, 129, 0.15))' }}
+                    className="t-display text-[34vw] md:text-[21vw] select-none text-[var(--silver-glimmer)]"
+                    style={{ filter: 'contrast(1.2) brightness(1.2) drop-shadow(0 0 55px rgba(229, 231, 235, 0.2))' }}
                   >
                     {frame.value}
                   </div>
@@ -181,7 +181,7 @@ export function GazeForensicHero() {
                   <img
                     src={frame.value}
                     alt="Forensic Frame"
-                    className="h-full w-full object-cover grayscale contrast-[1.8] brightness-110 mix-blend-screen opacity-20"
+                    className="h-full w-full object-cover grayscale contrast-[2] brightness-125 mix-blend-screen opacity-30"
                   />
                 )}
               </div>
@@ -190,14 +190,14 @@ export function GazeForensicHero() {
         )}
 
         {isFinalState && (
-          <div className="flex flex-col items-center justify-center w-full max-w-7xl">
+          <div className="flex flex-col items-center justify-center w-full max-w-7xl px-8">
             <div
               ref={finalRef}
-              className="t-brand text-[25vw] md:text-[18vw] select-none tracking-tighter"
+              className="t-brand text-[21vw] md:text-[144px] select-none tracking-tighter"
               style={{
                 opacity: 0,
                 color: '#1A1A17', // Ink
-                filter: 'drop-shadow(0 10px 30px rgba(0,0,0,0.05))',
+                filter: 'drop-shadow(0 13px 34px rgba(0,0,0,0.05))',
               }}
             >
               ELYSIAN
@@ -205,28 +205,32 @@ export function GazeForensicHero() {
 
             <div
               ref={subtitleRef}
-              className="mt-6 flex flex-col items-center"
+              className="mt-8 flex flex-col items-center"
               style={{ opacity: 0 }}
             >
-              <div className="t-mono text-[12px] text-emerald mb-6 tracking-[0.3em] font-bold">
-                [ PROTOCOLO DE CREDENCIAMENTO TÉCNICO ATIVO ]
+              <div className="t-mono text-[13px] text-moss mb-8 tracking-[0.34em] font-bold">
+                DETERMINISMO SOBRE PROBABILISMO
               </div>
-              <div className="w-24 h-[0.5px] bg-ink/10 mb-10" />
-              <p className="t-editorial text-2xl md:text-3xl text-ink/60 font-light max-w-3xl text-center leading-relaxed">
-                Dar superpoderes a pessoas usando <span className="text-emerald font-medium">IA como infraestrutura invisível</span>.
+              <div className="w-34 h-[0.5px] bg-ink/10 mb-13" />
+              <p className="t-editorial text-[21px] md:text-[34px] text-ink/80 font-light max-w-4xl text-center leading-relaxed">
+                O Sistema Operativo de governação para a inteligência artificial corporativa.
               </p>
+              
+              <button className="mt-13 px-8 py-4 bg-moss text-white t-mono text-sm hover:bg-moss/90 transition-all duration-300 rounded-sm uppercase tracking-widest font-bold">
+                [ DEPLOY_SOVEREIGNTY ]
+              </button>
             </div>
           </div>
         )}
       </div>
 
       {/* Forensic Metadata - Adaptive Color */}
-      <div className={`absolute bottom-12 right-px z-30 text-right transition-colors duration-1000 ${isFinalState ? 'text-ink/40' : 'text-white/40'}`}>
-        <div className="t-mono text-[10px] leading-loose">
+      <div className={`absolute bottom-13 right-8 z-30 text-right transition-colors duration-1000 ${isFinalState ? 'text-ink/40' : 'text-[var(--silver-technical)]'}`}>
+        <div className="t-mono text-[13px] leading-loose">
           <p>INDUSTRIAL INTELLIGENCE // AURORA_V8</p>
           <p>STRATEGY: MAD LAB AURORA</p>
           <p>ARTIFACT: 2026.Q2.CERT</p>
-          <p className={isFinalState ? 'text-emerald/60' : 'text-white/40'}>{isHovered ? `FACTORY_ID: ${SEQUENCE[frameIndex].factoryId}` : 'SVRN_OPERATOR: ACTIVE'}</p>
+          <p className={isFinalState ? 'text-moss/60' : 'text-[var(--gold-sovereign)]/70'}>{isHovered ? `FACTORY_ID: ${SEQUENCE[frameIndex].factoryId}` : 'SVRN_OPERATOR: ACTIVE'}</p>
         </div>
       </div>
     </section>

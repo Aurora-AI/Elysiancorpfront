@@ -1,21 +1,22 @@
 :root {
-  /* PALETA FUNDACIONAL (Elysian Brand Kit v1.1.0) */
+  /* PALETA FUNDACIONAL (Elysian Brand Kit v1.2.1) */
   --white: #FFFFFF;
-  --off-white: #F8F7F3; /* Papel Premium / Identidade Luminosa */
-  --fog: #F2F1ED;
+  --off-white: #F9F8F6; /* Papel Premium / Identidade Luminosa */
+  --fog: #F1EFEA;
+  --border: #E5E3DF;
   --stone: #E8E7E2;
   
   --obsidian: #000000; /* Preto Absoluto / Identidade Dark */
-  --obsidian-deep: #0A0A0A;
-  --obsidian-technical: #0D0D0D;
+  --obsidian-deep: #0D0D0D;
+  --obsidian-technical: #121212;
   --smoke: #1A1A1A;
 
-  /* ACENTO: INTEGRITY EMERALD */
-  --emerald: #10B981;
-  --emerald-hover: #059669;
-  --emerald-muted: rgba(16, 185, 129, 0.08);
+  /* ACENTO: ELYSIAN MOSS (v1.2.1) */
+  --moss: #4E5B4B;
+  --moss-muted: rgba(78, 91, 75, 0.1);
+  --color-elysian-moss: var(--moss);
 
-  /* VERTICAIS (Tokens v1.2.0) */
+  /* VERTICAIS (Tokens v1.2.1) */
   --crm-paper: #fbf9f5;
   --crm-rust: #984731;
   --crm-steel: #535f6f;
@@ -26,54 +27,72 @@
   
   --madlab-amber: #D97706;
 
-  /* TEXTO */
-  --ink: #0A0A0A;
-  --parchment-text: #F2F2F2;
-  --dim-text: rgba(242, 242, 242, 0.6);
+  /* METÁLICOS (v1.2.3) */
+  --silver-glimmer: #E5E7EB;
+  --silver-technical: #9CA3AF;
+  --gold-sovereign: #D4AF37;
+  --gold-muted: #A68A46;
 
-  /* TIPOGRAFIA (Elysian Unified) */
-  --font-brand: 'Lanche', 'Plus Jakarta Sans', system-ui, sans-serif;
-  --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+  /* TEXTO */
+  --ink: #0D0D0D;
+  --parchment-text: #F9F8F6;
+  --dim-text: rgba(13, 13, 13, 0.6);
+
+  /* TIPOGRAFIA (Elysian Unified v1.2.1) */
+  --font-brand: 'Lanche', 'Instrument Serif', serif;
+  --font-display: 'Instrument Serif', serif;
+  --font-body: 'Public Sans', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
+  --font-technical: var(--font-mono);
 
   /* MOTION (Elysian Dual-Phase) */
   --ease-hero-transition: cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
   --duration-hero-dark: 5s;
   --duration-hero-transition: 2s;
   --duration-rest: 0.8s;
 
-  /* ESPAÇAMENTO */
-  --space-4: 4px;
-  --space-8: 8px;
-  --space-16: 16px;
-  --space-24: 24px;
-  --space-40: 40px;
-  --space-64: 64px;
-  --space-96: 96px;
-  --space-128: 128px;
+  /* ESPAÇAMENTO FIBONACCI (Base 8px) */
+  --space-unit: 8px;
+  --space-8: 8px;    /* 1x */
+  --space-16: 16px;  /* 2x */
+  --space-24: 24px;  /* 3x */
+  --space-40: 40px;  /* 5x */
+  --space-64: 64px;  /* 8x */
+  --space-104: 104px; /* 13x */
+  --space-168: 168px; /* 21x */
+  --space-272: 272px; /* 34x */
+
+  /* TIPOGRAFIA FIBONACCI (Step-based) */
+  --text-micro: 8px;
+  --text-meta: 13px;
+  --text-base: 21px;
+  --text-md: 34px;
+  --text-lg: 55px;
+  --text-xl: 89px;
+  --text-2xl: 144px;
 }
 
-/* UTILITÁRIOS DE TIPO REFINADOS */
+/* UTILITÁRIOS DE TIPO REFINADOS (v1.2.1) */
 .t-brand {
   font-family: var(--font-brand);
-  font-weight: normal;
-  letter-spacing: -0.04em;
-  line-height: 0.92;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 0.90;
 }
 
 .t-display {
   font-family: var(--font-display);
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  line-height: 0.95;
+  font-weight: 400; /* Serifas brilham no peso regular */
+  letter-spacing: -0.02em;
+  line-height: 1.0;
 }
 
 .t-editorial {
   font-family: var(--font-body);
-  font-weight: 300;
-  letter-spacing: 0;
-  line-height: 1.65;
+  font-weight: 400;
+  letter-spacing: 0.015em;
+  line-height: 1.6;
 }
 
 .t-mono {

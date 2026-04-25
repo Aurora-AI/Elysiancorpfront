@@ -19,35 +19,35 @@ export const Header: React.FC = () => {
     }, { scope: headerRef });
 
     return (
-        <header ref={headerRef} className="fixed top-0 left-0 w-full z-[100] px-px py-8 flex justify-between items-center mix-blend-difference pointer-events-none">
+        <header ref={headerRef} className="fixed top-0 left-0 w-full z-[100] px-8 py-10 flex justify-between items-center mix-blend-difference pointer-events-none">
             {/* LOGO AREA */}
-            <div className="flex items-center gap-12 pointer-events-auto">
-                <div className="w-8 h-8 bg-emerald rounded-sm flex items-center justify-center">
+            <div className="flex items-center gap-16 pointer-events-auto">
+                <div className="w-8 h-8 bg-moss rounded-sm flex items-center justify-center">
                     <span className="text-obsidian font-bold text-xs">E</span>
                 </div>
-                <span className="t-display text-xl tracking-tight text-white uppercase">ELYSIAN</span>
+                <span className="t-display text-2xl tracking-tight text-white uppercase">ELYSIAN</span>
             </div>
 
             {/* NAVIGATION AREA */}
-            <nav className="hidden md:flex items-center gap-12 pointer-events-auto">
+            <nav className="hidden md:flex items-center gap-16 pointer-events-auto">
                 {['Trustware', 'Architecture', 'Elysian Lex', 'Silent Ops'].map((item) => (
                     <a 
                         key={item} 
                         href="#" 
-                        className="t-mono text-[10px] text-white/60 hover:text-emerald transition-colors duration-300 uppercase"
+                        className="t-mono text-[13px] text-white/80 hover:text-moss transition-colors duration-300 uppercase tracking-wider"
                     >
                         {item}
                     </a>
                 ))}
-                <button className="px-5 py-2 bg-emerald text-obsidian t-mono text-[10px] hover:bg-emerald-hover transition-all duration-300 rounded-sm uppercase font-bold">
+                <button className="px-5 py-2 bg-moss text-obsidian t-mono text-[13px] hover:bg-moss/90 transition-all duration-300 rounded-sm uppercase font-bold">
                     Protocolo
                 </button>
             </nav>
 
             {/* METADATA AREA */}
-            <div className="flex gap-4 items-center pointer-events-auto">
-                <div className="w-12 h-[1px] bg-emerald/30 hidden sm:block" />
-                <span className="text-[0.65rem] font-mono text-dim-text tracking-tighter uppercase">EST. 2026 // SVRN</span>
+            <div className="flex gap-8 items-center pointer-events-auto">
+                <div className="w-16 h-[1px] bg-moss/40 hidden sm:block" />
+                <span className="text-[13px] font-mono text-white/60 tracking-tighter uppercase">EST. 2026 // SVRN</span>
             </div>
         </header>
     );

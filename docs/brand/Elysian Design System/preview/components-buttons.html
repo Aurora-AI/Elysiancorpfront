@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #F8F7F3; font-family: 'Plus Jakarta Sans', sans-serif; padding: 16px 20px; }
+.section { margin-bottom: 14px; }
+.section-title { font-family: 'JetBrains Mono', monospace; font-size: 8px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: #9B9B9B; margin-bottom: 8px; }
+.row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+/* Luminous buttons */
+.btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; border: none; font-family: 'JetBrains Mono', monospace; }
+.btn-primary-light { background: #0A0A0A; color: #F2F2F2; }
+.btn-ghost-light { background: transparent; border: 1px solid #0A0A0A; color: #0A0A0A; }
+.btn-emerald { background: #C9933A; color: #fff; }
+/* Dark buttons */
+.btn-primary-dark { background: #F2F2F2; color: #0A0A0A; }
+.btn-ghost-dark { background: transparent; border: 1px solid rgba(242,242,242,0.4); color: #F2F2F2; }
+.btn-ghost-emerald-dark { background: transparent; border: 1px solid #C9933A; color: rgba(201,147,58,0.9); }
+/* CRM buttons */
+.btn-crm-steel { background: #535f6f; color: #f5f8ff; border-radius: 0; }
+.btn-crm-rust { background: #984731; color: #fff7f6; border-radius: 0; }
+.btn-crm-outline { background: transparent; border: 1px solid #535f6f; color: #535f6f; }
+.dark-bg { background: #000000; padding: 10px 12px; border-radius: 0; }
+.crm-bg { background: #f5f4ee; padding: 10px 12px; }
+</style>
+</head><body>
+  <div class="section">
+    <div class="section-title">Luminous World — Brand Buttons</div>
+    <div class="row">
+      <button class="btn btn-primary-light">Iniciar Briefing</button>
+      <button class="btn btn-ghost-light">Saiba Mais</button>
+      <button class="btn btn-emerald">COMMENCE AUDIT</button>
+    </div>
+  </div>
+  <div class="section dark-bg">
+    <div class="section-title" style="color:rgba(242,242,242,0.3)">Dark World — Brand Buttons</div>
+    <div class="row">
+      <button class="btn btn-primary-dark">Begin Protocol</button>
+      <button class="btn btn-ghost-dark">LOAD_FULL_HISTORY</button>
+      <button class="btn btn-ghost-emerald-dark">VERTICAL: LEX</button>
+    </div>
+  </div>
+  <div class="section crm-bg" style="margin-top:8px;">
+    <div class="section-title">CRM Aurora — Backoffice Buttons</div>
+    <div class="row">
+      <button class="btn btn-crm-steel" style="font-size:9px; padding:8px 16px;">Iniciar briefing</button>
+      <button class="btn btn-crm-rust" style="font-size:9px; padding:8px 16px;">Validar dados</button>
+      <button class="btn btn-crm-outline" style="font-size:9px; padding:8px 16px;">Abrir dossier</button>
+      <button class="btn" style="background:transparent; border:1px solid #b1b3ab; color:#31332e; font-size:9px; padding:8px 16px;">Verificar</button>
+    </div>
+  </div>
+</body></html>

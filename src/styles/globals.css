@@ -1,11 +1,9 @@
+/* ─── GOOGLE FONT IMPORTS ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Public+Sans:ital,wght@0,200..800;1,300&family=JetBrains+Mono:wght@400;500&family=Crimson+Pro:ital,wght@0,600;0,700;1,600;1,700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* ─── GOOGLE FONT IMPORTS ─────────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,600;0,700;1,600;1,700&display=swap');
 
 /* ─── BRAND FONT — LANCHE ────────────────────────────────────────────── */
 @font-face {
@@ -51,19 +49,19 @@
   .t-brand {
     font-family: 'Lanche', sans-serif;
     line-height: 0.92;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.02em;
   }
   .t-display {
     font-family: var(--font-display);
-    font-weight: 800;
-    line-height: 0.95;
-    letter-spacing: -0.04em;
+    font-weight: 400;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
   }
   .t-editorial {
     font-family: var(--font-body);
-    font-weight: 300;
-    line-height: 1.65;
-    letter-spacing: 0;
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: 0.015em;
   }
   .t-mono {
     font-family: var(--font-mono);
@@ -86,7 +84,26 @@
     color: var(--ink);
   }
 
-  .accent-emerald {
-    color: var(--emerald);
+  .accent-moss {
+    color: var(--moss);
+  }
+  
+  /* Buttons: Boutique over Industrial */
+  .btn-editorial {
+    font-family: var(--font-technical);
+    font-size: var(--text-technical-size);
+    text-transform: uppercase;
+    letter-spacing: var(--text-technical-tracking);
+    padding: 1rem 2.5rem;
+    border: 1px solid var(--ink);
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+    transition: all 0.4s var(--ease-editorial);
+  }
+
+  .btn-editorial:hover {
+    background: var(--ink);
+    color: var(--off-white);
   }
 }

@@ -19,7 +19,7 @@ const { title } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
-	<body class="bg-black selection:bg-emerald selection:text-ink halftone-noise overflow-x-hidden antialiased">
+	<body class="bg-black selection:bg-moss selection:text-ink halftone-noise overflow-x-hidden antialiased">
 		<slot />
 		
 		<style is:global>
@@ -35,7 +35,7 @@ const { title } = Astro.props;
 
 			/* Global Selection Style */
 			::selection {
-				background: var(--emerald);
+				background: var(--moss);
 				color: var(--ink);
 			}
 
@@ -47,7 +47,7 @@ const { title } = Astro.props;
 				background: transparent;
 			}
 			::-webkit-scrollbar-thumb {
-				background: var(--emerald);
+				background: var(--moss);
 				border-radius: 2px;
 			}
 		</style>

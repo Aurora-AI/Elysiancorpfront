@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #F8F7F3; font-family: 'Plus Jakarta Sans', sans-serif; padding: 16px; }
+.grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.item { padding: 12px; border-radius: 2px; }
+.dot { width: 24px; height: 24px; border-radius: 50%; margin-bottom: 8px; border: 1px solid rgba(0,0,0,0.06); }
+.name { font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #6B6B6B; margin-bottom: 2px; }
+.hex { font-family: 'JetBrains Mono', monospace; font-size: 8.5px; color: #9B9B9B; }
+.samp { font-size: 13px; font-weight: 500; margin-bottom: 6px; }
+</style>
+</head><body>
+<div class="grid">
+  <div class="item">
+    <div class="dot" style="background:#0A0A0A;"></div>
+    <div class="name">Primary</div><div class="hex">#0A0A0A</div>
+  </div>
+  <div class="item">
+    <div class="dot" style="background:#1A1A1A;"></div>
+    <div class="name">Secondary</div><div class="hex">#1A1A1A</div>
+  </div>
+  <div class="item">
+    <div class="dot" style="background:#6B6B6B;"></div>
+    <div class="name">Muted</div><div class="hex">#6B6B6B</div>
+  </div>
+  <div class="item" style="background:#0A0A0A; border-radius: 2px;">
+    <div class="dot" style="background:#F2F2F2;"></div>
+    <div class="name" style="color:rgba(242,242,242,0.4)">On Dark</div><div class="hex" style="color:rgba(242,242,242,0.25)">#F2F2F2</div>
+  </div>
+</div>
+</body></html>

@@ -60,7 +60,7 @@ export const HeroContent: React.FC = () => {
                 <span className="t-mono text-[8px] text-ink/40 mb-2">
                     Descend
                 </span>
-                <div className="w-[1px] h-12 bg-gradient-to-b from-emerald to-transparent" />
+                <div className="w-[1px] h-12 bg-gradient-to-b from-moss to-transparent" />
             </div>
         </div>
     );

@@ -1,0 +1,158 @@
+/**
+ * Elysian Design System — Colors & Typography
+ * Version: 1.2.1 | April 25, 2026
+ * * DESIGN PHILOSOPHY:
+ * - Principle Da Vinci: Beauty as proportion, not ornament.
+ * - Duality: Contrast between vibrant color and grayscale imagery.
+ * - High-Fidelity Editorial: Transition from tech-startup to organic authority.
+ */
+
+/* ─── BRAND FONT — LANCHE (Wordmark Only) ───────────────────────────── */
+@font-face {
+  font-family: 'Lanche';
+  src: url('fonts/Lanche_Demo.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─── EDITORIAL & HUMANIST IMPORTS ──────────────────────────────────── */
+/* Instrument Serif: Editorial, sharp, high-contrast serif.
+   Public Sans: Humanist, professional, clean sans-serif.
+   Crimson Pro: Serious, legal-grade classic serif.
+   JetBrains Mono: Precision technical metadata. */
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Public+Sans:ital,wght@0,200..800;1,300&family=JetBrains+Mono:wght@400;500&family=Crimson+Pro:ital,wght@0,600;0,700;1,600;1,700&display=swap');
+
+:root {
+  /* ─── FONT FAMILIES ────────────────────────────────────────────────── */
+  --font-brand:      'Lanche', serif;               /* Wordmark / Identity */
+  --font-display:    'Instrument Serif', serif;     /* Headlines & Hero */
+  --font-body:       'Public Sans', sans-serif;    /* UI & Reading */
+  --font-technical:  'JetBrains Mono', monospace;  /* Metadata & Labels */
+  --font-serif:      'Crimson Pro', serif;         /* Elysian Lex Exclusive */
+
+  /* ─── TYPE SCALE ───────────────────────────────────────────────────── */
+  --text-hero-display-size:   clamp(85px, 14vw, 210px);
+  --text-hero-display-lh:     0.90;
+  --text-hero-display-tracking: -0.02em;
+
+  --text-display-l-size:      clamp(64px, 8vw, 92px);
+  --text-display-l-lh:        1.0;
+  
+  --text-headline-size:       42px;
+  --text-headline-lh:         1.1;
+
+  --text-body-size:           18px;
+  --text-body-lh:             1.6;
+  --letter-spacing-body:      0.015em; /* Estado de Repouso */
+
+  --text-technical-size:      11px;
+  --text-technical-tracking:  0.18em;
+
+  /* ─── COLORS: THE DUALITY ─────────────────────────────────────────── */
+  
+  /* Luminous World (Leve): Off-white que simula papel de alta gramatura */
+  --color-luminous-surface:   #F9F8F6; 
+  --color-luminous-surface-2: #F1EFEA;
+  --color-luminous-border:    #E5E3DF;
+
+  /* Dark World (Pesado): Profundidade absoluta */
+  --color-dark-absolute:      #000000;
+  --color-dark-deep:          #0D0D0D;
+  --color-dark-technical:     #121212;
+
+  /* Organic Accent: Substituindo o Emerald industrial pelo Moss Pastoral */
+  --color-elysian-moss:       #4E5B4B; 
+  --color-moss-muted:         rgba(78, 91, 75, 0.1);
+  
+  /* Text & Contrast */
+  --color-text-primary:       #0D0D0D;
+  --color-text-secondary:     #4A4A4A;
+  --color-text-muted:         #8C8C8B;
+  --color-text-on-dark:       #F9F8F6;
+
+  /* ─── SPACING & RHYTHM ────────────────────────────────────────────── */
+  --space-unit: 8px;
+  --space-m:    calc(var(--space-unit) * 8);  /* 64px */
+  --space-l:    calc(var(--space-unit) * 12); /* 96px */
+  --radius-editorial: 2px; /* Cantos quase vivos para seriedade */
+
+  /* ─── MOTION: SILENCE PRECEDES ACTION ────────────────────────────── */
+  --duration-rest:            0.8s;
+  --ease-editorial:           cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ─── BASE ELEMENT STYLES ───────────────────────────────────────────── */
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-body-size);
+  line-height: var(--text-body-lh);
+  letter-spacing: var(--letter-spacing-body);
+  color: var(--color-text-primary);
+  background-color: var(--color-luminous-surface);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Headlines: Sharp and Serious */
+h1, .hero-text {
+  font-family: var(--font-display);
+  font-size: var(--text-hero-display-size);
+  line-height: var(--text-hero-display-lh);
+  letter-spacing: var(--text-hero-display-tracking);
+  font-weight: 400; /* Serifas brilham no peso regular/médio */
+}
+
+h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-style: italic; /* Opcional para tom mais humano/editorial */
+}
+
+/* Dualidade de Imagem: O peso do cinza no fundo leve */
+.elysian-image {
+  filter: grayscale(100%);
+  transition: filter var(--duration-rest) var(--ease-editorial);
+  border-radius: var(--radius-editorial);
+}
+
+.elysian-image:hover {
+  filter: grayscale(0%); /* A cor volta apenas sob intenção */
+}
+
+/* Technical Label: Herança de precisão */
+.metadata {
+  font-family: var(--font-technical);
+  font-size: var(--text-technical-size);
+  letter-spacing: var(--text-technical-tracking);
+  text-transform: uppercase;
+  color: var(--color-elysian-moss);
+}
+
+/* Buttons: Boutique over Industrial */
+.btn-editorial {
+  font-family: var(--font-technical);
+  font-size: var(--text-technical-size);
+  text-transform: uppercase;
+  letter-spacing: var(--text-technical-tracking);
+  padding: 1.25rem 3rem;
+  border: 1px solid var(--color-text-primary);
+  background: transparent;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: all 0.4s var(--ease-editorial);
+}
+
+.btn-editorial:hover {
+  background: var(--color-text-primary);
+  color: var(--color-luminous-surface);
+}
+
+/* ─── WORLD MODIFIERS ──────────────────────────────────────────────── */
+.world-dark {
+  background-color: var(--color-dark-absolute);
+  color: var(--color-text-on-dark);
+}
+
+.world-dark .metadata {
+  color: var(--color-text-muted);
+}

@@ -47,12 +47,12 @@ export const TrustwareProblem: React.FC = () => {
             {/* TOP METADATA BAR */}
             <div className="relative z-10 w-full flex justify-between items-center mb-24 border-b border-parchment/10 pb-8">
                 <div className="flex items-center gap-4">
-                    <span className="t-mono text-[10px] text-aureate">
+                    <span className="t-mono text-[10px] text-moss">
                         Análise Sistêmica // ELY-INFRA-001
                     </span>
                 </div>
                 <div className="t-mono text-[9px] text-parchment/30">
-                    Sovereign_Protocol_v2.0
+                    Sovereign_Protocol_v8.0
                 </div>
             </div>
 
@@ -62,24 +62,24 @@ export const TrustwareProblem: React.FC = () => {
                 <div className="lg:col-span-5 space-y-16">
                     <div className="space-y-6">
                         <div className="flex items-center gap-4 problem-element">
-                            <span className="t-mono text-[10px] text-aureate">
-                                01 // O Desafio
+                            <span className="t-mono text-[10px] text-moss">
+                                05 // Fosso Tecnológico
                             </span>
-                            <div className="h-[1px] w-12 bg-aureate/30" />
+                            <div className="h-[1px] w-12 bg-moss/30" />
                         </div>
                         
-                        <h2 className="problem-element t-headline text-6xl md:text-8xl text-parchment leading-[0.9] tracking-tighter">
-                            O Gap <br />
+                        <h2 className="problem-element t-display text-6xl md:text-8xl text-parchment leading-[0.9] tracking-tighter">
+                            Hibridismo <br />
                             <span className="italic">Determi-</span> <br />
-                            <span className="italic text-aureate">nístico</span>
+                            <span className="italic text-moss">nístico.</span>
                         </h2>
                     </div>
 
                     <div className="space-y-6 max-w-sm pt-10 border-t border-parchment/10">
-                        <p className="problem-element t-mono text-[11px] leading-relaxed text-parchment/60">
-                            Probabilistic inference requires a deterministic security layer.
+                        <p className="problem-element t-mono text-[11px] leading-relaxed text-parchment/60 uppercase">
+                            Não acreditamos em autonomia total sem controlo absoluto. Fusão de LLMs com contratos de engenharia.
                         </p>
-                        <div className="t-mono text-[9px] text-aureate/40">REF_ID: 0x42_17 // Mad Lab Aurora</div>
+                        <div className="t-mono text-[9px] text-moss/40 font-mono">REF_ID: 0x42_17 // Mad Lab Aurora</div>
                     </div>
                 </div>
 
@@ -92,45 +92,43 @@ export const TrustwareProblem: React.FC = () => {
                 <div className="lg:col-span-6 space-y-20">
                     <div className="space-y-10">
                         <div className="flex justify-between items-center border-b border-parchment/10 pb-6 problem-element">
-                            <span className="t-mono text-[10px] text-parchment/40">Diagnóstico Crítico</span>
+                            <span className="t-mono text-[10px] text-parchment/40 uppercase">Infraestrutura Crítica</span>
                             <div className="flex items-center gap-3">
-                                <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse shadow-[0_0_8px_rgba(239,68,68,0.5)]" />
-                                <span className="t-mono text-[10px] text-red-500/80">Active Threat: Hallucination</span>
+                                <div className="w-1.5 h-1.5 rounded-full bg-moss animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
+                                <span className="t-mono text-[10px] text-moss uppercase font-mono">Status: Secure Edge</span>
                             </div>
                         </div>
 
                         <div className="space-y-10 text-parchment text-xl md:text-2xl t-editorial leading-relaxed tracking-tight max-w-2xl">
                             <p className="problem-element italic opacity-95">
-                                A dependência de modelos probabilísticos para validar a própria integridade representa um risco sistêmico inaceitável.
+                                A nossa vantagem reside na fusão de modelos probabilísticos com lógica determinística rigorosa.
                             </p>
                             <p className="problem-element text-parchment/70">
-                                Modelos de fundação não podem certificar o próprio output — tratar a alucinação como problema de <span className="text-parchment italic">prompt tuning</span> ignora a falha arquitetural.
+                                A Matriz de Operações Elysian garante que cada decisão da IA seja validada por contratos de engenharia, impedindo desvios cognitivos e garantindo a soberania total dos dados sensíveis.
                             </p>
                             <p className="problem-element text-parchment/70">
-                                A ElysianCorp implementa uma camada de <span className="text-aureate italic">Trustware Soberano</span> que opera como um hypervisor determinístico. Desacoplamos a inferência da verificação, garantindo que infraestruturas críticas operem sobre ativos de dados certificados.
+                                O resultado é uma infraestrutura que escala a inteligência sem comprometer a previsibilidade, transformando a IA numa ferramenta de governação institucional e não apenas num gerador de texto.
                             </p>
                         </div>
                     </div>
 
                     {/* KPI BENTO GRID */}
                     <div className="grid grid-cols-2 border border-parchment/10 problem-element bg-parchment/[0.02]">
-                        <div className="p-10 border-r border-b border-parchment/10 space-y-4 group hover:bg-parchment/[0.05] transition-colors">
-                            <div className="text-5xl t-headline text-aureate">100%</div>
-                            <div className="t-mono text-[9px] text-parchment/40 leading-tight">Outputs <br /> Auditáveis</div>
+                        <div className="p-10 border-r border-b border-parchment/10 space-y-4 group hover:bg-moss/[0.05] transition-colors">
+                            <div className="text-5xl t-display text-moss">70%</div>
+                            <div className="t-mono text-[9px] text-parchment/40 leading-tight uppercase font-mono">Lógica <br /> Determinística</div>
                         </div>
-                        <div className="p-10 border-b border-parchment/10 space-y-4 group hover:bg-parchment/[0.05] transition-colors">
-                            <div className="text-5xl t-headline text-aureate">0×</div>
-                            <div className="t-mono text-[9px] text-parchment/40 leading-tight">Dependência <br /> de LLM Nativo</div>
+                        <div className="p-10 border-b border-parchment/10 space-y-4 group hover:bg-moss/[0.05] transition-colors">
+                            <div className="text-5xl t-display text-moss">30%</div>
+                            <div className="t-mono text-[9px] text-parchment/40 leading-tight uppercase font-mono">Inferência <br /> Probabilística</div>
                         </div>
-                        <div className="p-10 border-r border-parchment/10 space-y-4 group hover:bg-parchment/[0.05] transition-colors">
-                            <div className="text-5xl t-headline text-aureate flex items-center leading-none">
-                                <span className="text-6xl -mt-2">∞</span>
-                            </div>
-                            <div className="t-mono text-[9px] text-parchment/40 leading-tight">Escala <br /> Enterprise</div>
+                        <div className="p-10 border-r border-b border-parchment/10 space-y-4 group hover:bg-moss/[0.05] transition-colors">
+                            <div className="text-5xl t-display text-moss">100%</div>
+                            <div className="t-mono text-[9px] text-parchment/40 leading-tight uppercase font-mono">Validação <br /> Humana (Gate)</div>
                         </div>
-                        <div className="p-10 space-y-4 group hover:bg-parchment/[0.05] transition-colors">
-                            <div className="text-5xl t-headline text-aureate">SHA</div>
-                            <div className="t-mono text-[9px] text-parchment/40 leading-tight">Certificação <br /> Imutável</div>
+                        <div className="p-10 space-y-4 group hover:bg-moss/[0.05] transition-colors">
+                            <div className="text-5xl t-display text-moss">Local</div>
+                            <div className="t-mono text-[9px] text-parchment/40 leading-tight uppercase font-mono">Soberania <br /> de Dados (Vault)</div>
                         </div>
                     </div>
                 </div>
@@ -138,12 +136,13 @@ export const TrustwareProblem: React.FC = () => {
 
             {/* BOTTOM METADATA BAR */}
             <div className="relative z-10 w-full flex justify-between items-center mt-24 border-t border-parchment/10 pt-8 opacity-40">
-                <span className="t-mono text-[9px]">Elysian Trustware Corp — Mad Lab Aurora 2026</span>
+                <span className="t-mono text-[9px]">Elysian Trustware Corp // Agentic Governance Layer 2026</span>
                 <div className="flex gap-8">
                     <span className="t-mono text-[9px]">SEC_LVL // 09</span>
-                    <span className="t-mono text-[9px]">v2.0.26-ELITE</span>
+                    <span className="t-mono text-[9px]">v8.0.0-SVRN</span>
                 </div>
             </div>
+
         </section>
     );
 };
