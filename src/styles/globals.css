@@ -1,9 +1,7 @@
 /* ─── GOOGLE FONT IMPORTS ─────────────────────────────────────────────── */
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Public+Sans:ital,wght@0,200..800;1,300&family=JetBrains+Mono:wght@400;500&family=Crimson+Pro:ital,wght@0,600;0,700;1,600;1,700&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 /* ─── BRAND FONT — LANCHE ────────────────────────────────────────────── */
 @font-face {
