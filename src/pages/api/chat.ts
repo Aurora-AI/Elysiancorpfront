@@ -1,13 +1,14 @@
 // Server-side endpoint — Gemini proxy
 // prerender=false opts this file out of SSG; runs on the server at request time.
-// GEMINI_API_KEY is never exposed to the client (no PUBLIC_ prefix).
+// GEMINI_API_KEY read via process.env — correct for Vite/Astro SSR server context.
+// import.meta.env does NOT expose non-PUBLIC_ vars in Vite SSR to prevent client leakage.
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
 import { GoogleGenAI } from '@google/genai';
 
 export const POST: APIRoute = async ({ request }) => {
-  const apiKey = import.meta.env.GEMINI_API_KEY;
+  const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
     return new Response(JSON.stringify({ error: 'Service unavailable' }), {
       status: 500,
