@@ -1,10 +1,17 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
+import vercel from '@astrojs/vercel';
 import tailwindcss from '@tailwindcss/vite';
 import path from 'path';
 
 // https://astro.build/config
+// output: 'static' (Astro v6 default) — pages are SSG by default.
+// In Astro v6, 'hybrid' was removed; 'static' now supports server endpoints
+// via `export const prerender = false` per-file.
+// adapter: vercel — required to run those server endpoints on Vercel.
 export default defineConfig({
+  output: 'static',
+  adapter: vercel(),
   integrations: [react()],
   vite: {
     plugins: [tailwindcss()],
