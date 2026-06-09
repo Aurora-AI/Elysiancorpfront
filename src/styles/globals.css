@@ -3,6 +3,38 @@
 
 @import "tailwindcss";
 
+/* ─── TAILWIND v4 THEME ────────────────────────────────────────────────── */
+@theme {
+  /* Colors */
+  --color-white: #FFFFFF;
+  --color-off-white: #F9F8F6;
+  --color-fog: #F1EFEA;
+  --color-border: #E5E3DF;
+  --color-stone: #E8E7E2;
+  --color-obsidian: #000000;
+  --color-obsidian-deep: #0A0A0A;
+  --color-obsidian-technical: #0D0D0D;
+  --color-smoke: #1A1A1A;
+  --color-moss: #4E5B4B;
+  --color-moss-muted: rgba(78, 91, 75, 0.1);
+  --color-ink: #0A0A0A;
+  --color-parchment-text: #F2F2F2;
+  --color-dim-text: rgba(242, 242, 242, 0.6);
+
+  /* Fonts */
+  --font-brand: 'Lanche', 'Instrument Serif', serif;
+  --font-display: 'Instrument Serif', serif;
+  --font-body: 'Public Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-serif: 'Crimson Pro', serif;
+
+  /* Easing */
+  --ease-monumental: cubic-bezier(0.85, 0, 0.15, 1);
+
+  /* Grid */
+  --grid-template-columns-13: repeat(13, minmax(0, 1fr));
+}
+
 /* ─── BRAND FONT — LANCHE ────────────────────────────────────────────── */
 @font-face {
   font-family: 'Lanche';
