@@ -46,9 +46,10 @@ export const POST: APIRoute = async ({ request }) => {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
     });
-  } catch (err: unknown) {
-    const message = err instanceof Error ? err.message : 'upstream error';
-    return new Response(JSON.stringify({ error: message }), {
+  } catch {
+    // R-001 fix: never expose upstream error messages to the client.
+    // Log internally would go here; external surface is always generic.
+    return new Response(JSON.stringify({ error: 'Upstream provider unavailable' }), {
       status: 502,
       headers: { 'Content-Type': 'application/json' },
     });
