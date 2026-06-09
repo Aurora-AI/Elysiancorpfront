@@ -50,6 +50,26 @@
     --ease-monumental: cubic-bezier(0.85, 0, 0.15, 1);
     --ease-luxury: cubic-bezier(0.19, 1, 0.22, 1);
     --ease-gravity: cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Color aliases — Tailwind v4 generates --color-* but legacy CSS uses bare names */
+    --white: var(--color-white);
+    --off-white: var(--color-off-white);
+    --fog: var(--color-fog);
+    --border: var(--color-border);
+    --stone: var(--color-stone);
+    --obsidian: var(--color-obsidian);
+    --obsidian-deep: var(--color-obsidian-deep);
+    --obsidian-technical: var(--color-obsidian-technical);
+    --smoke: var(--color-smoke);
+    --moss: var(--color-moss);
+    --moss-muted: var(--color-moss-muted);
+    --ink: var(--color-ink);
+    --parchment-text: var(--color-parchment-text);
+    --dim-text: var(--color-dim-text);
+
+    /* Font aliases */
+    --font-technical: var(--font-mono);
+    --lex-serif: var(--font-serif);
   }
 
   body {
