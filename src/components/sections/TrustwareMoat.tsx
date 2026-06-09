@@ -6,7 +6,7 @@ import { FloatingPaths } from '../ui/background-paths';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export const TrustwareProblem: React.FC = () => {
+export const TrustwareMoat: React.FC = () => {
     const sectionRef = useRef<HTMLDivElement>(null);
     const contentRef = useRef<HTMLDivElement>(null);
     const anim = getAnimationDefaults();
@@ -63,7 +63,7 @@ export const TrustwareProblem: React.FC = () => {
                     <div className="space-y-6">
                         <div className="flex items-center gap-4 problem-element">
                             <span className="t-mono text-[10px] text-moss">
-                                05 // Fosso Tecnológico
+                                06 // Technological Moat
                             </span>
                             <div className="h-[1px] w-12 bg-moss/30" />
                         </div>

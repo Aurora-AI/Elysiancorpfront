@@ -70,7 +70,7 @@ export const TrustwareFounder: React.FC = () => {
           <div className="space-y-6">
             <div className="flex items-center gap-6">
               <span className="t-mono text-[11px] text-moss uppercase tracking-[0.3em]">
-                [ 06 // Autoridade ]
+                [ 07 // Authority ]
               </span>
               <div className="h-[0.5px] w-16 bg-moss/30" />
             </div>

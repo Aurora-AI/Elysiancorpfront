@@ -68,7 +68,7 @@ export const TrustwareArchitecture: React.FC = () => {
                     <div className="space-y-6">
                         <div className="flex items-center gap-6 arch-element">
                             <span className="t-mono text-[11px] text-moss tracking-[0.2em]">
-                                03 // Arquitetura
+                                04 // Architecture
                             </span>
                             <div className="h-[0.5px] w-16 bg-moss/30" />
                         </div>

@@ -86,7 +86,7 @@ export const TrustwarePortfolio: React.FC = () => {
         <div className="portfolio-header space-y-8 text-center max-w-3xl mx-auto">
           <div className="flex flex-col items-center gap-4">
             <span className="t-mono text-[11px] text-moss uppercase tracking-[0.3em]">
-              [ 04 // Portfólio de Ativos ]
+              [ 05 // Asset Portfolio ]
             </span>
             <div className="h-16 w-[0.5px] bg-moss/30" />
           </div>

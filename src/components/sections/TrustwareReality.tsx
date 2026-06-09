@@ -5,18 +5,9 @@ import { getAnimationDefaults } from '../../lib/animations';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const AUDIT_LOGS = [
-  { time: '0.00ms', action: 'INIT_SOVEREIGN_ID', status: 'OK' },
-  { time: '1.24ms', action: 'SCAN_CORPUS_MAPPING', status: 'OK' },
-  { time: '2.50ms', action: 'DETECT_HALLUCINATION_DRIFT', status: '0%' },
-  { time: '4.12ms', action: 'VERIFY_TRUSTWARE_SHA', status: 'VALID' },
-  { time: '5.89ms', action: 'CERTIFY_OUTPUT_ELITE', status: 'READY' },
-];
-
-export const TrustwareReality: React.FC = () => {
+export const TrustwareReality: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const terminalRef = useRef<HTMLDivElement>(null);
-  const [activeLog, setActiveLog] = useState(0);
   const anim = getAnimationDefaults();
 
   useEffect(() => {
@@ -45,24 +36,10 @@ export const TrustwareReality: React.FC = () => {
         },
       });
 
-      // Cycle logs
-      const logTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: terminalRef.current,
-          start: 'top 60%',
-        },
-        repeat: -1,
-        repeatDelay: 3
-      });
-
-      AUDIT_LOGS.forEach((_, i) => {
-        logTl.call(() => setActiveLog(i), [], i * 0.4);
-      });
-
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [anim.duration, anim.ease]);
 
   return (
     <section
@@ -76,7 +53,7 @@ export const TrustwareReality: React.FC = () => {
           <div className="space-y-6">
             <div className="flex items-center gap-4">
               <span className="t-mono text-[11px] text-ink/40 uppercase tracking-widest">
-                [ 02 // Prova de Realidade ]
+                [ 03 // Reality Proof ]
               </span>
               <div className="h-[0.5px] w-12 bg-ink/20" />
             </div>
@@ -104,48 +81,10 @@ export const TrustwareReality: React.FC = () => {
         <div className="lg:col-span-7 flex items-center justify-center">
           <div 
             ref={terminalRef}
-            className="w-full aspect-video bg-black rounded-sm border border-white/5 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)] overflow-hidden flex flex-col relative group"
+            className="w-full aspect-video relative"
           >
-            {/* TERMINAL HEADER */}
-            <div className="h-12 bg-white/5 border-b border-white/10 flex items-center justify-between px-6">
-              <div className="flex gap-2">
-                <div className="w-2.5 h-2.5 rounded-full bg-moss/40" />
-                <div className="w-2.5 h-2.5 rounded-full bg-moss/20" />
-                <div className="w-2.5 h-2.5 rounded-full bg-moss/10" />
-              </div>
-              <span className="t-mono text-[10px] text-white/20 uppercase tracking-[0.2em]">ElysianLex_Sovereign_Viewer_v2.1</span>
-            </div>
-
-            {/* TERMINAL BODY */}
-            <div className="flex-1 p-10 font-mono text-[11px] space-y-5">
-              <div className="text-moss/60 pb-5 border-b border-white/5 mb-5 tracking-widest uppercase">
-                {">"} INITIALIZING FORENSIC_AUDIT_SEQUENCE...
-              </div>
-              
-              <div className="space-y-3">
-                {AUDIT_LOGS.map((log, i) => (
-                  <div 
-                    key={i} 
-                    className={`flex justify-between transition-all duration-500 ${i <= activeLog ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}
-                  >
-                    <span className="text-white/40">[{log.time}] {log.action}</span>
-                    <span className={log.status === 'OK' || log.status === 'VALID' ? 'text-moss' : 'text-moss/80'}>{log.status}</span>
-                  </div>
-                ))}
-              </div>
-
-              {activeLog === AUDIT_LOGS.length - 1 && (
-                <div className="mt-12 p-8 bg-moss/5 border border-moss/20 rounded-sm animate-pulse">
-                  <div className="text-moss text-[11px] mb-4 uppercase tracking-[0.3em]">Integrity Verified</div>
-                  <div className="text-white/90 t-editorial italic text-xl md:text-2xl leading-tight">
-                    "O especialista decide, o sistema governa, o modelo apenas processa."
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* GRID OVERLAY */}
-            <div className="absolute inset-0 bg-[url('/assets/textures/grid-dark.svg')] opacity-[0.05] pointer-events-none" />
+            {/* INJECTED CLIENT-ONLY ISLAND */}
+            {children}
           </div>
         </div>
       </div>

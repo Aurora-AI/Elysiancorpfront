@@ -23,7 +23,7 @@ const SEQUENCE = [
   { type: 'photo',  value: '/assets/portraits/portrait_7.png', vertical: 'LEX', factoryId: 'AURORA_V8_LEX' },
 ];
 
-export function GazeForensicHero() {
+export function GazeForensicHero({ lang = 'pt-br' }: { lang?: string }) {
   const containerRef = useRef<HTMLElement>(null);
   const flickerRef   = useRef<HTMLDivElement>(null);
   const finalRef     = useRef<HTMLDivElement>(null);
@@ -208,12 +208,18 @@ export function GazeForensicHero() {
               className="mt-8 flex flex-col items-center"
               style={{ opacity: 0 }}
             >
-              <div className="t-mono text-[13px] text-moss mb-8 tracking-[0.34em] font-bold">
-                DETERMINISMO SOBRE PROBABILISMO
-              </div>
-              <div className="w-34 h-[0.5px] bg-ink/10 mb-13" />
-              <p className="t-editorial text-[21px] md:text-[34px] text-ink/80 font-light max-w-4xl text-center leading-relaxed">
-                O Sistema Operativo de governação para a inteligência artificial corporativa.
+              <p className="t-editorial text-[21px] md:text-[34px] text-ink/80 font-light max-w-4xl text-center leading-tight md:leading-relaxed">
+                {lang === 'pt-br' ? (
+                  <>
+                    O mercado aprendeu a escalar respostas.<br />
+                    Nós construímos controle.
+                  </>
+                ) : (
+                  <>
+                    The market optimized for output.<br />
+                    We engineered for integrity.
+                  </>
+                )}
               </p>
               
               <button className="mt-13 px-8 py-4 bg-moss text-white t-mono text-sm hover:bg-moss/90 transition-all duration-300 rounded-sm uppercase tracking-widest font-bold">

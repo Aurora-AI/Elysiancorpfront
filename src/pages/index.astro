@@ -5,10 +5,13 @@ import { MagneticCursor } from '../components/cursor/MagneticCursor';
 import { TrustwareReality } from '../components/sections/TrustwareReality';
 import { TrustwareArchitecture } from '../components/sections/TrustwareArchitecture';
 import { TrustwarePortfolio } from '../components/sections/TrustwarePortfolio';
-import { TrustwareProblem } from '../components/sections/TrustwareProblem';
+import { TrustwareMoat } from '../components/sections/TrustwareMoat';
 import { TrustwareFounder } from '../components/sections/TrustwareFounder';
+import { IntegrityGap } from '../components/sections/IntegrityGap';
+import ControlFailure from '../components/sections/ControlFailure';
 import { ForensicFooter } from '../components/sections/ForensicFooter';
 import { Header } from '../components/ui/Header';
+import { MotionViewer } from '../components/motion/MotionViewer';
 ---
 
 <Layout title="ElysianCorp | Sovereign Intelligence Architecture">
@@ -19,8 +22,16 @@ import { Header } from '../components/ui/Header';
 		{/* SEÇÃO 1: STOP-MOTION ORIGINAL (GAZE FORENSIC V1.1.0) */}
 		<GazeForensicHero client:load />
 		
-		{/* SEÇÃO 2: PROVA DE REALIDADE (LIGHT) */}
-		<TrustwareReality client:visible />
+		{/* SEÇÃO 2: THE INTEGRITY GAP (DIAGNOSTIC) */}
+		<IntegrityGap client:visible />
+
+		{/* SEÇÃO 3: THE CONTROL FAILURE (ESCALATION) */}
+		<ControlFailure client:visible />
+
+		{/* SEÇÃO 4: PROVA DE REALIDADE (LIGHT) - ISOLAMENTO DE ILHA REMOTION */}
+		<TrustwareReality client:visible>
+			<MotionViewer client:only="react" />
+		</TrustwareReality>
 
 		{/* SEÇÃO 3: ARQUITETURA PROPRIETÁRIA (DARK) */}
 		<TrustwareArchitecture client:visible />
@@ -29,7 +40,7 @@ import { Header } from '../components/ui/Header';
 		<TrustwarePortfolio client:visible />
 
 		{/* SEÇÃO 5: DIFERENCIAIS SOBERANOS (DARK) */}
-		<TrustwareProblem client:visible />
+		<TrustwareMoat client:visible />
 
 		{/* SEÇÃO 6: FOUNDER (LIGHT) */}
 		<TrustwareFounder client:visible />
@@ -45,4 +56,3 @@ import { Header } from '../components/ui/Header';
 		min-height: 100vh;
 	}
 </style>
-

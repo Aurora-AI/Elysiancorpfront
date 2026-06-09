@@ -104,7 +104,7 @@ export const ForensicFooter: React.FC = () => {
                     </div>
 
                     <div className="space-y-12 md:text-right">
-                        <span className="t-mono text-[11px] text-moss uppercase tracking-[0.3em]">Conclusão</span>
+                        <span className="t-mono text-[11px] text-moss uppercase tracking-[0.3em]">[ 08 // Conclusion ]</span>
                         <div className="space-y-6">
                             <p className="t-mono text-[10px] text-white/30 leading-loose uppercase tracking-tight font-mono">
                                 © 2026 ELYSIAN CORP. <br />

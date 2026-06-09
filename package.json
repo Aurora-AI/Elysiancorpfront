@@ -18,6 +18,7 @@
     "@radix-ui/react-slot": "^1.2.4",
     "@react-three/drei": "^9.88.9",
     "@react-three/fiber": "^8.15.11",
+    "@remotion/player": "^4.0.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@types/three": "^0.160.0",
@@ -29,11 +30,13 @@
     "lucide-react": "^0.479.0",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
+    "remotion": "^4.0.0",
     "tailwind-merge": "^2.6.0",
     "tailwindcss": "^3.4.17",
     "three": "^0.160.0"
   },
   "devDependencies": {
+    "puppeteer": "^25.1.0",
     "typescript": "^6.0.3"
   }
 }

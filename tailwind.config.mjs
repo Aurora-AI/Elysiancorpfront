@@ -37,6 +37,9 @@ export default {
 			transitionTimingFunction: {
 				monumental: 'cubic-bezier(0.85, 0, 0.15, 1)',
 			},
+			gridTemplateColumns: {
+				'13': 'repeat(13, minmax(0, 1fr))',
+			},
 		},
 	},
 	plugins: [],

@@ -1,0 +1,16 @@
+{
+  "sha256": "61082d3459b306239fdedeb395f3e16c494a416c6b1e2e9aef0ae181b0c2855b",
+  "timestamp": "2026-04-26T19:40:40Z",
+  "document_name": "Anthropic Startup Program Official Terms",
+  "classification": "Material Cognitivo",
+  "source": "User-provided text",
+  "ingestion_matrix": {
+    "decision": "APROVADO",
+    "gain_estimated": "+25% Efficiency",
+    "skills_impacted": ["ceo-marketing", "ceo-business-partner"]
+  },
+  "storage": {
+    "raw": "docs/Vault/Raw/61082d3459b306239fdedeb395f3e16c494a416c6b1e2e9aef0ae181b0c2855b.md",
+    "processed_dir": "docs/Vault/Processed/61082d3459b306239fdedeb395f3e16c494a416c6b1e2e9aef0ae181b0c2855b/"
+  }
+}
