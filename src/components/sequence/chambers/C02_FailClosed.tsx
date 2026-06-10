@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { useChamberWindow } from '../useChamberWindow';
-import { useCameraProgress } from '../useCameraProgress';
 import { getAnimationDefaults } from '../../../lib/animations';
 
 const HUD_PILLARS = ['fail-closed', 'human approval', 'auditability', 'evaluation gates', 'bounded autonomy'];
