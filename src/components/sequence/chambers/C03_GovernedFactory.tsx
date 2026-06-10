@@ -1,9 +1,24 @@
 import { useChamberWindow } from '../useChamberWindow';
+import { useCameraProgress } from '../useCameraProgress';
 
 const STAGES = ['CAPTURA', 'ESTRUTURAÇÃO', 'VALIDAÇÃO', 'PERSISTÊNCIA', 'EXECUÇÃO', 'APRENDIZADO'];
 
+const CHAMBER_INDEX = 2;
+const TOTAL_CHAMBERS = 5;
+const BAND_START = CHAMBER_INDEX / TOTAL_CHAMBERS;  // 0.4
+const BAND_END = (CHAMBER_INDEX + 1) / TOTAL_CHAMBERS;  // 0.6
+
 export function C03_GovernedFactory() {
   const { scale, blur, opacity } = useChamberWindow(2);
+  const { progress } = useCameraProgress();
+
+  const chamberProgress = Math.max(0, Math.min(1,
+    (progress - BAND_START) / (BAND_END - BAND_START)
+  ));
+  const activeStage = Math.min(
+    Math.floor(chamberProgress * STAGES.length),
+    STAGES.length - 1
+  );
 
   return (
     <div
@@ -40,9 +55,9 @@ export function C03_GovernedFactory() {
               style={{
                 width: '220px',
                 height: '44px',
-                border: `1px solid ${i === 2 ? 'rgba(212,175,55,0.6)' : 'rgba(212,175,55,0.2)'}`,
-                color: i === 2 ? '#D4AF37' : 'rgba(156,163,175,0.5)',
-                backgroundColor: i === 2 ? 'rgba(212,175,55,0.04)' : 'transparent',
+                border: `1px solid ${i === activeStage ? 'rgba(212,175,55,0.6)' : 'rgba(212,175,55,0.2)'}`,
+                color: i === activeStage ? '#D4AF37' : 'rgba(156,163,175,0.5)',
+                backgroundColor: i === activeStage ? 'rgba(212,175,55,0.04)' : 'transparent',
                 transition: 'all 0.5s ease',
               }}
             >
