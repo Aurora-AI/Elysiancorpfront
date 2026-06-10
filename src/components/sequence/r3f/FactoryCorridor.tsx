@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react';
+import { lazy } from 'react';
 
 const FactoryCorridorInner = lazy(() =>
   import('./FactoryCorridorInner').then((m) => ({ default: m.FactoryCorridorInner }))
@@ -11,8 +11,6 @@ interface FactoryCorridorProps {
 
 export function FactoryCorridor({ chamberProgress, activeStage }: FactoryCorridorProps) {
   return (
-    <Suspense fallback={null}>
-      <FactoryCorridorInner chamberProgress={chamberProgress} activeStage={activeStage} />
-    </Suspense>
+    <FactoryCorridorInner chamberProgress={chamberProgress} activeStage={activeStage} />
   );
 }

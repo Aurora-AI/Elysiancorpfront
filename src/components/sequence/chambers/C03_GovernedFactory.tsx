@@ -2,22 +2,22 @@ import { lazy, Suspense } from 'react';
 import { useChamberWindow } from '../useChamberWindow';
 import { useCameraProgress } from '../useCameraProgress';
 import { getAnimationDefaults } from '../../../lib/animations';
+import { STAGES } from '../r3f/FactoryCorridorInner';
 
 const FactoryCorridor = lazy(() =>
   import('../r3f/FactoryCorridor').then((m) => ({ default: m.FactoryCorridor }))
 );
 
-const STAGES = ['CAPTURA', 'ESTRUTURAÇÃO', 'VALIDAÇÃO', 'PERSISTÊNCIA', 'EXECUÇÃO', 'APRENDIZADO'];
-
 const CHAMBER_INDEX = 2;
 const TOTAL_CHAMBERS = 5;
 const BAND_START = CHAMBER_INDEX / TOTAL_CHAMBERS;  // 0.4
 const BAND_END = (CHAMBER_INDEX + 1) / TOTAL_CHAMBERS;  // 0.6
+const REDUCED_MOTION_THRESHOLD = 0.2;
 
 export function C03_GovernedFactory() {
   const { scale, blur, opacity } = useChamberWindow(2);
   const { progress } = useCameraProgress();
-  const isReduced = getAnimationDefaults().duration < 0.2;
+  const isReduced = getAnimationDefaults().duration < REDUCED_MOTION_THRESHOLD;
 
   const chamberProgress = Math.max(0, Math.min(1,
     (progress - BAND_START) / (BAND_END - BAND_START)

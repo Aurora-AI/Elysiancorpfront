@@ -1,0 +1,150 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - banner:
+      - generic [ref=e6]: E
+      - navigation [ref=e7]:
+        - link "Trustware" [ref=e8] [cursor=pointer]:
+          - /url: "#"
+        - link "Architecture" [ref=e9] [cursor=pointer]:
+          - /url: "#"
+        - link "Elysian Lex" [ref=e10] [cursor=pointer]:
+          - /url: "#"
+        - link "Silent Ops" [ref=e11] [cursor=pointer]:
+          - /url: "#"
+        - button "Protocolo" [ref=e12]
+      - generic [ref=e15]: EST. 2026 // SVRN
+  - main [ref=e16]:
+    - generic [ref=e18]:
+      - generic [ref=e19]:
+        - generic [ref=e20]:
+          - generic [ref=e21]: "[ PROTOCOL: TRUSTWARE ]"
+          - generic [ref=e23]: "[ EXECUTION: HYBRID ZERO-TRUST ]"
+        - generic [ref=e24]: ELYSIAN CORP © 2026
+      - generic [ref=e25]:
+        - generic [ref=e27]: "VERTICAL: LEX"
+        - generic [ref=e28]:
+          - generic [ref=e30]: E
+          - img "Forensic Frame" [ref=e32]
+          - generic [ref=e34]: L
+          - img "Forensic Frame" [ref=e36]
+          - generic [ref=e38]: "Y"
+          - img "Forensic Frame" [ref=e40]
+          - generic [ref=e42]: S
+          - img "Forensic Frame" [ref=e44]
+          - generic [ref=e46]: I
+          - img "Forensic Frame" [ref=e48]
+          - generic [ref=e50]: A
+          - img "Forensic Frame" [ref=e52]
+          - generic [ref=e54]: "N"
+          - img "Forensic Frame" [ref=e56]
+      - generic [ref=e58]:
+        - paragraph [ref=e59]: INDUSTRIAL INTELLIGENCE // AURORA_V8
+        - paragraph [ref=e60]: "STRATEGY: MAD LAB AURORA"
+        - paragraph [ref=e61]: "ARTIFACT: 2026.Q2.CERT"
+        - paragraph [ref=e62]: "SVRN_OPERATOR: ACTIVE"
+    - generic [ref=e63]:
+      - generic:
+        - generic:
+          - generic:
+            - generic: "[ PROTOCOL: TRUSTWARE ]"
+            - generic: "[ STAGE: CONTEXT ]"
+          - generic: ELYSIAN CORP © 2026
+        - generic:
+          - generic:
+            - generic: "[ 01 // THE CATEGORY PROBLEM ]"
+            - heading "O mercado aprendeu a escalar respostas. Nós construímos controle." [level=2]:
+              - text: O mercado aprendeu a
+              - text: escalar respostas.
+              - text: Nós construímos controle.
+            - paragraph:
+              - text: Empresas não sofrem por falta de dados. Sofrem por
+              - strong: perda de contexto
+              - text: .
+          - generic:
+            - generic: reunião
+            - generic: planilha
+            - generic: e-mail
+            - generic: decisão
+            - generic: contexto
+            - generic: memória
+            - generic: processo
+            - generic: relatório
+        - generic:
+          - generic:
+            - generic: "[ 02 // THE METHOD ]"
+            - heading "A inteligência não é deixar a IA decidir mais. É definir exatamente o que ela não pode decidir." [level=2]
+            - paragraph: "We study controlled agency: systems that can reason, plan and simulate, but cannot mutate production without deterministic gates."
+            - generic:
+              - generic: fail-closed
+              - generic: human approval
+              - generic: auditability
+              - generic: evaluation gates
+              - generic: bounded autonomy
+            - generic:
+              - generic:
+                - generic: DECISION_CANDIDATE
+              - generic: FAIL_CLOSED
+        - generic:
+          - generic:
+            - generic: "[ 03 // THE GOVERNED FACTORY ]"
+            - heading "Álvaro observa, planeja, simula e propõe." [level=2]:
+              - text: Álvaro observa, planeja,
+              - text: simula e propõe.
+            - paragraph: A produção só muda com gates determinísticos, QA formal e aprovação humana.
+          - generic:
+            - generic:
+              - generic: CAPTURA
+            - generic:
+              - generic: ESTRUTURAÇÃO
+            - generic:
+              - generic: VALIDAÇÃO
+            - generic:
+              - generic: PERSISTÊNCIA
+            - generic:
+              - generic: EXECUÇÃO
+            - generic:
+              - generic: APRENDIZADO
+        - generic:
+          - generic:
+            - generic: "[ 04 // TRUTH RETURNED ]"
+            - heading "Damos voz à sua empresa." [level=2]:
+              - text: Damos voz
+              - text: à sua empresa.
+            - paragraph:
+              - text: O produto que não é um CRM. Ele intercepta a informação, estrutura, transforma em inteligência aplicada e
+              - strong: devolve o tempo ao gestor
+              - text: .
+          - generic:
+            - generic:
+              - generic: CRM Aurora
+              - paragraph: Intercepta informação. Estrutura. Devolve tempo.
+            - generic:
+              - generic: Elysian Lex
+              - paragraph: Governança forense para jurídico e compliance.
+        - generic:
+          - generic:
+            - generic: "[ 05 // THE CATEGORY ]"
+            - heading "Memória Operacional Validada." [level=2]:
+              - text: Memória
+              - text: Operacional
+              - text: Validada.
+            - paragraph: Não somos CRM, copiloto ou plataforma de IA. Construímos a infraestrutura que transforma conhecimento confiável em execução confiável.
+            - link "[ REQUEST PARTNERSHIP ]":
+              - /url: mailto:rodrigo@elysiancorp.com
+            - generic:
+              - generic: "ARTIFACT: 2026.Q2.CERT"
+              - generic: "STRATEGY: MAD LAB AURORA"
+              - generic: INDUSTRIAL INTELLIGENCE
+  - generic [ref=e67]:
+    - button "Menu" [ref=e68]:
+      - img [ref=e70]
+      - generic: Menu
+    - button "Inspect" [ref=e74]:
+      - img [ref=e76]
+      - generic: Inspect
+    - button "Audit" [ref=e78]:
+      - img [ref=e80]
+      - generic: Audit
+    - button "Settings" [ref=e83]:
+      - img [ref=e85]
+      - generic: Settings
