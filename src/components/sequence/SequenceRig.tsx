@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-// @ts-ignore
 import Lenis from '@studio-freight/lenis';
 import {
   CameraProgressContext,
