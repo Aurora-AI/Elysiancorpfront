@@ -1,5 +1,6 @@
 import { useChamberWindow } from '../useChamberWindow';
 import { useCameraProgress } from '../useCameraProgress';
+import { getAnimationDefaults } from '../../../lib/animations';
 
 const STAGES = ['CAPTURA', 'ESTRUTURAÇÃO', 'VALIDAÇÃO', 'PERSISTÊNCIA', 'EXECUÇÃO', 'APRENDIZADO'];
 
@@ -11,6 +12,7 @@ const BAND_END = (CHAMBER_INDEX + 1) / TOTAL_CHAMBERS;  // 0.6
 export function C03_GovernedFactory() {
   const { scale, blur, opacity } = useChamberWindow(2);
   const { progress } = useCameraProgress();
+  const isReduced = getAnimationDefaults().duration < 0.2;
 
   const chamberProgress = Math.max(0, Math.min(1,
     (progress - BAND_START) / (BAND_END - BAND_START)
@@ -22,8 +24,11 @@ export function C03_GovernedFactory() {
 
   return (
     <div
-      className="absolute inset-0 flex items-center"
-      style={{
+      style={isReduced ? {
+        position: 'relative', height: '100vh', width: '100%', flexShrink: 0,
+        backgroundColor: '#000000',
+      } : {
+        position: 'absolute', inset: 0,
         transform: `scale(${scale})`,
         filter: `blur(${blur}px)`,
         opacity,

@@ -1,14 +1,19 @@
 import { useChamberWindow } from '../useChamberWindow';
+import { getAnimationDefaults } from '../../../lib/animations';
 
 const FRAGMENTS = ['reunião', 'planilha', 'e-mail', 'decisão', 'contexto', 'memória', 'processo', 'relatório'];
 
 export function C01_Dispersion() {
   const { scale, blur, opacity } = useChamberWindow(0);
+  const isReduced = getAnimationDefaults().duration < 0.2;
 
   return (
     <div
-      className="absolute inset-0 flex items-center"
-      style={{
+      style={isReduced ? {
+        position: 'relative', height: '100vh', width: '100%', flexShrink: 0,
+        backgroundColor: '#F8F7F3',
+      } : {
+        position: 'absolute', inset: 0,
         transform: `scale(${scale})`,
         filter: `blur(${blur}px)`,
         opacity,

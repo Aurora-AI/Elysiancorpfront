@@ -12,7 +12,7 @@ export function CameraStage({ children, active = false }: CameraStageProps) {
 
   if (isReduced) {
     return (
-      <div style={{ position: 'relative', width: '100%' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
         {children}
       </div>
     );

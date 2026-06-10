@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { useChamberWindow } from '../useChamberWindow';
 import { useCameraProgress } from '../useCameraProgress';
+import { getAnimationDefaults } from '../../../lib/animations';
 
 const HUD_PILLARS = ['fail-closed', 'human approval', 'auditability', 'evaluation gates', 'bounded autonomy'];
 
@@ -58,11 +59,15 @@ function FailGate({ isFocused }: { isFocused: boolean }) {
 
 export function C02_FailClosed() {
   const { scale, blur, opacity, isFocused } = useChamberWindow(1);
+  const isReduced = getAnimationDefaults().duration < 0.2;
 
   return (
     <div
-      className="absolute inset-0 flex items-center"
-      style={{
+      style={isReduced ? {
+        position: 'relative', height: '100vh', width: '100%', flexShrink: 0,
+        backgroundColor: '#000000',
+      } : {
+        position: 'absolute', inset: 0,
         transform: `scale(${scale})`,
         filter: `blur(${blur}px)`,
         opacity,

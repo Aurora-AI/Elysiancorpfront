@@ -1,12 +1,19 @@
 import { useChamberWindow } from '../useChamberWindow';
+import { getAnimationDefaults } from '../../../lib/animations';
 
 export function C05_Category() {
   const { scale, blur, opacity } = useChamberWindow(4);
+  const isReduced = getAnimationDefaults().duration < 0.2;
 
   return (
     <div
-      className="absolute inset-0 flex items-center justify-center"
-      style={{
+      style={isReduced ? {
+        position: 'relative', height: '100vh', width: '100%', flexShrink: 0,
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        backgroundColor: '#000000',
+      } : {
+        position: 'absolute', inset: 0,
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
         transform: `scale(${scale})`,
         filter: `blur(${blur}px)`,
         opacity,

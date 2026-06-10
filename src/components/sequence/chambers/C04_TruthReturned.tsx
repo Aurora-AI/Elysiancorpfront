@@ -1,4 +1,5 @@
 import { useChamberWindow } from '../useChamberWindow';
+import { getAnimationDefaults } from '../../../lib/animations';
 
 const PRODUCTS = [
   { name: 'CRM Aurora', desc: 'Intercepta informação. Estrutura. Devolve tempo.' },
@@ -7,11 +8,15 @@ const PRODUCTS = [
 
 export function C04_TruthReturned() {
   const { scale, blur, opacity } = useChamberWindow(3);
+  const isReduced = getAnimationDefaults().duration < 0.2;
 
   return (
     <div
-      className="absolute inset-0 flex items-center"
-      style={{
+      style={isReduced ? {
+        position: 'relative', height: '100vh', width: '100%', flexShrink: 0,
+        backgroundColor: '#F8F7F3',
+      } : {
+        position: 'absolute', inset: 0,
         transform: `scale(${scale})`,
         filter: `blur(${blur}px)`,
         opacity,
