@@ -55,9 +55,9 @@ export function SequenceRig({ children }: SequenceRigProps) {
         },
         snap: {
           snapTo: [0.1, 0.3, 0.5, 0.7, 0.9],
-          duration: { min: 0.3, max: 0.6 },
-          ease: 'expo.inOut',
-          delay: 0.1,
+          duration: { min: 0.5, max: 0.9 },
+          ease: 'power2.inOut',
+          delay: 0.25,
         },
       });
     });
