@@ -11,6 +11,8 @@ export interface ChamberWindow {
 
 const TOTAL = 5;
 const FADE_BAND = 0.08;
+const OPACITY_POWER = 1.8;
+const FOCUS_THRESHOLD = 0.4;
 
 export function useChamberWindow(chamberIndex: number): ChamberWindow {
   const { progress } = useCameraProgress();
@@ -24,9 +26,9 @@ export function useChamberWindow(chamberIndex: number): ChamberWindow {
     const raw = Math.max(0, 1 - distFromCenter / (halfWindow + FADE_BAND));
 
     // opacity uses a power curve so crossovers are crisp (44% → 22% at midpoint)
-    const normalized = raw ** 1.8;
+    const normalized = raw ** OPACITY_POWER;
 
-    const isFocused = distFromCenter < halfWindow * 0.4;
+    const isFocused = distFromCenter < halfWindow * FOCUS_THRESHOLD;
     const scale = 0.95 + raw * 0.05;   // subtle scale on raw (smooth)
     const blur  = (1 - raw) * 12;       // blur on raw (smooth)
     const opacity = normalized;          // opacity on powered curve (sharp)
