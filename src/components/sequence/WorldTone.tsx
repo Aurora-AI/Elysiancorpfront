@@ -3,6 +3,8 @@ import gsap from 'gsap';
 import { useCameraProgress, type WorldTone as WorldToneType } from './useCameraProgress';
 import { getAnimationDefaults } from '../../lib/animations';
 
+const DEBOUNCE_MS = 200;
+
 const WORLD_COLORS: Record<WorldToneType, { bg: string; color: string }> = {
   light: { bg: '#F8F7F3', color: '#1A1A17' },
   dark:  { bg: '#000000', color: '#F2F2F2' },
@@ -10,23 +12,30 @@ const WORLD_COLORS: Record<WorldToneType, { bg: string; color: string }> = {
 
 export function WorldTone() {
   const { worldTone } = useCameraProgress();
-  const prevTone = useRef<WorldToneType>('light');
-  const anim = getAnimationDefaults();
+  const prevTone = useRef<WorldToneType | null>(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const isReduced = getAnimationDefaults().duration < 0.2;
 
   useEffect(() => {
-    if (prevTone.current === worldTone) return;
-    prevTone.current = worldTone;
+    if (timerRef.current) clearTimeout(timerRef.current);
 
-    const { bg, color } = WORLD_COLORS[worldTone];
-    const isReduced = anim.duration < 0.2;
+    timerRef.current = setTimeout(() => {
+      if (prevTone.current === worldTone) return;
+      prevTone.current = worldTone;
 
-    gsap.to(document.body, {
-      backgroundColor: bg,
-      color,
-      duration: isReduced ? 0.01 : 1.8,
-      ease: 'expo.inOut',
-    });
-  }, [worldTone, anim.duration]);
+      const { bg, color } = WORLD_COLORS[worldTone];
+      gsap.to(document.body, {
+        backgroundColor: bg,
+        color,
+        duration: isReduced ? 0.01 : 1.8,
+        ease: 'expo.inOut',
+      });
+    }, isReduced ? 0 : DEBOUNCE_MS);
+
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, [worldTone, isReduced]);
 
   return null;
 }
