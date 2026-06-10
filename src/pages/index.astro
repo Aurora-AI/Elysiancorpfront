@@ -2,16 +2,13 @@
 import Layout from '../layouts/Layout.astro';
 import { GazeForensicHero } from '../components/hero/GazeForensicHero';
 import { MagneticCursor } from '../components/cursor/MagneticCursor';
-import { TrustwareReality } from '../components/sections/TrustwareReality';
-import { TrustwareArchitecture } from '../components/sections/TrustwareArchitecture';
-import { TrustwarePortfolio } from '../components/sections/TrustwarePortfolio';
-import { TrustwareMoat } from '../components/sections/TrustwareMoat';
-import { TrustwareFounder } from '../components/sections/TrustwareFounder';
-import { IntegrityGap } from '../components/sections/IntegrityGap';
-import ControlFailure from '../components/sections/ControlFailure';
-import { ForensicFooter } from '../components/sections/ForensicFooter';
 import { Header } from '../components/ui/Header';
-import { MotionViewer } from '../components/motion/MotionViewer';
+import { SequenceRig } from '../components/sequence/SequenceRig';
+import { C01_Dispersion } from '../components/sequence/chambers/C01_Dispersion';
+import { C02_FailClosed } from '../components/sequence/chambers/C02_FailClosed';
+import { C03_GovernedFactory } from '../components/sequence/chambers/C03_GovernedFactory';
+import { C04_TruthReturned } from '../components/sequence/chambers/C04_TruthReturned';
+import { C05_Category } from '../components/sequence/chambers/C05_Category';
 ---
 
 <Layout title="ElysianCorp | Sovereign Intelligence Architecture">
@@ -21,32 +18,15 @@ import { MotionViewer } from '../components/motion/MotionViewer';
 	<main>
 		{/* SEÇÃO 1: STOP-MOTION ORIGINAL (GAZE FORENSIC V1.1.0) */}
 		<GazeForensicHero client:load />
-		
-		{/* SEÇÃO 2: THE INTEGRITY GAP (DIAGNOSTIC) */}
-		<IntegrityGap client:visible />
 
-		{/* SEÇÃO 3: THE CONTROL FAILURE (ESCALATION) */}
-		<ControlFailure client:visible />
-
-		{/* SEÇÃO 4: PROVA DE REALIDADE (LIGHT) - ISOLAMENTO DE ILHA REMOTION */}
-		<TrustwareReality client:visible>
-			<MotionViewer client:only="react" />
-		</TrustwareReality>
-
-		{/* SEÇÃO 3: ARQUITETURA PROPRIETÁRIA (DARK) */}
-		<TrustwareArchitecture client:visible />
-
-		{/* SEÇÃO 4: PORTFÓLIO DE PRODUTOS (LIGHT) */}
-		<TrustwarePortfolio client:visible />
-
-		{/* SEÇÃO 5: DIFERENCIAIS SOBERANOS (DARK) */}
-		<TrustwareMoat client:visible />
-
-		{/* SEÇÃO 6: FOUNDER (LIGHT) */}
-		<TrustwareFounder client:visible />
-
-		{/* SEÇÃO 7: CTA FINAL (DARK) */}
-		<ForensicFooter client:visible />
+		{/* CINEMATIC SEQUENCE — chambers C01–C05 */}
+		<SequenceRig client:load>
+			<C01_Dispersion client:load />
+			<C02_FailClosed client:load />
+			<C03_GovernedFactory client:load />
+			<C04_TruthReturned client:load />
+			<C05_Category client:load />
+		</SequenceRig>
 	</main>
 </Layout>
 
