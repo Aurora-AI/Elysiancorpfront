@@ -1,6 +1,11 @@
+import { lazy, Suspense } from 'react';
 import { useChamberWindow } from '../useChamberWindow';
 import { useCameraProgress } from '../useCameraProgress';
 import { getAnimationDefaults } from '../../../lib/animations';
+
+const FactoryCorridor = lazy(() =>
+  import('../r3f/FactoryCorridor').then((m) => ({ default: m.FactoryCorridor }))
+);
 
 const STAGES = ['CAPTURA', 'ESTRUTURAÇÃO', 'VALIDAÇÃO', 'PERSISTÊNCIA', 'EXECUÇÃO', 'APRENDIZADO'];
 
@@ -51,28 +56,14 @@ export function C03_GovernedFactory() {
         </p>
       </div>
 
-      {/* Right: factory corridor — flat 2D */}
-      <div className="absolute right-[8%] top-1/2 -translate-y-1/2 flex flex-col items-center gap-[13px]">
-        {STAGES.map((stage, i) => (
-          <div key={stage} className="relative flex flex-col items-center">
-            <div
-              className="t-mono text-[11px] flex items-center justify-center"
-              style={{
-                width: '220px',
-                height: '44px',
-                border: `1px solid ${i === activeStage ? 'rgba(212,175,55,0.6)' : 'rgba(212,175,55,0.2)'}`,
-                color: i === activeStage ? '#D4AF37' : 'rgba(156,163,175,0.5)',
-                backgroundColor: i === activeStage ? 'rgba(212,175,55,0.04)' : 'transparent',
-                transition: 'all 0.5s ease',
-              }}
-            >
-              {stage}
-            </div>
-            {i < STAGES.length - 1 && (
-              <div style={{ width: '1px', height: '13px', background: 'rgba(212,175,55,0.2)' }} />
-            )}
-          </div>
-        ))}
+      {/* Right: R3F factory corridor */}
+      <div
+        className="absolute right-0 top-0"
+        style={{ width: '50%', height: '100%', pointerEvents: 'none' }}
+      >
+        <Suspense fallback={null}>
+          <FactoryCorridor chamberProgress={chamberProgress} activeStage={activeStage} />
+        </Suspense>
       </div>
     </div>
   );

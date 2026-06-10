@@ -15,7 +15,7 @@ import { SequenceRigFull } from '../components/sequence/SequenceRigFull';
 		<GazeForensicHero client:load />
 
 		{/* CINEMATIC SEQUENCE — chambers C01–C05 (single React root via SequenceRigFull) */}
-		<SequenceRigFull client:load />
+		<SequenceRigFull client:only="react" />
 	</main>
 </Layout>
 
