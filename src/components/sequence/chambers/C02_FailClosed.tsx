@@ -1,27 +1,35 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { useChamberWindow } from '../useChamberWindow';
+import { useCameraProgress } from '../useCameraProgress';
 
 const HUD_PILLARS = ['fail-closed', 'human approval', 'auditability', 'evaluation gates', 'bounded autonomy'];
 
-function FailGate() {
+function FailGate({ isFocused }: { isFocused: boolean }) {
   const attemptRef = useRef<HTMLDivElement>(null);
   const lockRef = useRef<HTMLSpanElement>(null);
+  const tlRef = useRef<gsap.core.Timeline | null>(null);
 
   useEffect(() => {
     const attempt = attemptRef.current;
     const lock = lockRef.current;
     if (!attempt || !lock) return;
 
-    const tl = gsap.timeline({ repeat: -1, repeatDelay: 3.5 });
+    const tl = gsap.timeline({ repeat: -1, repeatDelay: 3.5, paused: true });
     tl.to(attempt, { x: 55, duration: 0.9, ease: 'power2.inOut' })
       .to(lock, { opacity: 1, scale: 1, duration: 0.25, ease: 'back.out(2)' }, '-=0.1')
       .to(attempt, { x: 0, opacity: 0.4, duration: 0.6, ease: 'power3.in' }, '+=0.6')
-      .set([attempt, lock], { opacity: 1, scale: 0.9 })
+      .set([attempt, lock], { opacity: 1, scale: 1 })
       .to(lock, { opacity: 0, scale: 0.8, duration: 0.1 });
 
+    tlRef.current = tl;
     return () => { tl.kill(); };
   }, []);
+
+  useEffect(() => {
+    if (!tlRef.current) return;
+    if (isFocused) { tlRef.current.play(); } else { tlRef.current.pause(); }
+  }, [isFocused]);
 
   return (
     <div className="relative flex items-center gap-3 mt-[34px]">
@@ -49,7 +57,7 @@ function FailGate() {
 }
 
 export function C02_FailClosed() {
-  const { scale, blur, opacity } = useChamberWindow(1);
+  const { scale, blur, opacity, isFocused } = useChamberWindow(1);
 
   return (
     <div
@@ -74,7 +82,7 @@ export function C02_FailClosed() {
           </span>
         </h2>
 
-        <p className="t-mono text-[13px] leading-relaxed normal-case tracking-normal" style={{ color: 'rgba(156,163,175,0.6)', maxWidth: '560px' }}>
+        <p className="t-mono text-[13px] leading-relaxed" style={{ color: 'rgba(156,163,175,0.6)', maxWidth: '560px', textTransform: 'none', letterSpacing: 'normal' }}>
           We study controlled agency: systems that can reason, plan and simulate,
           but cannot mutate production without deterministic gates.
         </p>
@@ -95,7 +103,7 @@ export function C02_FailClosed() {
           ))}
         </div>
 
-        <FailGate />
+        <FailGate isFocused={isFocused} />
       </div>
     </div>
   );

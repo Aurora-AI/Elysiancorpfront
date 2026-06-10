@@ -7,29 +7,12 @@ gsap.registerPlugin(ScrollTrigger);
 
 export const Header: React.FC = () => {
     const headerRef = useRef<HTMLElement>(null);
-    const logoTextRef = useRef<HTMLSpanElement>(null);
 
     useGSAP(() => {
-        // Start ELYSIAN text hidden — hero already shows the brand name prominently
-        gsap.set(logoTextRef.current, { opacity: 0 });
-
-        // Fade in rest of header on load
         gsap.fromTo(headerRef.current,
             { opacity: 0, y: -20 },
             { opacity: 1, y: 0, duration: 1.5, delay: 1.2, ease: "power4.out" }
         );
-
-        // Reveal ELYSIAN text only after user scrolls past the hero section
-        ScrollTrigger.create({
-            trigger: 'body',
-            start: '100vh top',
-            onEnter: () => gsap.to(logoTextRef.current, {
-                opacity: 1, duration: 0.6, ease: 'power2.out'
-            }),
-            onLeaveBack: () => gsap.to(logoTextRef.current, {
-                opacity: 0, duration: 0.4, ease: 'power2.in'
-            }),
-        });
     }, { scope: headerRef });
 
     return (
@@ -39,7 +22,6 @@ export const Header: React.FC = () => {
                 <div className="w-8 h-8 bg-moss rounded-sm flex items-center justify-center">
                     <span className="text-obsidian font-bold text-xs">E</span>
                 </div>
-                <span ref={logoTextRef} className="t-display text-2xl tracking-tight text-white uppercase">ELYSIAN</span>
             </div>
 
             {/* NAVIGATION AREA */}

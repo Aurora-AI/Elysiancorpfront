@@ -38,7 +38,8 @@ export function SequenceRig({ children }: SequenceRigProps) {
 
     const lenis = new Lenis();
     lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add((time) => lenis.raf(time * 1000));
+    const rafCallback = (time: number) => lenis.raf(time * 1000);
+    gsap.ticker.add(rafCallback);
     gsap.ticker.lagSmoothing(0);
 
     const ctx = gsap.context(() => {
@@ -46,8 +47,6 @@ export function SequenceRig({ children }: SequenceRigProps) {
         trigger: spacerRef.current,
         start: 'top top',
         end: 'bottom bottom',
-        pin: '#camera-stage',
-        pinSpacing: false,
         onUpdate: (self) => {
           const progress = self.progress;
           const activeChamber = progressToChamber(progress, CHAMBER_COUNT);
@@ -55,7 +54,7 @@ export function SequenceRig({ children }: SequenceRigProps) {
           setCamState({ progress, activeChamber, worldTone });
         },
         snap: {
-          snapTo: 1 / (CHAMBER_COUNT - 1),
+          snapTo: [0.1, 0.3, 0.5, 0.7, 0.9],
           duration: { min: 0.3, max: 0.6 },
           ease: 'expo.inOut',
           delay: 0.1,
@@ -66,6 +65,7 @@ export function SequenceRig({ children }: SequenceRigProps) {
     return () => {
       ctx.revert();
       lenis.destroy();
+      gsap.ticker.remove(rafCallback);
     };
   }, [isReduced]);
 
@@ -79,7 +79,7 @@ export function SequenceRig({ children }: SequenceRigProps) {
 
   return (
     <CameraProgressContext.Provider value={camState}>
-      <CameraStage>
+      <CameraStage active={camState.progress > 0}>
         <WorldTone />
         <HudTelemetry />
         {children}

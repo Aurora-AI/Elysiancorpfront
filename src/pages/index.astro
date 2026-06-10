@@ -3,12 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import { GazeForensicHero } from '../components/hero/GazeForensicHero';
 import { MagneticCursor } from '../components/cursor/MagneticCursor';
 import { Header } from '../components/ui/Header';
-import { SequenceRig } from '../components/sequence/SequenceRig';
-import { C01_Dispersion } from '../components/sequence/chambers/C01_Dispersion';
-import { C02_FailClosed } from '../components/sequence/chambers/C02_FailClosed';
-import { C03_GovernedFactory } from '../components/sequence/chambers/C03_GovernedFactory';
-import { C04_TruthReturned } from '../components/sequence/chambers/C04_TruthReturned';
-import { C05_Category } from '../components/sequence/chambers/C05_Category';
+import { SequenceRigFull } from '../components/sequence/SequenceRigFull';
 ---
 
 <Layout title="ElysianCorp | Sovereign Intelligence Architecture">
@@ -19,14 +14,8 @@ import { C05_Category } from '../components/sequence/chambers/C05_Category';
 		{/* SEÇÃO 1: STOP-MOTION ORIGINAL (GAZE FORENSIC V1.1.0) */}
 		<GazeForensicHero client:load />
 
-		{/* CINEMATIC SEQUENCE — chambers C01–C05 */}
-		<SequenceRig client:load>
-			<C01_Dispersion client:load />
-			<C02_FailClosed client:load />
-			<C03_GovernedFactory client:load />
-			<C04_TruthReturned client:load />
-			<C05_Category client:load />
-		</SequenceRig>
+		{/* CINEMATIC SEQUENCE — chambers C01–C05 (single React root via SequenceRigFull) */}
+		<SequenceRigFull client:load />
 	</main>
 </Layout>
 

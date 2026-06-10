@@ -3,9 +3,10 @@ import { getAnimationDefaults } from '../../lib/animations';
 
 interface CameraStageProps {
   children: ReactNode;
+  active?: boolean;
 }
 
-export function CameraStage({ children }: CameraStageProps) {
+export function CameraStage({ children, active = false }: CameraStageProps) {
   const anim = getAnimationDefaults();
   const isReduced = anim.duration < 0.2;
 
@@ -28,6 +29,9 @@ export function CameraStage({ children }: CameraStageProps) {
         height: '100vh',
         overflow: 'hidden',
         zIndex: 10,
+        opacity: active ? 1 : 0,
+        pointerEvents: active ? 'auto' : 'none',
+        transition: 'opacity 0.5s ease',
       }}
     >
       {children}
