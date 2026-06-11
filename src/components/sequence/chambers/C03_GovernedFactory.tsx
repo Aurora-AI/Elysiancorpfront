@@ -2,7 +2,7 @@ import { lazy, Suspense } from 'react';
 import { useChamberWindow } from '../useChamberWindow';
 import { useCameraProgress } from '../useCameraProgress';
 import { getAnimationDefaults } from '../../../lib/animations';
-import { STAGES } from '../r3f/FactoryCorridorInner';
+import { STAGES } from '../r3f/stages';
 
 const FactoryCorridor = lazy(() =>
   import('../r3f/FactoryCorridor').then((m) => ({ default: m.FactoryCorridor }))
