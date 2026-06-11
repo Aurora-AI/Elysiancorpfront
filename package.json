@@ -20,6 +20,7 @@
     "@react-three/drei": "^9.88.9",
     "@react-three/fiber": "^8.15.11",
     "@remotion/player": "^4.0.0",
+    "@studio-freight/lenis": "^1.0.42",
     "@tailwindcss/vite": "^4.1.8",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",

@@ -2,16 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import { GazeForensicHero } from '../components/hero/GazeForensicHero';
 import { MagneticCursor } from '../components/cursor/MagneticCursor';
-import { TrustwareReality } from '../components/sections/TrustwareReality';
-import { TrustwareArchitecture } from '../components/sections/TrustwareArchitecture';
-import { TrustwarePortfolio } from '../components/sections/TrustwarePortfolio';
-import { TrustwareMoat } from '../components/sections/TrustwareMoat';
-import { TrustwareFounder } from '../components/sections/TrustwareFounder';
-import { IntegrityGap } from '../components/sections/IntegrityGap';
-import ControlFailure from '../components/sections/ControlFailure';
-import { ForensicFooter } from '../components/sections/ForensicFooter';
 import { Header } from '../components/ui/Header';
-import { MotionViewer } from '../components/motion/MotionViewer';
+import { SequenceRigFull } from '../components/sequence/SequenceRigFull';
 ---
 
 <Layout title="ElysianCorp | Sovereign Intelligence Architecture">
@@ -21,32 +13,9 @@ import { MotionViewer } from '../components/motion/MotionViewer';
 	<main>
 		{/* SEÇÃO 1: STOP-MOTION ORIGINAL (GAZE FORENSIC V1.1.0) */}
 		<GazeForensicHero client:load />
-		
-		{/* SEÇÃO 2: THE INTEGRITY GAP (DIAGNOSTIC) */}
-		<IntegrityGap client:visible />
 
-		{/* SEÇÃO 3: THE CONTROL FAILURE (ESCALATION) */}
-		<ControlFailure client:visible />
-
-		{/* SEÇÃO 4: PROVA DE REALIDADE (LIGHT) - ISOLAMENTO DE ILHA REMOTION */}
-		<TrustwareReality client:visible>
-			<MotionViewer client:only="react" />
-		</TrustwareReality>
-
-		{/* SEÇÃO 3: ARQUITETURA PROPRIETÁRIA (DARK) */}
-		<TrustwareArchitecture client:visible />
-
-		{/* SEÇÃO 4: PORTFÓLIO DE PRODUTOS (LIGHT) */}
-		<TrustwarePortfolio client:visible />
-
-		{/* SEÇÃO 5: DIFERENCIAIS SOBERANOS (DARK) */}
-		<TrustwareMoat client:visible />
-
-		{/* SEÇÃO 6: FOUNDER (LIGHT) */}
-		<TrustwareFounder client:visible />
-
-		{/* SEÇÃO 7: CTA FINAL (DARK) */}
-		<ForensicFooter client:visible />
+		{/* CINEMATIC SEQUENCE — chambers C01–C05 (single React root via SequenceRigFull) */}
+		<SequenceRigFull client:only="react" />
 	</main>
 </Layout>
 
