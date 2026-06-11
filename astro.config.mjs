@@ -35,7 +35,7 @@ export default defineConfig({
     },
     ssr: {
       noExternal: ['@library', 'framer-motion', 'class-variance-authority', 'lucide-react'],
-      external: ['remotion', '@remotion/player']
+      external: ['remotion', '@remotion/player', '@react-three/fiber', '@react-three/drei', 'three']
     },
     optimizeDeps: {
       exclude: ['remotion', '@remotion/player']

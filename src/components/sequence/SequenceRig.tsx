@@ -61,7 +61,12 @@ export function SequenceRig({ children }: SequenceRigProps) {
       });
     });
 
+    // Recalculate scroll distances after the 500vh spacer is in the DOM.
+    // In production (no HMR), ScrollTrigger never auto-refreshes after client-only mount.
+    const rafId = requestAnimationFrame(() => ScrollTrigger.refresh());
+
     return () => {
+      cancelAnimationFrame(rafId);
       ctx.revert();
       lenis.destroy();
       gsap.ticker.remove(rafCallback);
