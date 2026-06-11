@@ -23,26 +23,18 @@ interface SequenceRigProps {
 
 export function SequenceRig({ children }: SequenceRigProps) {
   const spacerRef = useRef<HTMLDivElement>(null);
-  const [isMounted, setIsMounted] = useState(false);
   const [camState, setCamState] = useState<CameraProgress>({
     progress: 0,
     activeChamber: 0,
     worldTone: 'light',
   });
 
-  // Garante que a lógica de scroll e o spacer de 500vh só existem no cliente.
-  // Sem isso, o React/Astro renderiza o spacer no SSG e tenta hidratar
-  // um DOM que `window` não pode existir — causando mismatch silencioso.
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+  // client:only="react" no Astro garante que este componente NUNCA roda
+  // no servidor — window sempre existe, sem hydration mismatch.
+  const anim = getAnimationDefaults();
+  const isReduced = anim.duration < 0.2;
 
   useEffect(() => {
-    if (!isMounted) return;
-
-    const anim = getAnimationDefaults();
-    const isReduced = anim.duration < 0.2;
-
     if (isReduced) return;
 
     const lenis = new Lenis({
@@ -52,7 +44,7 @@ export function SequenceRig({ children }: SequenceRigProps) {
 
     // ── CONTRATO CRÍTICO: scrollerProxy conecta Lenis ao ScrollTrigger ──
     // Sem isso, ScrollTrigger lê window.scrollY enquanto Lenis intercepta
-    // os eventos, causando travamento total do scroll em produção SSG.
+    // os eventos, causando travamento total do scroll.
     ScrollTrigger.scrollerProxy(document.documentElement, {
       scrollTop(value) {
         if (arguments.length && value !== undefined) {
@@ -96,7 +88,7 @@ export function SequenceRig({ children }: SequenceRigProps) {
       });
     });
 
-    // Duplo setTimeout garante que o layout está estabilizado após hidratação
+    // Duplo setTimeout garante layout estabilizado após montagem
     const t1 = setTimeout(() => ScrollTrigger.refresh(), 100);
     const t2 = setTimeout(() => ScrollTrigger.refresh(), 500);
 
@@ -108,19 +100,7 @@ export function SequenceRig({ children }: SequenceRigProps) {
       lenis.destroy();
       gsap.ticker.remove(rafCallback);
     };
-  }, [isMounted]);
-
-  // Antes de montar no cliente: retorna placeholder sem scroll nem spacer
-  if (!isMounted) {
-    return (
-      <CameraProgressContext.Provider value={camState}>
-        <div style={{ minHeight: '100vh' }} suppressHydrationWarning />
-      </CameraProgressContext.Provider>
-    );
-  }
-
-  const anim = getAnimationDefaults();
-  const isReduced = anim.duration < 0.2;
+  }, [isReduced]);
 
   if (isReduced) {
     return (

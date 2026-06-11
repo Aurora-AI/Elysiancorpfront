@@ -14,8 +14,10 @@ import { SequenceRigFull } from '../components/sequence/SequenceRigFull';
 		{/* SEÇÃO 1: STOP-MOTION ORIGINAL (GAZE FORENSIC V1.1.0) */}
 		<GazeForensicHero client:load />
 
-		{/* CINEMATIC SEQUENCE — chambers C01–C05 (single React root via SequenceRigFull) */}
-		<SequenceRigFull client:load />
+		{/* CINEMATIC SEQUENCE — client:only skips SSR entirely, preventing
+		    Suspense streaming corruption and hydration mismatch with the
+		    500vh spacer and position:fixed CameraStage */}
+		<SequenceRigFull client:only="react" />
 	</main>
 </Layout>
 
