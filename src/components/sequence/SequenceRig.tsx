@@ -35,7 +35,32 @@ export function SequenceRig({ children }: SequenceRigProps) {
   useEffect(() => {
     if (isReduced) return;
 
-    const lenis = new Lenis();
+    const lenis = new Lenis({
+      lerp: 0.1,
+      smoothWheel: true,
+    });
+
+    // ── CONTRATO CRÍTICO: scrollerProxy conecta Lenis ao ScrollTrigger ──
+    // Sem isso, ScrollTrigger lê window.scrollY enquanto Lenis intercepta
+    // os eventos, causando travamento total do scroll em produção SSG.
+    ScrollTrigger.scrollerProxy(document.documentElement, {
+      scrollTop(value) {
+        if (arguments.length && value !== undefined) {
+          lenis.scrollTo(value, { immediate: true });
+        }
+        return lenis.scroll;
+      },
+      getBoundingClientRect() {
+        return {
+          top: 0,
+          left: 0,
+          width: window.innerWidth,
+          height: window.innerHeight,
+        };
+      },
+      pinType: document.documentElement.style.transform ? 'transform' : 'fixed',
+    });
+
     lenis.on('scroll', ScrollTrigger.update);
     const rafCallback = (time: number) => lenis.raf(time * 1000);
     gsap.ticker.add(rafCallback);
@@ -61,13 +86,17 @@ export function SequenceRig({ children }: SequenceRigProps) {
       });
     });
 
-    // Recalculate scroll distances after the 500vh spacer is in the DOM.
-    // In production (no HMR), ScrollTrigger never auto-refreshes after client-only mount.
-    const rafId = requestAnimationFrame(() => ScrollTrigger.refresh());
+    // Em produção SSG (sem HMR), os componentes client:load podem não ter
+    // terminado de hidratar no primeiro requestAnimationFrame.
+    // Duplo setTimeout garante que o layout está estabilizado.
+    const t1 = setTimeout(() => ScrollTrigger.refresh(), 100);
+    const t2 = setTimeout(() => ScrollTrigger.refresh(), 500);
 
     return () => {
-      cancelAnimationFrame(rafId);
+      clearTimeout(t1);
+      clearTimeout(t2);
       ctx.revert();
+      ScrollTrigger.scrollerProxy(document.documentElement, undefined as any);
       lenis.destroy();
       gsap.ticker.remove(rafCallback);
     };
