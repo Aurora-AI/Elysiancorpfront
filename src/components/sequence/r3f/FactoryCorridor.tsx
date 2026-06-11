@@ -1,4 +1,4 @@
-import { lazy } from 'react';
+import { lazy, Suspense } from 'react';
 
 // SSR guard: import.meta.env.SSR is replaced at build time (true in SSR bundle, false in client bundle).
 // Rollup eliminates the dead branch, so FactoryCorridorInner (and @react-three/fiber) never enter the SSR bundle.
@@ -13,6 +13,8 @@ interface FactoryCorridorProps {
 
 export function FactoryCorridor({ chamberProgress, activeStage }: FactoryCorridorProps) {
   return (
-    <FactoryCorridorInner chamberProgress={chamberProgress} activeStage={activeStage} />
+    <Suspense fallback={null}>
+      <FactoryCorridorInner chamberProgress={chamberProgress} activeStage={activeStage} />
+    </Suspense>
   );
 }
