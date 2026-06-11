@@ -74,6 +74,8 @@ export function GazeForensicHero({ lang = 'pt-br' }: { lang?: string }) {
     const section    = containerRef.current;
     if (!elFinal || !elSubtitle || !section) return;
 
+    // Sovereign Reveal e content animations — sem ScrollTrigger interno,
+    // que conflitaria com o Lenis do SequenceRig.
     const isReduced = anim.duration < 0.2;
 
     // 1. Sovereign Reveal: Transition to Light (Parchment)
@@ -107,22 +109,6 @@ export function GazeForensicHero({ lang = 'pt-br' }: { lang?: string }) {
         delay: 1.2 
       }
     );
-
-    // 3. Scroll effects
-    const ctx = gsap.context(() => {
-      gsap.to(flickerRef.current, {
-        opacity: 0,
-        y: -150,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: true,
-        },
-      });
-    });
-    return () => ctx.revert();
   }, [isFinalState]);
 
   return (
