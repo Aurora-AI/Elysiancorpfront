@@ -74,8 +74,8 @@ export function C02_FailClosed() {
         backgroundColor: '#000000',
       }}
     >
-      <div className="absolute left-[8%] top-1/2 -translate-y-1/2 max-w-[600px] space-y-6">
-        <span className="t-label text-[13px] block" style={{ color: 'var(--text-muted-dark)', letterSpacing: '0.4em' }}>
+      <div className="absolute left-[8%] top-1/2 -translate-y-1/2 max-w-[600px] space-y-[21px]">
+        <span className="t-label text-[13px] block" style={{ color: 'rgba(156,163,175,0.5)', letterSpacing: '0.4em' }}>
           [ 02 // THE METHOD ]
         </span>
 
@@ -86,12 +86,12 @@ export function C02_FailClosed() {
           </span>
         </h2>
 
-        <p className="t-mono text-[13px] leading-relaxed" style={{ color: 'var(--text-secondary-dark)', maxWidth: '560px', textTransform: 'none', letterSpacing: 'normal' }}>
+        <p className="t-mono text-[13px] leading-relaxed" style={{ color: 'rgba(156,163,175,0.6)', maxWidth: '560px', textTransform: 'none', letterSpacing: 'normal' }}>
           We study controlled agency: systems that can reason, plan and simulate,
           but cannot mutate production without deterministic gates.
         </p>
 
-        <div className="flex flex-wrap gap-3 pt-2">
+        <div className="flex flex-wrap gap-[13px] pt-[8px]">
           {HUD_PILLARS.map((p) => (
             <span
               key={p}

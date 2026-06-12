@@ -22,8 +22,8 @@ export function C01_Dispersion() {
       }}
     >
       {/* Left: editorial headline */}
-      <div className="absolute left-[8%] top-1/2 -translate-y-1/2 max-w-[500px] space-y-6">
-        <span className="t-label text-[13px] block" style={{ color: 'var(--text-muted)', letterSpacing: '0.4em' }}>
+      <div className="absolute left-[8%] top-1/2 -translate-y-1/2 max-w-[500px] space-y-[21px]">
+        <span className="t-label text-[13px] block" style={{ color: 'rgba(26,26,23,0.4)', letterSpacing: '0.4em' }}>
           [ 01 // THE CATEGORY PROBLEM ]
         </span>
         <h2 className="t-display leading-[0.95] tracking-tight" style={{ fontSize: 'clamp(2.8rem,7vw,5rem)', color: 'var(--ink)' }}>
@@ -31,7 +31,7 @@ export function C01_Dispersion() {
           escalar respostas.<br />
           <span className="t-accent">Nós construímos controle.</span>
         </h2>
-        <p className="t-editorial text-[21px] leading-relaxed" style={{ color: 'var(--text-secondary)', maxWidth: '400px' }}>
+        <p className="t-editorial text-[21px] leading-relaxed" style={{ color: 'rgba(26,26,23,0.6)', maxWidth: '400px' }}>
           Empresas não sofrem por falta de dados. Sofrem por{' '}
           <strong style={{ color: 'var(--ink)' }}>perda de contexto</strong>.
         </p>
