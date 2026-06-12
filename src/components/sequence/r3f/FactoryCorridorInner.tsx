@@ -68,7 +68,7 @@ interface FactoryCorridorInnerProps {
 export function FactoryCorridorInner({ chamberProgress, activeStage }: FactoryCorridorInnerProps) {
   return (
     <Canvas
-      camera={{ position: [0, 0, 5], fov: 55 }}
+      camera={{ position: [0, 0, 5], fov: 50 }}
       style={{ width: '100%', height: '100%', background: 'transparent' }}
       gl={{ alpha: true, antialias: true }}
     >

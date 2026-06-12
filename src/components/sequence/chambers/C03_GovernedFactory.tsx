@@ -42,8 +42,8 @@ export function C03_GovernedFactory() {
       }}
     >
       {/* Left: Álvaro narrative */}
-      <div className="absolute left-[8%] top-1/2 -translate-y-1/2 z-10 max-w-[380px] space-y-[21px]">
-        <span className="t-label text-[13px] block" style={{ color: 'rgba(156,163,175,0.5)', letterSpacing: '0.4em' }}>
+      <div className="absolute left-[8%] top-1/2 -translate-y-1/2 z-10 max-w-[380px] space-y-6">
+        <span className="t-label text-[13px] block" style={{ color: 'var(--text-muted-dark)', letterSpacing: '0.4em' }}>
           [ 03 // THE GOVERNED FACTORY ]
         </span>
         <h2 className="t-display leading-[1.05]" style={{ fontSize: 'clamp(2rem,4.5vw,3.4rem)', color: '#E5E7EB' }}>
@@ -51,7 +51,7 @@ export function C03_GovernedFactory() {
           simula e{' '}
           <span className="t-accent" style={{ color: 'var(--moss-bright)' }}>propõe.</span>
         </h2>
-        <p className="t-editorial text-[16px] leading-relaxed" style={{ color: 'rgba(156,163,175,0.6)' }}>
+        <p className="t-editorial text-[16px] leading-relaxed" style={{ color: 'var(--text-secondary-dark)' }}>
           A produção só muda com gates determinísticos, QA formal e aprovação humana.
         </p>
       </div>

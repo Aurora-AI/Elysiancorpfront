@@ -11,7 +11,7 @@ export interface ChamberWindow {
 
 const TOTAL = 5;
 const FADE_BAND = 0.08;
-const OPACITY_POWER = 1.8;
+const OPACITY_POWER = 2.5;
 const FOCUS_THRESHOLD = 0.4;
 
 export function useChamberWindow(chamberIndex: number): ChamberWindow {
