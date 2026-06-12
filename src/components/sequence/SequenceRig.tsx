@@ -16,6 +16,27 @@ import { getAnimationDefaults } from '../../lib/animations';
 gsap.registerPlugin(ScrollTrigger);
 
 const CHAMBER_COUNT = 5;
+const WORLD_TONE_STOPS = [
+  { progress: 0, background: '#F8F7F3', color: '#1A1A17' },
+  { progress: 0.2, background: '#000000', color: '#F2F2F2' },
+  { progress: 0.6, background: '#F8F7F3', color: '#1A1A17' },
+  { progress: 0.8, background: '#000000', color: '#F2F2F2' },
+] as const;
+
+function interpolateWorldTone(progress: number) {
+  const nextIndex = WORLD_TONE_STOPS.findIndex((stop) => stop.progress >= progress);
+  if (nextIndex <= 0) return WORLD_TONE_STOPS[0];
+  if (nextIndex === -1) return WORLD_TONE_STOPS[WORLD_TONE_STOPS.length - 1];
+
+  const previous = WORLD_TONE_STOPS[nextIndex - 1];
+  const next = WORLD_TONE_STOPS[nextIndex];
+  const localProgress = (progress - previous.progress) / (next.progress - previous.progress);
+
+  return {
+    background: gsap.utils.interpolate(previous.background, next.background, localProgress),
+    color: gsap.utils.interpolate(previous.color, next.color, localProgress),
+  };
+}
 
 interface SequenceRigProps {
   children: ReactNode;
@@ -77,6 +98,15 @@ export function SequenceRig({ children }: SequenceRigProps) {
           const progress = self.progress;
           const activeChamber = progressToChamber(progress, CHAMBER_COUNT);
           const worldTone = chamberToWorldTone(activeChamber);
+
+          // Drive the world colors from absolute scroll progress so the body and
+          // chamber crossfades share the same frame and cannot expose a stale canvas.
+          const tone = interpolateWorldTone(progress);
+          gsap.set(document.body, {
+            backgroundColor: tone.background,
+            color: tone.color,
+          });
+
           setCamState({ progress, activeChamber, worldTone });
         },
         snap: {
