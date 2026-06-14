@@ -4,9 +4,11 @@ import { GazeForensicHero } from '../components/hero/GazeForensicHero';
 import { MagneticCursor } from '../components/cursor/MagneticCursor';
 import { Header } from '../components/ui/Header';
 import { SequenceRigFull } from '../components/sequence/SequenceRigFull';
+import { GlobalNoiseCanvas } from '../components/sequence/GlobalNoiseCanvas';
 ---
 
 <Layout title="ElysianCorp | Sovereign Intelligence Architecture">
+	<GlobalNoiseCanvas client:only="react" />
 	<MagneticCursor client:load />
 	<Header client:load />
 

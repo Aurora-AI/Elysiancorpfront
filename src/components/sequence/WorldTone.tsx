@@ -7,7 +7,7 @@ const DEBOUNCE_MS = 200;
 
 const WORLD_COLORS: Record<WorldToneType, { bg: string; color: string }> = {
   light: { bg: '#F8F7F3', color: '#1A1A17' },
-  dark:  { bg: '#000000', color: '#F2F2F2' },
+  dark:  { bg: '#0D0D0C', color: '#E5E7EB' },
 };
 
 export function WorldTone() {

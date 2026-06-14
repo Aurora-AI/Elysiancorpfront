@@ -9,19 +9,19 @@ export function C05_Category() {
     <div
       style={isReduced ? {
         position: 'relative', height: '100vh', width: '100%', flexShrink: 0,
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        backgroundColor: '#000000',
+        display: 'flex', alignItems: 'center', justifyContent: 'flex-start',
+        backgroundColor: '#0D0D0C',
       } : {
         position: 'absolute', inset: 0,
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        display: 'flex', alignItems: 'center', justifyContent: 'flex-start',
         transform: `scale(${scale})`,
         filter: `blur(${blur}px)`,
         opacity,
         willChange: 'transform, filter, opacity',
-        backgroundColor: '#000000',
+        backgroundColor: '#0D0D0C',
       }}
     >
-      <div className="max-w-[860px] w-full px-[8vw] flex flex-col items-center text-center space-y-[34px]">
+      <div className="max-w-[860px] w-full px-[8vw] flex flex-col items-start text-left space-y-[34px]">
         <span className="t-label text-[13px]" style={{ color: 'rgba(156,163,175,0.4)', letterSpacing: '0.4em' }}>
           [ 05 // THE CATEGORY ]
         </span>
@@ -45,9 +45,9 @@ export function C05_Category() {
           style={{
             color: 'var(--moss-bright)',
             border: '1px solid rgba(78,91,75,0.5)',
-            borderRadius: '2px',
+            borderRadius: '0px',
             textDecoration: 'none',
-            transition: 'background 0.5s ease, color 0.5s ease',
+            transition: 'background 120ms steps(3), color 120ms steps(3)',
           }}
           onMouseEnter={(e) => {
             (e.currentTarget as HTMLAnchorElement).style.background = 'rgba(78,91,75,0.12)';

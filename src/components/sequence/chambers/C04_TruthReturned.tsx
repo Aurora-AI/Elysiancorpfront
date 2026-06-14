@@ -46,9 +46,9 @@ export function C04_TruthReturned() {
             key={p.name}
             className="relative p-[21px]"
             style={{
-              border: '1px solid rgba(26,26,23,0.08)',
-              background: '#FFFFFF',
-              boxShadow: '0 21px 55px -13px rgba(0,0,0,0.08)',
+              border: '0.5px solid rgba(26,26,23,0.12)',
+              background: 'rgba(255,255,255,0.4)',
+              borderRadius: '0px',
               marginTop: i === 1 ? '21px' : 0,
             }}
           >
