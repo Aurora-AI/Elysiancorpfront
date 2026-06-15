@@ -57,3 +57,21 @@ export function scanSecrets(text) {
   }
   return hits;
 }
+
+const MAX_EXCERPT_LINES = 40;
+
+export function extractExcerpt(text, lines) {
+  const all = text.split(/\r?\n/);
+  if (lines) {
+    const [start, end] = lines;
+    return all.slice(start - 1, end).join('\n');
+  }
+  return all.slice(0, MAX_EXCERPT_LINES).join('\n');
+}
+
+export function sanitize(text) {
+  return text
+    .replace(/[A-Za-z]:\\[^\s'"]+/g, '‹path›')   // Windows abs paths
+    .replace(/[A-Za-z]:\/[^\s'"]+/g, '‹path›')
+    .replace(/\/(?:home|Users)\/[^\s'"]+/g, '‹path›'); // *nix home paths
+}
