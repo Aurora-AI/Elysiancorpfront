@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { isMeshNode } from '@/data/alvaro-mesh.types';
+import { MESH_NODES, MESH_EDGES } from '@/data/alvaro-mesh';
 
 describe('isMeshNode', () => {
   it('accepts a valid live node with evidenceRef', () => {
@@ -41,5 +42,49 @@ describe('isMeshNode', () => {
   it('rejects a non-object', () => {
     expect(isMeshNode(null)).toBe(false);
     expect(isMeshNode('string')).toBe(false);
+  });
+});
+
+describe('alvaro-mesh data', () => {
+  it('has exactly 5 loop nodes', () => {
+    expect(MESH_NODES.filter(n => n.kind === 'loop')).toHaveLength(5);
+  });
+
+  it('has exactly 6 principle nodes', () => {
+    expect(MESH_NODES.filter(n => n.kind === 'principle')).toHaveLength(6);
+  });
+
+  it('every live node has an evidenceRef', () => {
+    for (const node of MESH_NODES) {
+      if (node.status === 'live') {
+        expect(node.evidenceRef, `node ${node.id} is live but missing evidenceRef`).toBeTruthy();
+      }
+    }
+  });
+
+  it('every roadmap node has a phase', () => {
+    for (const node of MESH_NODES) {
+      if (node.status === 'roadmap') {
+        expect(node.phase, `node ${node.id} is roadmap but missing phase`).toBeTruthy();
+      }
+    }
+  });
+
+  it('all nodes pass isMeshNode guard', () => {
+    for (const node of MESH_NODES) {
+      expect(isMeshNode(node), `node ${node.id} failed guard`).toBe(true);
+    }
+  });
+
+  it('has 5 loop edges and 6 governs edges', () => {
+    expect(MESH_EDGES.filter(e => e.kind === 'loop')).toHaveLength(5);
+    expect(MESH_EDGES.filter(e => e.kind === 'governs')).toHaveLength(6);
+  });
+
+  it('every principle node governs a valid loop node id', () => {
+    const loopIds = new Set(MESH_NODES.filter(n => n.kind === 'loop').map(n => n.id));
+    for (const node of MESH_NODES.filter(n => n.kind === 'principle')) {
+      expect(loopIds.has(node.governs ?? ''), `principle ${node.id} governs unknown id "${node.governs}"`).toBe(true);
+    }
   });
 });
