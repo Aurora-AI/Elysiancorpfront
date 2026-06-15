@@ -55,7 +55,7 @@ export function AlvaroMesh({ lang = 'en' }: Props) {
 
     return () => {
       tl.kill();
-      ScrollTrigger.getAll().forEach(t => t.kill());
+      tl.scrollTrigger?.kill();
     };
   }, [prefersReduced]);
 
