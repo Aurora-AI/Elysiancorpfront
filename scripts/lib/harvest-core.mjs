@@ -35,25 +35,33 @@ export function gitProvenance(repoRoot, relPath) {
     if (!commit) throw new Error('no commit');
     return { commit, timestamp };
   } catch {
-    return { commit: 'UNTRACKED', timestamp: new Date(statSync(path.resolve(repoRoot, relPath)).mtime).toISOString() };
+    try {
+      return { commit: 'UNTRACKED', timestamp: new Date(statSync(path.resolve(repoRoot, relPath)).mtime).toISOString() };
+    } catch {
+      return { commit: 'UNTRACKED', timestamp: new Date(0).toISOString() };
+    }
   }
 }
 
 export { readFileSync };
 
 const SECRET_PATTERNS = [
-  { name: 'aws-access-key', re: /AKIA[0-9A-Z]{16}/ },
-  { name: 'private-key-header', re: /-----BEGIN (?:RSA |EC |OPENSSH |DSA )?PRIVATE KEY-----/ },
-  { name: 'bearer-token', re: /Bearer\s+[A-Za-z0-9._-]{24,}/ },
-  { name: 'generic-assigned-secret', re: /(?:api[_-]?key|secret|token|password)\s*[:=]\s*['"][A-Za-z0-9/+_-]{16,}['"]/i },
-  { name: 'long-hex', re: /\b[0-9a-f]{40,}\b/i },
+  { name: 'aws-access-key', re: /AKIA[0-9A-Z]{16}/g },
+  { name: 'private-key-header', re: /-----BEGIN (?:RSA |EC |OPENSSH |DSA )?PRIVATE KEY-----/g },
+  { name: 'bearer-token', re: /Bearer\s+[A-Za-z0-9._-]{24,}/g },
+  // Quoted assignment: optional surrounding quotes on the key (JSON), optional
+  // prefix/suffix around the keyword (DATABASE_PASSWORD, access_token_value),
+  // a : or = separator, then a QUOTED value of >=12 chars (any non-quote chars).
+  { name: 'assigned-secret', re: /["']?[\w.-]*?(?:api[_-]?key|apikey|secret|token|password|passwd|pwd)[\w.-]*?["']?\s*[:=]\s*["'][^"']{12,}["']/gi },
+  { name: 'long-hex', re: /\b[0-9a-f]{40,}\b/gi },
 ];
 
 export function scanSecrets(text) {
   const hits = [];
   for (const { name, re } of SECRET_PATTERNS) {
-    const m = text.match(re);
-    if (m) hits.push({ name, match: m[0].slice(0, 12) + '…' });
+    for (const m of text.matchAll(re)) {
+      hits.push({ name, match: m[0].slice(0, 12) + '…' });
+    }
   }
   return hits;
 }
