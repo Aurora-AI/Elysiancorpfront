@@ -31,9 +31,9 @@ export function EvidenceConsole() {
           <div className="flex justify-between items-center">
             <span className="font-technical-sm text-technical-sm text-sovereign-ink/60 tracking-widest uppercase">{HEADER.label}</span>
             <span className="flex gap-fib-8 font-technical-sm text-technical-sm">
-              <button type="button" onClick={() => setLang('en')} className={lang === 'en' ? 'text-elysian-moss-light' : 'text-sovereign-ink/40'}>EN</button>
+              <button type="button" aria-pressed={lang === 'en'} onClick={() => setLang('en')} className={lang === 'en' ? 'text-elysian-moss-light' : 'text-sovereign-ink/40'}>EN</button>
               <span className="text-sovereign-ink/20">/</span>
-              <button type="button" onClick={() => setLang('pt')} className={lang === 'pt' ? 'text-elysian-moss-light' : 'text-sovereign-ink/40'}>PT</button>
+              <button type="button" aria-pressed={lang === 'pt'} onClick={() => setLang('pt')} className={lang === 'pt' ? 'text-elysian-moss-light' : 'text-sovereign-ink/40'}>PT</button>
             </span>
           </div>
           <h2 className="font-display-lg text-display-lg md:text-[72px] md:leading-[0.95] max-w-4xl text-sovereign-ink">{HEADER.title[lang]}</h2>
@@ -60,7 +60,7 @@ export function EvidenceConsole() {
         </div>
       </div>
 
-      {current && (
+      {current && PROV[current.id] && (
         <EvidenceModal
           open={!!openId}
           title={current.title[lang]}
