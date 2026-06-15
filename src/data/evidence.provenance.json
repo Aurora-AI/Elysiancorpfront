@@ -1,0 +1,58 @@
+{
+  "deterministic-gate": {
+    "sourcePath": "CRM/libs/trustware/src/engine/engine.ts",
+    "sha256": "137dd40734c3e14b05d0e9eaa72431f2cc1573d3b6e5e661ead1edae5269d018",
+    "commit": "UNTRACKED",
+    "timestamp": "2026-02-05T17:19:53.074Z",
+    "asset": "/evidence/deterministic-gate.txt",
+    "kind": "code"
+  },
+  "human-approval": {
+    "sourcePath": "AuroraOS/factory/frontend_synthesis/run_os019_m3_rendered_candidate_gate.py",
+    "sha256": "23f580a1f423ba406a55b0c13617d464a5700c102d87ce075ab2111a11376c38",
+    "commit": "54a0fe0",
+    "timestamp": "2026-06-08T14:29:31-03:00",
+    "asset": "/evidence/human-approval.txt",
+    "kind": "code"
+  },
+  "persisted-evidence": {
+    "sourcePath": "AuroraOS/factory/frontend_synthesis/output_synthesis/OS-019/M3_QA_REVIEW.md",
+    "sha256": "9fb56f9a9bbeca072c9027015336d54d751cd298ffc0e05b8659290d05c9b56c",
+    "commit": "7bff08c",
+    "timestamp": "2026-06-08T13:21:21-03:00",
+    "asset": "/evidence/persisted-evidence.txt",
+    "kind": "report"
+  },
+  "adversarial-qa": {
+    "sourcePath": "AuroraOS/factory/frontend_synthesis/output_synthesis/OS-019/M4.1_QA_REVIEW.md",
+    "sha256": "64dd3c14143bae24a07d87d98e7f46da4003bca1c40bb20776e7febe41dc8d75",
+    "commit": "2045b12",
+    "timestamp": "2026-06-09T06:33:01-03:00",
+    "asset": "/evidence/adversarial-qa.txt",
+    "kind": "report"
+  },
+  "readonly-observability": {
+    "sourcePath": "Ozzmosis/apps/aurora-observability-mcp-gateway/src/aurora/observability_mcp_gateway/server.py",
+    "sha256": "0bc9d10b53f43ac959f9d83f6cbed8970384d7102d959fde0eebf825f5385bbe",
+    "commit": "UNTRACKED",
+    "timestamp": "2026-05-24T12:47:45.704Z",
+    "asset": "/evidence/readonly-observability.txt",
+    "kind": "code"
+  },
+  "micro-steps": {
+    "sourcePath": "Ozzmosis/docs/AGENTS/OS_TEMPLATE.md",
+    "sha256": "3922753fef02c431a45d490c6961522aa8286c2d326014512962aa61b21a5df7",
+    "commit": "UNTRACKED",
+    "timestamp": "2026-06-02T20:49:01.208Z",
+    "asset": "/evidence/micro-steps.txt",
+    "kind": "report"
+  },
+  "pii-tokenization": {
+    "sourcePath": "ElysianLex/backend/lex_core/pii/tokenizer.py",
+    "sha256": "4058bff02c09351738650859ddcff42da720280f0c7212d927fa834568962b4a",
+    "commit": "UNTRACKED",
+    "timestamp": "2026-05-05T19:03:18.681Z",
+    "asset": "/evidence/pii-tokenization.txt",
+    "kind": "code"
+  }
+}

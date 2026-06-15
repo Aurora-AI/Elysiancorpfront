@@ -1,0 +1,40 @@
+"""
+OS-019 / M3 — Rendered Candidate Certification + HumanPromotionGate
+====================================================================
+
+Pipeline:
+  TSX Candidate (M2) → Render Sandbox → Playwright Screenshot → Perceptual QA
+  → SandboxGate → promotion_metadata.json → HumanPromotionGate (PAUSE)
+
+Invariants:
+  - promotion_allowed MUST be false (never set by this script)
+  - promotion_authorized MUST be false (never set by this script)
+  - HumanPromotionHalt MUST be raised before exit
+  - reducedMotion must survive as a runtime expression (not hardcoded)
+  - No Exo Ape text, assets, or marks in any output
+"""
+
+import asyncio
+import hashlib
+import json
+import os
+import shutil
+import sys
+import time
+from pathlib import Path
+
+# ──────────────────────────────────────────────────────────────────────────────
+# sys.path — identical pattern to run_os019_m2_component_tree_tsx.py
+# ──────────────────────────────────────────────────────────────────────────────
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.extend([
+    os.path.join(BASE_DIR, "contracts"),
+    os.path.join(BASE_DIR, "factory"),
+    os.path.join(BASE_DIR, "orchestrator"),
+    os.path.join(BASE_DIR, "synthesizer"),
+    os.path.join(BASE_DIR, "bff"),
+    os.path.join(BASE_DIR, "../sandbox"),
+])
+
+from factory_contracts import ComponentTree, StandaloneRenderBundle
+from alvaro_contracts import FrontendCodeSpec

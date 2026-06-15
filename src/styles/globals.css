@@ -33,6 +33,54 @@
 
   /* Grid */
   --grid-template-columns-13: repeat(13, minmax(0, 1fr));
+
+  /* ── Evidence Ledger vocabulary (prototype Stitch) ───────────────── */
+  --color-sovereign-bg: #000000;
+  --color-sovereign-ink: #F2F2F2;
+  --color-parchment-bg: #F8F7F3;
+  --color-parchment-ink: #1A1A17;
+  --color-elysian-moss-light: #4E5B4B;
+  --color-elysian-moss-dark: #6B7A66;
+
+  /* Fibonacci spacing (px) */
+  --spacing-fib-1: 1px;  --spacing-fib-2: 2px;  --spacing-fib-3: 3px;
+  --spacing-fib-5: 5px;  --spacing-fib-8: 8px;  --spacing-fib-13: 13px;
+  --spacing-fib-21: 21px; --spacing-fib-34: 34px; --spacing-fib-55: 55px;
+  --spacing-fib-89: 89px;
+
+  /* Named font sizes */
+  --text-technical-sm: 13px;
+  --text-technical-sm--line-height: 120%;
+  --text-technical-sm--letter-spacing: 0.05em;
+  --text-body-md: 16px;
+  --text-body-md--line-height: 150%;
+  --text-body-lg: 18px;
+  --text-body-lg--line-height: 160%;
+  --text-headline-md: 34px;
+  --text-headline-md--line-height: 110%;
+  --text-display-lg: 55px;
+  --text-display-lg--line-height: 100%;
+  --text-display-lg--letter-spacing: -0.02em;
+  --text-legal-xs: 12px;
+  --text-legal-xs--line-height: 140%;
+
+  /* Font-family utilities reused by prototype names */
+  --font-display-xl: 'Instrument Serif', serif;
+  --font-display-lg: 'Instrument Serif', serif;
+  --font-headline-md: 'Instrument Serif', serif;
+  --font-body-lg: 'Public Sans', sans-serif;
+  --font-body-md: 'Public Sans', sans-serif;
+  --font-technical-sm: 'JetBrains Mono', monospace;
+  --font-legal-xs: 'Crimson Pro', serif;
+}
+
+/* ── Evidence Ledger: halftone grain texture ───────────────────────── */
+.bg-halftone-grain { position: relative; }
+.bg-halftone-grain::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='grainNoise'><feTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23grainNoise)'/></svg>");
+  opacity: 0.02; pointer-events: none; z-index: 10;
 }
 
 /* ─── BRAND FONT — LANCHE ────────────────────────────────────────────── */

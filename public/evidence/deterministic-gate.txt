@@ -1,0 +1,18 @@
+const ENGINE_VERSION = "1.0.0";
+
+/**
+ * Deterministic, side-effect-free Trustware engine.
+ * No filesystem, no network, no time-based decisions.
+ */
+export class DefaultTrustwareEngine implements TrustwareEngine {
+  public readonly engine_version = ENGINE_VERSION;
+
+  public evaluate(req: TrustwareRequest): TrustwareVerdict {
+    const issues: TrustwareIssue[] = [];
+    const reasonCodes: string[] = [];
+
+    try {
+      // 1) Basic shape validation
+      if (!req || typeof req !== "object") {
+        return this.deny("REQ_INVALID_TYPE", "Request must be an object");
+      }

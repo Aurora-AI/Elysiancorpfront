@@ -16,8 +16,8 @@ function FailGate({ isFocused }: { isFocused: boolean }) {
     if (!attempt || !lock) return;
 
     const tl = gsap.timeline({ repeat: -1, repeatDelay: 3.5, paused: true });
-    tl.to(attempt, { x: 55, duration: 0.9, ease: 'power2.inOut' })
-      .to(lock, { opacity: 1, scale: 1, duration: 0.25, ease: 'back.out(2)' }, '-=0.1')
+    tl.to(attempt, { x: 55, duration: 0.7, ease: 'power3.inOut' })
+      .to(lock, { opacity: 1, scale: 1, duration: 0.15, ease: 'power4.out' }, '-=0.05')
       .to(attempt, { x: 0, opacity: 0.4, duration: 0.6, ease: 'power3.in' }, '+=0.6')
       .set([attempt, lock], { opacity: 1, scale: 1 })
       .to(lock, { opacity: 0, scale: 0.8, duration: 0.1 });
@@ -43,8 +43,8 @@ function FailGate({ isFocused }: { isFocused: boolean }) {
         className="t-mono text-[11px] px-3 py-1"
         style={{
           color: '#984731',
-          border: '1px solid rgba(152,71,49,0.4)',
-          borderRadius: '2px',
+          border: '0.5px solid rgba(152,71,49,0.4)',
+          borderRadius: '0px',
           opacity: 0,
           transform: 'scale(0.8)',
           display: 'inline-block',
@@ -64,18 +64,18 @@ export function C02_FailClosed() {
     <div
       style={isReduced ? {
         position: 'relative', height: '100vh', width: '100%', flexShrink: 0,
-        backgroundColor: '#000000',
+        backgroundColor: '#0D0D0C',
       } : {
         position: 'absolute', inset: 0,
         transform: `scale(${scale})`,
         filter: `blur(${blur}px)`,
         opacity,
         willChange: 'transform, filter, opacity',
-        backgroundColor: '#000000',
+        backgroundColor: '#0D0D0C',
       }}
     >
-      <div className="absolute left-[8%] top-1/2 -translate-y-1/2 max-w-[600px] space-y-6">
-        <span className="t-label text-[13px] block" style={{ color: 'var(--text-muted-dark)', letterSpacing: '0.4em' }}>
+      <div className="absolute left-[8%] top-1/2 -translate-y-1/2 max-w-[600px] space-y-[21px]">
+        <span className="t-label text-[13px] block" style={{ color: 'rgba(156,163,175,0.5)', letterSpacing: '0.4em' }}>
           [ 02 // THE METHOD ]
         </span>
 
@@ -86,20 +86,20 @@ export function C02_FailClosed() {
           </span>
         </h2>
 
-        <p className="t-mono text-[13px] leading-relaxed" style={{ color: 'var(--text-secondary-dark)', maxWidth: '560px', textTransform: 'none', letterSpacing: 'normal' }}>
+        <p className="t-mono text-[13px] leading-relaxed" style={{ color: 'rgba(156,163,175,0.6)', maxWidth: '560px', textTransform: 'none', letterSpacing: 'normal' }}>
           We study controlled agency: systems that can reason, plan and simulate,
           but cannot mutate production without deterministic gates.
         </p>
 
-        <div className="flex flex-wrap gap-3 pt-2">
+        <div className="flex flex-wrap gap-[13px] pt-[8px]">
           {HUD_PILLARS.map((p) => (
             <span
               key={p}
               className="t-label text-[9px] px-3 py-1"
               style={{
                 color: 'var(--moss-bright)',
-                border: '1px solid rgba(78,91,75,0.4)',
-                borderRadius: '2px',
+                border: '0.5px solid rgba(78,91,75,0.4)',
+                borderRadius: '0px',
               }}
             >
               {p}

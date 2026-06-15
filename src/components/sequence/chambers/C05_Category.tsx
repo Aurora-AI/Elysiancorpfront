@@ -9,20 +9,20 @@ export function C05_Category() {
     <div
       style={isReduced ? {
         position: 'relative', height: '100vh', width: '100%', flexShrink: 0,
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        backgroundColor: '#000000',
+        display: 'flex', alignItems: 'center', justifyContent: 'flex-start',
+        backgroundColor: '#0D0D0C',
       } : {
         position: 'absolute', inset: 0,
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        display: 'flex', alignItems: 'center', justifyContent: 'flex-start',
         transform: `scale(${scale})`,
         filter: `blur(${blur}px)`,
         opacity,
         willChange: 'transform, filter, opacity',
-        backgroundColor: '#000000',
+        backgroundColor: '#0D0D0C',
       }}
     >
-      <div className="max-w-[860px] w-full px-[8vw] flex flex-col items-center text-center space-y-[34px]">
-        <span className="t-label text-[13px]" style={{ color: 'var(--text-muted-dark)', letterSpacing: '0.4em' }}>
+      <div className="max-w-[860px] w-full px-[8vw] flex flex-col items-start text-left space-y-[34px]">
+        <span className="t-label text-[13px]" style={{ color: 'rgba(156,163,175,0.4)', letterSpacing: '0.4em' }}>
           [ 05 // THE CATEGORY ]
         </span>
 
@@ -32,7 +32,7 @@ export function C05_Category() {
           Validada.
         </h2>
 
-        <p className="t-editorial text-[18px] leading-relaxed" style={{ color: 'var(--text-secondary-dark)', maxWidth: '520px' }}>
+        <p className="t-editorial text-[18px] leading-relaxed" style={{ color: 'rgba(156,163,175,0.7)', maxWidth: '520px' }}>
           Não somos CRM, copiloto ou plataforma de IA.
           Construímos a infraestrutura que transforma{' '}
           <span style={{ color: 'rgba(242,242,242,0.9)' }}>conhecimento confiável</span>{' '}
@@ -45,9 +45,9 @@ export function C05_Category() {
           style={{
             color: 'var(--moss-bright)',
             border: '1px solid rgba(78,91,75,0.5)',
-            borderRadius: '2px',
+            borderRadius: '0px',
             textDecoration: 'none',
-            transition: 'background 0.5s ease, color 0.5s ease',
+            transition: 'background 120ms steps(3), color 120ms steps(3)',
           }}
           onMouseEnter={(e) => {
             (e.currentTarget as HTMLAnchorElement).style.background = 'rgba(78,91,75,0.12)';
@@ -61,9 +61,9 @@ export function C05_Category() {
           [ REQUEST PARTNERSHIP ]
         </a>
 
-        <div className="flex gap-6 pt-6" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+        <div className="flex gap-[21px] pt-[21px]" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
           {['ARTIFACT: 2026.Q2.CERT', 'STRATEGY: MAD LAB AURORA', 'INDUSTRIAL INTELLIGENCE'].map((label) => (
-            <span key={label} className="t-mono text-[9px]" style={{ color: 'var(--text-muted-dark)', opacity: 0.4 }}>
+            <span key={label} className="t-mono text-[9px]" style={{ color: 'rgba(156,163,175,0.25)' }}>
               {label}
             </span>
           ))}

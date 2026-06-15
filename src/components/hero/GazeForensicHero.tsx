@@ -115,7 +115,7 @@ export function GazeForensicHero({ lang = 'pt-br' }: { lang?: string }) {
     <section
       ref={containerRef}
       className="relative h-screen w-full overflow-hidden flex items-center justify-center transition-colors duration-1000"
-      style={{ backgroundColor: '#000000' }}
+      style={{ backgroundColor: '#0D0D0C' }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

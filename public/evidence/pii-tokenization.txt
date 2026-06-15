@@ -1,0 +1,20 @@
+"""
+Compatibility shim for the canonical PII tokenizer implementation.
+
+This legacy module now delegates to lex_core.pii.tokenizer so that every
+tokenization flow uses the AuroraVault-backed secret source.
+"""
+
+from lex_core.pii.tokenizer import (  # noqa: F401
+    PIIVault,
+    assert_pii_tokenization_key_configured,
+    detokenize_text,
+    tokenize_text,
+)
+
+__all__ = [
+    "PIIVault",
+    "assert_pii_tokenization_key_configured",
+    "detokenize_text",
+    "tokenize_text",
+]

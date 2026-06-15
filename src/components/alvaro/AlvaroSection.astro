@@ -1,0 +1,34 @@
+---
+import { AlvaroMesh } from './AlvaroMesh';
+---
+
+<section
+  id="alvaro-mesh"
+  class="relative w-full bg-[#F8F7F3] py-[89px] px-[34px] overflow-hidden"
+>
+  <!-- Grain texture (same pattern as Evidence Ledger, inverted world) -->
+  <div
+    class="pointer-events-none absolute inset-0 opacity-[0.035] bg-halftone-grain"
+    aria-hidden="true"
+  />
+
+  <div class="max-w-7xl mx-auto relative z-10">
+    <!-- Section label -->
+    <div class="mb-[21px]">
+      <span class="font-mono text-[13px] uppercase tracking-widest text-[#9AA0A6]">
+        [ 03 // THE COGNITIVE MESH ]
+      </span>
+    </div>
+
+    <!-- Title -->
+    <h2 class="font-display text-[55px] md:text-[72px] leading-[0.95] text-[#1A1A17] mb-[13px] tracking-tight">
+      One governed mind.
+    </h2>
+    <p class="font-body text-[16px] text-[#4A4A44] max-w-xl mb-[55px] leading-relaxed">
+      Five cognitive steps. Six governing principles. Four running in production today.
+    </p>
+
+    <!-- React island — only mounts when visible in viewport -->
+    <AlvaroMesh client:visible />
+  </div>
+</section>

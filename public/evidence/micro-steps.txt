@@ -1,0 +1,40 @@
+# OS Template — Aurora/Ozzmosis
+
+Este template complementa `docs/Vault/OS/_templates/OS_OPEN_TEMPLATE.md` para OS executadas por agentes.
+
+## Continual Hardening Preflight
+
+Obrigatorio para OS de codigo MEDIO+:
+
+- [ ] Toolbelt Validation executado.
+- [ ] Reflexion Digest consultado.
+- [ ] Preflight fisico executado.
+- [ ] Fallow Pre-Code QA Sensor executado se escopo JS/TS.
+- [ ] Topology Impact planejado para patch candidate.
+- [ ] QA Learning Loop habilitado.
+- [ ] Evidence dir criado.
+- [ ] Indisponibilidades registradas como `FACTORY_TOOL_UNAVAILABLE` ou `FALLOW_TOOL_GAP`.
+
+Comandos minimos:
+
+```powershell
+npm -w @aurora/alvaro-contracts run validate:toolbelt
+npm -w @aurora/alvaro-contracts run reflexion:validate-digest
+```
+
+## Fallow Pre-Code QA Sensor
+
+Quando a OS tocar JS/TS/TSX/React/Node:
+
+- [ ] Rodar Fallow em modo read-only/dry-run quando a micro-etapa autorizar.
+- [ ] Nao executar `fix --yes`.
+- [ ] Nao executar `fix --force`.
+- [ ] Nao executar `fallow init`.
+- [ ] Nao criar `.fallowrc.json`.
+- [ ] Nao alterar lockfile.
+- [ ] Classificar achados como `BASELINE_RISK`, `CHANGESET_RISK`, `EXECUTION_REGRESSION`, `FALLOW_NOISE_OR_WONTFIX` ou `FALLOW_TOOL_GAP`.
+- [ ] Enviar achados relevantes ao QA como sinais, nao como veredito.
+
+Fallow nao e gate oficial e nao deve entrar em `e2e:validate`, `survival:validate` ou `prepublishOnly` nesta fase.
+
+## QA Learning Loop

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { mouseState } from '../../utils/mouse-state';
@@ -13,26 +13,14 @@ const IDLE_MS = 400;
 export function MagneticCursor() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [supportsFinePointer, setSupportsFinePointer] = useState(false);
 
   // Refs para quickTo
   const innerTo = useRef<{ x: Function; y: Function } | null>(null);
   const outerTo = useRef<{ x: Function; y: Function } | null>(null);
 
-  useEffect(() => {
-    const query = window.matchMedia('(pointer: fine)');
-    const update = () => setSupportsFinePointer(query.matches);
-    update();
-    query.addEventListener('change', update);
-    return () => query.removeEventListener('change', update);
-  }, []);
-
   useGSAP(() => {
-    if (!supportsFinePointer || !canvasRef.current) return;
-
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+    const canvas = canvasRef.current!;
+    const ctx = canvas.getContext('2d')!;
 
     const inner = { x: mouseState.x, y: mouseState.y };
     const outer = { x: mouseState.x, y: mouseState.y };
@@ -156,9 +144,7 @@ export function MagneticCursor() {
       window.removeEventListener('click', handleClick);
       window.removeEventListener('resize', resize);
     };
-  }, { scope: containerRef, dependencies: [supportsFinePointer] });
-
-  if (!supportsFinePointer) return null;
+  }, { scope: containerRef });
 
   return (
     <canvas

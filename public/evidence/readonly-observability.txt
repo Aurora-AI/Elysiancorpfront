@@ -1,0 +1,40 @@
+from __future__ import annotations
+
+from datetime import datetime, timezone
+from typing import Any, Callable, Dict, List
+
+from pydantic import BaseModel
+
+from .contracts import (
+    BottleneckSummary,
+    CostSummary,
+    IDEEngineTrace,
+    RecentFailure,
+    RegressionCandidateSuggestion,
+    TraceSummary,
+)
+from .ide_engine_bridge import IDEEngineTraceBridge
+from .ide_native_event_probe import create_ide_native_event_probe
+from .langfuse_client import SafeLangfuseReadClient
+from .otel_client import SafeOtelReadClient
+from .os_qa_trace_contracts import (
+    OSQADiagnosticSummary,
+    OSQAGateExecution,
+    OSQATraceLink,
+)
+from .os_qa_trace_service import OSQATraceService
+from .redaction import redact_payload
+
+
+READ_ONLY_TOOL_NAMES = (
+    "observability.get_trace_summary",
+    "observability.find_recent_failures",
+    "observability.get_cost_summary",
+    "observability.find_bottlenecks",
+    "observability.suggest_regression_case",
+    "observability.ide.list_traces",
+    "observability.ide.get_trace",
+    "observability.osqa.list_traces_by_os",
+    "observability.osqa.list_traces_by_micro_step",
+    "observability.osqa.list_gates_by_os",
+    "observability.osqa.list_qa_artifacts_by_os",

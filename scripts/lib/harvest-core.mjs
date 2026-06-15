@@ -1,0 +1,85 @@
+import { createHash } from 'node:crypto';
+import { execFileSync } from 'node:child_process';
+import { existsSync, statSync, readFileSync } from 'node:fs';
+import path from 'node:path';
+
+export function sha256(text) {
+  return createHash('sha256').update(text).digest('hex');
+}
+
+export function classifyKind(p) {
+  const ext = path.extname(p).toLowerCase();
+  if (ext === '.md') return 'report';
+  if (['.png', '.jpg', '.jpeg', '.webp'].includes(ext)) return 'image';
+  return 'code';
+}
+
+/** Resolve a claim source against the Aurora repo root. Throws if missing. */
+export function resolveSource(repoRoot, source) {
+  const abs = path.resolve(repoRoot, source.path);
+  if (!existsSync(abs)) {
+    throw new Error(`MISSING_SOURCE: ${source.path} (resolved ${abs})`);
+  }
+  const isDir = statSync(abs).isDirectory();
+  return { abs, isDir, kind: isDir ? 'code' : classifyKind(source.path) };
+}
+
+/** Last commit short SHA + ISO date for a path (git). Falls back gracefully. */
+export function gitProvenance(repoRoot, relPath) {
+  try {
+    const out = execFileSync(
+      'git', ['-C', repoRoot, 'log', '-1', '--format=%h|%cI', '--', relPath],
+      { encoding: 'utf8' },
+    ).trim();
+    const [commit, timestamp] = out.split('|');
+    if (!commit) throw new Error('no commit');
+    return { commit, timestamp };
+  } catch {
+    try {
+      return { commit: 'UNTRACKED', timestamp: new Date(statSync(path.resolve(repoRoot, relPath)).mtime).toISOString() };
+    } catch {
+      return { commit: 'UNTRACKED', timestamp: new Date(0).toISOString() };
+    }
+  }
+}
+
+export { readFileSync };
+
+const SECRET_PATTERNS = [
+  { name: 'aws-access-key', re: /AKIA[0-9A-Z]{16}/g },
+  { name: 'private-key-header', re: /-----BEGIN (?:RSA |EC |OPENSSH |DSA )?PRIVATE KEY-----/g },
+  { name: 'bearer-token', re: /Bearer\s+[A-Za-z0-9._-]{24,}/g },
+  // Quoted assignment: optional surrounding quotes on the key (JSON), optional
+  // prefix/suffix around the keyword (DATABASE_PASSWORD, access_token_value),
+  // a : or = separator, then a QUOTED value of >=12 chars (any non-quote chars).
+  { name: 'assigned-secret', re: /["']?[\w.-]*?(?:api[_-]?key|apikey|secret|token|password|passwd|pwd)[\w.-]*?["']?\s*[:=]\s*["'][^"']{12,}["']/gi },
+  { name: 'long-hex', re: /\b[0-9a-f]{40,}\b/gi },
+];
+
+export function scanSecrets(text) {
+  const hits = [];
+  for (const { name, re } of SECRET_PATTERNS) {
+    for (const m of text.matchAll(re)) {
+      hits.push({ name, match: m[0].slice(0, 12) + '…' });
+    }
+  }
+  return hits;
+}
+
+const MAX_EXCERPT_LINES = 40;
+
+export function extractExcerpt(text, lines) {
+  const all = text.split(/\r?\n/);
+  if (lines) {
+    const [start, end] = lines;
+    return all.slice(start - 1, end).join('\n');
+  }
+  return all.slice(0, MAX_EXCERPT_LINES).join('\n');
+}
+
+export function sanitize(text) {
+  return text
+    .replace(/[A-Za-z]:\\[^\s'"]+/g, '‹path›')   // Windows abs paths
+    .replace(/[A-Za-z]:\/[^\s'"]+/g, '‹path›')
+    .replace(/\/(?:home|Users)\/[^\s'"]+/g, '‹path›'); // *nix home paths
+}
