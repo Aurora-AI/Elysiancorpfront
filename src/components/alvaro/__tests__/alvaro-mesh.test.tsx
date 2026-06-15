@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeAll } from 'vitest';
+import { describe, it, expect, beforeAll, afterEach, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { isMeshNode } from '@/data/alvaro-mesh.types';
 import { MESH_NODES, MESH_EDGES } from '@/data/alvaro-mesh';
@@ -235,8 +235,8 @@ const gsapMocks = vi.hoisted(() => {
 // framer-motion's useReducedMotion caches state via module-level singletons;
 // mocking it directly gives reliable control in tests.
 const reducedMotionMock = vi.hoisted(() => ({ value: false }));
-vi.mock('framer-motion', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('framer-motion')>();
+vi.mock('framer-motion', async (importOriginal: () => Promise<typeof import('framer-motion')>) => {
+  const actual = await importOriginal();
   return {
     ...actual,
     useReducedMotion: () => reducedMotionMock.value,

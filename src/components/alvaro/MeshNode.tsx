@@ -31,9 +31,6 @@ export function MeshNode({ node, x, y, lang }: Props) {
 
   const handleMouseLeave = () => { mx.set(0); my.set(0); };
 
-  const labelY = y - 20;
-  const isBottom = y > 300;
-
   return (
     <motion.g
       data-node={node.id}
@@ -56,7 +53,7 @@ export function MeshNode({ node, x, y, lang }: Props) {
 
       <text
         x={x}
-        y={isBottom ? y - 18 : labelY}
+        y={y - 18}
         textAnchor="middle"
         fill={isLive ? INK : GREY}
         fontSize={node.kind === 'loop' ? 11 : 10}
