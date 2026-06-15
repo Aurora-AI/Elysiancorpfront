@@ -1,6 +1,7 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeAll } from 'vitest';
 import { isMeshNode } from '@/data/alvaro-mesh.types';
 import { MESH_NODES, MESH_EDGES } from '@/data/alvaro-mesh';
+import { computeLayout, type LayoutMap } from '@/lib/mesh-layout';
 
 describe('isMeshNode', () => {
   it('accepts a valid live node with evidenceRef', () => {
@@ -86,5 +87,53 @@ describe('alvaro-mesh data', () => {
     for (const node of MESH_NODES.filter(n => n.kind === 'principle')) {
       expect(loopIds.has(node.governs ?? ''), `principle ${node.id} governs unknown id "${node.governs}"`).toBe(true);
     }
+  });
+});
+
+describe('computeLayout', () => {
+  let layout: LayoutMap;
+
+  beforeAll(() => {
+    layout = computeLayout(MESH_NODES);
+  });
+
+  it('returns a position for every node', () => {
+    for (const node of MESH_NODES) {
+      expect(layout[node.id], `missing position for ${node.id}`).toBeDefined();
+      expect(typeof layout[node.id].x).toBe('number');
+      expect(typeof layout[node.id].y).toBe('number');
+    }
+  });
+
+  it('perception is at the top (lowest y among loop nodes)', () => {
+    const loopPositions = ['perception', 'memory', 'reasoning', 'response', 'learning']
+      .map(id => layout[id].y);
+    expect(layout['perception'].y).toBe(Math.min(...loopPositions));
+  });
+
+  it('is deterministic — same input gives same output', () => {
+    const layout2 = computeLayout(MESH_NODES);
+    for (const node of MESH_NODES) {
+      expect(layout2[node.id].x).toBeCloseTo(layout[node.id].x, 1);
+      expect(layout2[node.id].y).toBeCloseTo(layout[node.id].y, 1);
+    }
+  });
+
+  it('principle satellites are outside the loop ellipse boundary', () => {
+    // Ellipse center (450, 290), rx=195, ry=155
+    const CX = 450, CY = 290, RX = 195, RY = 155;
+    const principles = MESH_NODES.filter(n => n.kind === 'principle');
+    for (const p of principles) {
+      const { x, y } = layout[p.id];
+      const inEllipse = ((x - CX) / RX) ** 2 + ((y - CY) / RY) ** 2;
+      expect(inEllipse, `satellite ${p.id} is inside the ellipse`).toBeGreaterThan(1);
+    }
+  });
+
+  it('P1 and P3 (both governing perception) have different positions', () => {
+    const p1 = layout['p1-budget'];
+    const p3 = layout['p3-inference'];
+    const dist = Math.sqrt((p1.x - p3.x) ** 2 + (p1.y - p3.y) ** 2);
+    expect(dist).toBeGreaterThan(40);
   });
 });
