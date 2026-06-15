@@ -6,7 +6,12 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: ['./vitest.setup.ts'],
     globals: true,
-    include: ['src/**/*.test.{ts,tsx}', 'scripts/**/*.test.mjs'],
+    include: ['src/**/*.test.{ts,tsx}', 'src/**/__tests__/**/*.{ts,tsx}', 'scripts/**/*.test.mjs'],
   },
-  resolve: { alias: { '@': path.resolve('./src') } },
+  resolve: {
+    alias: {
+      '@': path.resolve('./src'),
+      '@library': path.resolve('../aurora-visual-assets'),
+    },
+  },
 });
