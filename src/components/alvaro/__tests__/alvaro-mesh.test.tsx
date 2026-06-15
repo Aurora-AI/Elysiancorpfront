@@ -1,7 +1,10 @@
 import { describe, it, expect, beforeAll } from 'vitest';
+import { render, screen } from '@testing-library/react';
 import { isMeshNode } from '@/data/alvaro-mesh.types';
 import { MESH_NODES, MESH_EDGES } from '@/data/alvaro-mesh';
 import { computeLayout, type LayoutMap } from '@/lib/mesh-layout';
+import { MeshNode } from '../MeshNode';
+import { MeshEdge } from '../MeshEdge';
 
 describe('isMeshNode', () => {
   it('accepts a valid live node with evidenceRef', () => {
@@ -147,5 +150,71 @@ describe('computeLayout', () => {
       label: { en: 'Bad', pt: 'Ruim' },
     };
     expect(() => computeLayout([...MESH_NODES, badNode])).toThrow('computeLayout');
+  });
+});
+
+describe('MeshNode', () => {
+  const liveNode = MESH_NODES.find(n => n.id === 'memory')!;
+  const roadmapNode = MESH_NODES.find(n => n.id === 'perception')!;
+
+  it('renders the EN label', () => {
+    render(
+      <svg>
+        <MeshNode node={liveNode} x={450} y={135} lang="en" />
+      </svg>
+    );
+    expect(screen.getByText('Memory')).toBeInTheDocument();
+  });
+
+  it('renders the PT label when lang=pt', () => {
+    render(
+      <svg>
+        <MeshNode node={liveNode} x={450} y={135} lang="pt" />
+      </svg>
+    );
+    expect(screen.getByText('Memória')).toBeInTheDocument();
+  });
+
+  it('live node has data-live attribute set to true', () => {
+    render(
+      <svg>
+        <MeshNode node={liveNode} x={450} y={135} lang="en" />
+      </svg>
+    );
+    expect(document.querySelector('[data-live="true"]')).toBeInTheDocument();
+  });
+
+  it('roadmap node shows phase label', () => {
+    render(
+      <svg>
+        <MeshNode node={roadmapNode} x={450} y={135} lang="en" />
+      </svg>
+    );
+    expect(screen.getByText('F2')).toBeInTheDocument();
+  });
+});
+
+describe('MeshEdge', () => {
+  it('renders a path element', () => {
+    const { container } = render(
+      <svg>
+        <MeshEdge
+          from={{ x: 100, y: 100 }}
+          to={{ x: 200, y: 200 }}
+          kind="loop"
+          status="live"
+        />
+      </svg>
+    );
+    expect(container.querySelector('path')).toBeInTheDocument();
+  });
+
+  it('loop edge has data-edge-kind="loop"', () => {
+    const { container } = render(
+      <svg>
+        <MeshEdge from={{ x: 0, y: 0 }} to={{ x: 1, y: 1 }} kind="loop" status="live" />
+      </svg>
+    );
+    expect(container.querySelector('[data-edge-kind="loop"]')).toBeInTheDocument();
   });
 });
