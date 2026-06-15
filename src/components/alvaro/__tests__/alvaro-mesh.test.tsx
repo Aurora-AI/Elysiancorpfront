@@ -136,4 +136,16 @@ describe('computeLayout', () => {
     const dist = Math.sqrt((p1.x - p3.x) ** 2 + (p1.y - p3.y) ** 2);
     expect(dist).toBeGreaterThan(40);
   });
+
+  it('throws if a principle node governs an unknown id', () => {
+    const badNode: typeof MESH_NODES[0] = {
+      id: 'bad-p',
+      kind: 'principle',
+      status: 'roadmap',
+      phase: 'F1',
+      governs: 'nonexistent',
+      label: { en: 'Bad', pt: 'Ruim' },
+    };
+    expect(() => computeLayout([...MESH_NODES, badNode])).toThrow('computeLayout');
+  });
 });

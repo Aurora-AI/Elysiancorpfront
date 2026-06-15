@@ -46,7 +46,11 @@ export function computeLayout(nodes: MeshNode[]): LayoutMap {
   // offset laterally so they don't stack.
   nodes.filter(n => n.kind === 'principle').forEach(n => {
     const governed = n.governs;
-    const lp = governed && positions[governed] ? positions[governed] : { x: CX, y: CY };
+    const lp = governed ? positions[governed] : null;
+
+    if (!lp) {
+      throw new Error(`computeLayout: principle node "${n.id}" has no valid governs target "${governed}"`);
+    }
 
     if (n.id === 'p1-budget') {
       positions[n.id] = { x: lp.x - 90, y: lp.y - 50 };
