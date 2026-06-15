@@ -40,3 +40,20 @@ export function gitProvenance(repoRoot, relPath) {
 }
 
 export { readFileSync };
+
+const SECRET_PATTERNS = [
+  { name: 'aws-access-key', re: /AKIA[0-9A-Z]{16}/ },
+  { name: 'private-key-header', re: /-----BEGIN (?:RSA |EC |OPENSSH |DSA )?PRIVATE KEY-----/ },
+  { name: 'bearer-token', re: /Bearer\s+[A-Za-z0-9._-]{24,}/ },
+  { name: 'generic-assigned-secret', re: /(?:api[_-]?key|secret|token|password)\s*[:=]\s*['"][A-Za-z0-9/+_-]{16,}['"]/i },
+  { name: 'long-hex', re: /\b[0-9a-f]{40,}\b/i },
+];
+
+export function scanSecrets(text) {
+  const hits = [];
+  for (const { name, re } of SECRET_PATTERNS) {
+    const m = text.match(re);
+    if (m) hits.push({ name, match: m[0].slice(0, 12) + '…' });
+  }
+  return hits;
+}
