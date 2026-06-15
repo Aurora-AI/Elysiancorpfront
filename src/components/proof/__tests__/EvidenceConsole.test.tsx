@@ -2,6 +2,9 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { EvidenceConsole } from '../EvidenceConsole';
 
+// The R3F <Canvas> background can't mount in jsdom; it's not the unit under test.
+vi.mock('../KineticBlocksBackground', () => ({ KineticBlocksBackground: () => null }));
+
 beforeEach(() => {
   // @ts-expect-error test stub
   global.fetch = vi.fn(() => Promise.resolve({ text: () => Promise.resolve('def gate(): return True') }));
