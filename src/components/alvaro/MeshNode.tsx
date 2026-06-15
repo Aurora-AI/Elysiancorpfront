@@ -6,13 +6,14 @@ interface Props {
   x: number;
   y: number;
   lang: 'en' | 'pt';
+  onClick?: (nodeId: string, svgX: number, svgY: number) => void;
 }
 
 const MOSS = '#4E5B4B';
 const GREY = '#9AA0A6';
 const INK  = '#1A1A17';
 
-export function MeshNode({ node, x, y, lang }: Props) {
+export function MeshNode({ node, x, y, lang, onClick }: Props) {
   const prefersReduced = useReducedMotion();
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
@@ -31,15 +32,23 @@ export function MeshNode({ node, x, y, lang }: Props) {
 
   const handleMouseLeave = () => { mx.set(0); my.set(0); };
 
+  const handleClick = () => onClick?.(node.id, x, y);
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onClick?.(node.id, x, y); }
+  };
+
   return (
     <motion.g
       data-node={node.id}
       data-live={isLive}
-      style={{ x: mx, y: my }}
+      style={{ x: mx, y: my, cursor: onClick ? 'pointer' : 'default' }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      role="img"
-      aria-label={`${node.label[lang]}${!isLive ? ` (Roadmap ${node.phase})` : ' (Live)'}`}
+      onClick={handleClick}
+      onKeyDown={handleKeyDown}
+      role="button"
+      tabIndex={0}
+      aria-label={`${node.label[lang]}${!isLive ? ` (Roadmap ${node.phase})` : ' (Live)'} — click for details`}
     >
       <circle
         cx={x}

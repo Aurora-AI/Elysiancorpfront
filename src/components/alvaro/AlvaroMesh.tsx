@@ -1,21 +1,32 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState, useCallback } from 'react';
 import { useReducedMotion } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { MESH_NODES, MESH_EDGES } from '@/data/alvaro-mesh';
+import type { MeshNode as MeshNodeData } from '@/data/alvaro-mesh.types';
 import { computeLayout } from '@/lib/mesh-layout';
 import { MeshNode } from './MeshNode';
 import { MeshEdge } from './MeshEdge';
+import { MeshNodeCard } from './MeshNodeCard';
 
 const LAYOUT = computeLayout(MESH_NODES);
+const SVG_W = 900;
+const SVG_H = 580;
 
 interface Props {
   lang?: 'en' | 'pt';
 }
 
+interface CardState {
+  node: MeshNodeData;
+  anchorX: number;
+  anchorY: number;
+}
+
 export function AlvaroMesh({ lang = 'en' }: Props) {
   const svgRef = useRef<SVGSVGElement>(null);
   const prefersReduced = useReducedMotion();
+  const [card, setCard] = useState<CardState | null>(null);
 
   useEffect(() => {
     if (prefersReduced || !svgRef.current) return;
@@ -59,16 +70,22 @@ export function AlvaroMesh({ lang = 'en' }: Props) {
     };
   }, [prefersReduced]);
 
+  const handleNodeClick = useCallback((nodeId: string, svgX: number, svgY: number) => {
+    const node = MESH_NODES.find(n => n.id === nodeId);
+    if (!node) return;
+    setCard(prev => prev?.node.id === nodeId ? null : { node, anchorX: svgX, anchorY: svgY });
+  }, []);
+
   const nodeStatusMap = new Map(MESH_NODES.map(n => [n.id, n.status]));
 
   return (
     <div className="relative w-full">
       <svg
         ref={svgRef}
-        viewBox="0 0 900 580"
+        viewBox={`0 0 ${SVG_W} ${SVG_H}`}
         preserveAspectRatio="xMidYMid meet"
         className="w-full max-w-4xl mx-auto"
-        aria-label="Álvaro cognitive mesh diagram"
+        aria-label="Álvaro cognitive mesh diagram — click a node to learn more"
         role="img"
       >
         <g aria-hidden="true">
@@ -102,11 +119,25 @@ export function AlvaroMesh({ lang = 'en' }: Props) {
                 x={pos.x}
                 y={pos.y}
                 lang={lang}
+                onClick={handleNodeClick}
               />
             );
           })}
         </g>
       </svg>
+
+      {/* Floating info card overlay — positioned in SVG percentage space */}
+      {card && (
+        <MeshNodeCard
+          node={card.node}
+          anchorX={card.anchorX}
+          anchorY={card.anchorY}
+          svgWidth={SVG_W}
+          svgHeight={SVG_H}
+          lang={lang}
+          onClose={() => setCard(null)}
+        />
+      )}
 
       {/* Legend */}
       <div className="flex items-center justify-center gap-8 mt-8 font-mono text-xs">

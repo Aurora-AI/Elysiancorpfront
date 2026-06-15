@@ -7,6 +7,7 @@ export interface Bilingual { en: string; pt: string; }
 export interface MeshNode {
   id: string;
   label: Bilingual;
+  description?: Bilingual;
   kind: NodeKind;
   status: NodeStatus;
   phase?: PhaseLabel;
