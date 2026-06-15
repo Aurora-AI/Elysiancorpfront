@@ -52,6 +52,7 @@ export const CLAIMS: Claim[] = [
     },
     source: {
       path: 'AuroraOS/factory/frontend_synthesis/output_synthesis/OS-019/M4.1_QA_REVIEW.md',
+      lines: [1, 26],
       label: 'skill/qa-review',
     },
     caption: { en: 'Independent verification.', pt: 'Verificação independente.' },
