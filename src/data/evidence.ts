@@ -17,7 +17,7 @@ export const CLAIMS: Claim[] = [
       en: 'No critical state mutation without a non-LLM deterministic gate.',
       pt: 'Nenhuma mutação de estado crítico sem gate determinístico não-LLM.',
     },
-    source: { path: 'CRM/libs/trustware', label: 'lib/trustware' },
+    source: { path: 'CRM/libs/trustware/src/engine/engine.ts', lines: [11, 28], label: 'lib/trustware' },
     caption: { en: 'The guardrail runs outside the model.', pt: 'O guardrail roda fora do modelo.' },
   },
   {
