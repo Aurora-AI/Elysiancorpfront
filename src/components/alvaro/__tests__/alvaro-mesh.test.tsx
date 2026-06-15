@@ -218,3 +218,73 @@ describe('MeshEdge', () => {
     expect(container.querySelector('[data-edge-kind="loop"]')).toBeInTheDocument();
   });
 });
+
+import { AlvaroMesh } from '../AlvaroMesh';
+
+// Hoist stable mock references so they are accessible both in the factory
+// and in the test body (vi.mock factories are hoisted to top of file).
+const gsapMocks = vi.hoisted(() => {
+  const tl = { to: vi.fn().mockReturnThis(), kill: vi.fn() };
+  return {
+    set: vi.fn(),
+    registerPlugin: vi.fn(),
+    timeline: vi.fn(() => tl),
+  };
+});
+
+// framer-motion's useReducedMotion caches state via module-level singletons;
+// mocking it directly gives reliable control in tests.
+const reducedMotionMock = vi.hoisted(() => ({ value: false }));
+vi.mock('framer-motion', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('framer-motion')>();
+  return {
+    ...actual,
+    useReducedMotion: () => reducedMotionMock.value,
+  };
+});
+
+// GSAP can't run animations in jsdom — mock it.
+vi.mock('gsap', () => ({
+  default: {
+    registerPlugin: gsapMocks.registerPlugin,
+    set: gsapMocks.set,
+    timeline: gsapMocks.timeline,
+  },
+}));
+vi.mock('gsap/ScrollTrigger', () => ({
+  ScrollTrigger: { getAll: vi.fn(() => [{ kill: vi.fn() }]) },
+}));
+
+describe('AlvaroMesh', () => {
+  afterEach(() => {
+    reducedMotionMock.value = false;
+    gsapMocks.set.mockClear();
+  });
+
+  it('renders an SVG element', () => {
+    render(<AlvaroMesh lang="en" />);
+    expect(document.querySelector('svg')).toBeInTheDocument();
+  });
+
+  it('renders all 11 node groups', () => {
+    render(<AlvaroMesh lang="en" />);
+    expect(document.querySelectorAll('[data-node]')).toHaveLength(11);
+  });
+
+  it('renders 11 edge paths (5 loop + 6 governs)', () => {
+    render(<AlvaroMesh lang="en" />);
+    expect(document.querySelectorAll('[data-edge]')).toHaveLength(11);
+  });
+
+  it('renders the legend with LIVE and ROADMAP labels', () => {
+    render(<AlvaroMesh lang="en" />);
+    expect(screen.getByText(/LIVE/i)).toBeInTheDocument();
+    expect(screen.getByText(/ROADMAP/i)).toBeInTheDocument();
+  });
+
+  it('in reduced-motion mode, GSAP.set is not called', () => {
+    reducedMotionMock.value = true;
+    render(<AlvaroMesh lang="en" />);
+    expect(gsapMocks.set).not.toHaveBeenCalled();
+  });
+});
