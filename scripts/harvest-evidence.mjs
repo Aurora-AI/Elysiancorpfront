@@ -1,4 +1,4 @@
-import { writeFileSync, copyFileSync, readFileSync, mkdirSync } from 'node:fs';
+import { writeFileSync, copyFileSync, readFileSync, mkdirSync, existsSync } from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 import { pathToFileURL } from 'node:url';
@@ -71,6 +71,14 @@ export function runHarvest({ repoRoot, siteRoot, claims }) {
 if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   const siteRoot = process.cwd();
   const repoRoot = path.resolve(siteRoot, process.env.AURORA_REPO_ROOT ?? '../../Aurora');
+  const provenancePath = path.join(siteRoot, 'src', 'data', 'evidence.provenance.json');
+
+  // In Vercel/CI the Aurora monorepo is not co-located; use pre-built artifacts.
+  if (!existsSync(repoRoot) && existsSync(provenancePath)) {
+    console.log('✓ harvest skipped — pre-built artifacts present, Aurora repo not available');
+    process.exit(0);
+  }
+
   const evidencePath = pathToFileURL(path.join(siteRoot, 'src', 'data', 'evidence.ts')).href;
   const { CLAIMS } = await import(evidencePath);
   try {
