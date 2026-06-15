@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import { GazeForensicHero } from '../components/hero/GazeForensicHero';
 import { MagneticCursor } from '../components/cursor/MagneticCursor';
 import { Header } from '../components/ui/Header';
-import { SequenceRigFull } from '../components/sequence/SequenceRigFull';
+import ProofSection from '../components/proof/ProofSection.astro';
 import { GlobalNoiseCanvas } from '../components/sequence/GlobalNoiseCanvas';
 ---
 
@@ -16,10 +16,9 @@ import { GlobalNoiseCanvas } from '../components/sequence/GlobalNoiseCanvas';
 		{/* SEÇÃO 1: STOP-MOTION ORIGINAL (GAZE FORENSIC V1.1.0) */}
 		<GazeForensicHero client:load />
 
-		{/* CINEMATIC SEQUENCE — client:only skips SSR entirely, preventing
-		    Suspense streaming corruption and hydration mismatch with the
-		    500vh spacer and position:fixed CameraStage */}
-		<SequenceRigFull client:only="react" />
+		{/* EVIDENCE LEDGER — interactive proof console (replaces cinematic sequence).
+		    SequenceRigFull preserved in repo history / optional /cinema route. */}
+		<ProofSection />
 	</main>
 </Layout>
 
