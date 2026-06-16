@@ -215,4 +215,20 @@
   .animate-gradient-shimmer {
     animation: gradient-shimmer 8s ease infinite;
   }
+
+  /* Mesh node pulse — signals interactivity without distraction */
+  @keyframes mesh-pulse {
+    0%, 100% { transform: scale(1);    opacity: 1; }
+    50%       { transform: scale(1.35); opacity: 0.55; }
+  }
+
+  [data-node][data-live="true"] circle {
+    transform-origin: center;
+    transform-box: fill-box;
+    animation: mesh-pulse 2.8s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-node] circle { animation: none; }
+  }
 }
