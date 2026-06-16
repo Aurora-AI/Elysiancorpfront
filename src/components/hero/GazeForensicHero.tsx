@@ -209,7 +209,7 @@ export function GazeForensicHero({ lang = 'pt-br' }: { lang?: string }) {
               </p>
               
               <button className="mt-13 px-8 py-4 bg-moss text-white t-mono text-sm hover:bg-moss/90 transition-all duration-300 rounded-sm uppercase tracking-widest font-bold">
-                [ DEPLOY_SOVEREIGNTY ]
+                {lang === 'pt-br' ? '[ INSPECIONAR O RASTRO ]' : '[ INSPECT THE TRACE ]'}
               </button>
             </div>
           </div>

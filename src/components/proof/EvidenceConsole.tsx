@@ -38,6 +38,7 @@ export function EvidenceConsole() {
               <button type="button" aria-pressed={lang === 'pt'} onClick={() => setLang('pt')} className={lang === 'pt' ? 'text-white' : 'text-white/40'}>PT</button>
             </span>
           </div>
+          <p className="font-body text-[16px] text-white/60 max-w-3xl leading-relaxed">{HEADER.preamble[lang]}</p>
           <h2 className="font-display-lg text-display-lg md:text-[72px] md:leading-[0.95] max-w-4xl text-white">{HEADER.title[lang]}</h2>
         </header>
 

@@ -2,8 +2,12 @@ import type { Claim, Bilingual } from './evidence.types';
 
 export interface Product { id: string; label: string; beta?: boolean; }
 
-export const HEADER: { label: string; title: Bilingual } = {
+export const HEADER: { label: string; preamble: Bilingual; title: Bilingual } = {
   label: '[ 02 // THE EVIDENCE LEDGER ]',
+  preamble: {
+    en: 'Every autonomous agent is a black box — until the day it decides wrong, and no one can say why.',
+    pt: 'Todo agente autônomo é uma caixa-preta — até o dia em que decide errado, e ninguém sabe explicar por quê.',
+  },
   title: {
     en: "We Don't Ask for Trust. We Show the Trace.",
     pt: 'Não pedimos confiança. Mostramos o rastro.',
