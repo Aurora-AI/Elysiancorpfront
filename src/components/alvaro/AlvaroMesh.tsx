@@ -26,8 +26,10 @@ interface CardState {
 
 const COPY = {
   hint: { en: '↗ click the nodes to explore', pt: '↗ clique nos nós para explorar' },
-  toFlowchart: { en: 'Full architecture →', pt: 'Arquitetura completa →' },
-  toMesh: { en: '← Cognitive map', pt: '← Mapa cognitivo' },
+  toFlowchartEyebrow: { en: '[ Full system ]', pt: '[ Sistema completo ]' },
+  toFlowchart: { en: 'See how Álvaro thinks', pt: 'Veja como o Álvaro pensa' },
+  toMeshEyebrow: { en: '[ Overview ]', pt: '[ Visão geral ]' },
+  toMesh: { en: 'Back to cognitive map', pt: 'Voltar ao mapa cognitivo' },
   flowTitle: { en: 'Full Architecture', pt: 'Arquitetura Completa' },
   flowSub: {
     en: '8 layers — perception, memory, reasoning, governance, execution, observability, continual hardening, cognitive ingestion',
@@ -94,6 +96,32 @@ export function AlvaroMesh({ lang = 'en' }: Props) {
 
   return (
     <div className="relative w-full">
+      {/* ── Toggle button — top left, moss fill, shimmer on hover ── */}
+      <div className="mb-6">
+        <motion.button
+          onClick={handleToggle}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.97 }}
+          className="group relative flex flex-col items-start gap-[3px] px-5 py-3 bg-[#4E5B4B] text-[#F8F7F3] overflow-hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#4E5B4B]/60 focus-visible:outline-offset-2"
+        >
+          {/* shimmer sweep */}
+          <span
+            className="pointer-events-none absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out"
+            style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent)' }}
+            aria-hidden="true"
+          />
+          <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-[#F8F7F3]/50">
+            {view === 'mesh' ? COPY.toFlowchartEyebrow[lang] : COPY.toMeshEyebrow[lang]}
+          </span>
+          <span className="font-mono text-[12px] uppercase tracking-widest flex items-center gap-2">
+            {view === 'mesh' ? COPY.toFlowchart[lang] : COPY.toMesh[lang]}
+            <span className="inline-block group-hover:translate-x-1.5 transition-transform duration-200">
+              {view === 'mesh' ? '→' : '←'}
+            </span>
+          </span>
+        </motion.button>
+      </div>
+
       <AnimatePresence mode="wait">
         {view === 'mesh' ? (
           <motion.div
@@ -208,15 +236,6 @@ export function AlvaroMesh({ lang = 'en' }: Props) {
         )}
       </AnimatePresence>
 
-      {/* Toggle button */}
-      <div className="flex justify-center mt-8">
-        <button
-          onClick={handleToggle}
-          className="group inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-widest px-4 py-2 border border-[#4E5B4B]/30 text-[#4E5B4B] hover:border-[#4E5B4B] hover:bg-[#4E5B4B]/5 transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#4E5B4B]/40"
-        >
-          {view === 'mesh' ? COPY.toFlowchart[lang] : COPY.toMesh[lang]}
-        </button>
-      </div>
     </div>
   );
 }
