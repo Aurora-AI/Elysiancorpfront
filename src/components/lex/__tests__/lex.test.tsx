@@ -68,3 +68,35 @@ describe('lex-pipeline data', () => {
     expect(LEX_HEADER.title.pt).toMatch(/nunca vê/i);
   });
 });
+
+import { stageAt, STAGE_COUNT } from '@/lib/lex-stages';
+
+describe('stageAt', () => {
+  it('exposes 5 stages', () => {
+    expect(STAGE_COUNT).toBe(5);
+  });
+
+  it('progress 0 is stage 0, local 0', () => {
+    expect(stageAt(0)).toEqual({ index: 0, local: 0 });
+  });
+
+  it('progress 1 clamps to last stage, local 1', () => {
+    expect(stageAt(1)).toEqual({ index: 4, local: 1 });
+  });
+
+  it('mid-band gives correct index and local', () => {
+    // 0.30 → band 1 (0.2–0.4), local = (0.30-0.2)/0.2 = 0.5
+    const r = stageAt(0.30);
+    expect(r.index).toBe(1);
+    expect(r.local).toBeCloseTo(0.5, 5);
+  });
+
+  it('clamps out-of-range input', () => {
+    expect(stageAt(-1)).toEqual({ index: 0, local: 0 });
+    expect(stageAt(2)).toEqual({ index: 4, local: 1 });
+  });
+
+  it('is deterministic', () => {
+    expect(stageAt(0.42)).toEqual(stageAt(0.42));
+  });
+});
