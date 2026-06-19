@@ -1,0 +1,35 @@
+---
+import { LexPipeline } from './LexPipeline';
+import { LEX_HEADER } from '../../data/lex-pipeline';
+---
+
+<section
+  id="elysian-lex"
+  class="relative w-full bg-[#0D0D0C] text-white py-[89px] px-[34px] overflow-hidden"
+>
+  <!-- Grain texture, same pattern as other sections -->
+  <div
+    class="pointer-events-none absolute inset-0 opacity-[0.04] bg-halftone-grain"
+    aria-hidden="true"
+  />
+
+  <div class="max-w-7xl mx-auto relative z-10">
+    <!-- Section label -->
+    <div class="mb-[21px]">
+      <span class="font-mono text-[13px] uppercase tracking-widest text-[#9AA0A6]">
+        {LEX_HEADER.label}
+      </span>
+    </div>
+
+    <!-- Title -->
+    <h2 class="font-display text-[55px] md:text-[72px] leading-[0.95] mb-[13px] tracking-tight">
+      {LEX_HEADER.title.en}
+    </h2>
+    <p class="font-body text-[16px] text-white/50 max-w-xl mb-[55px] leading-relaxed">
+      {LEX_HEADER.subline.en}
+    </p>
+
+    <!-- React island — only mounts when visible in viewport -->
+    <LexPipeline client:visible />
+  </div>
+</section>
