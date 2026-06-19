@@ -1,6 +1,8 @@
 import { describe, it, expect } from 'vitest';
+import { render, screen } from '@testing-library/react';
 import { isPiiSpan } from '@/data/lex-pipeline.types';
 import { LEX_DOCUMENT, STAGES, LEX_HEADER } from '@/data/lex-pipeline';
+import { TokenText } from '../TokenText';
 
 describe('isPiiSpan', () => {
   it('accepts a valid span with a real-format token', () => {
@@ -98,5 +100,29 @@ describe('stageAt', () => {
 
   it('is deterministic', () => {
     expect(stageAt(0.42)).toEqual(stageAt(0.42));
+  });
+});
+
+const span = { text: 'João Carlos da Silva', type: 'name' as const, token: 'TOK_NAME_3a9f1c7e2b8d4f06' };
+
+describe('TokenText', () => {
+  it('shows plaintext in plaintext state', () => {
+    render(<TokenText span={span} state="plaintext" />);
+    expect(screen.getByText('João Carlos da Silva')).toBeInTheDocument();
+  });
+
+  it('shows the bracketed token in token state', () => {
+    render(<TokenText span={span} state="token" />);
+    expect(screen.getByText('[TOK_NAME_3a9f1c7e2b8d4f06]')).toBeInTheDocument();
+  });
+
+  it('shows plaintext again in restored state', () => {
+    render(<TokenText span={span} state="restored" />);
+    expect(screen.getByText('João Carlos da Silva')).toBeInTheDocument();
+  });
+
+  it('marks redacting state with a data attribute', () => {
+    const { container } = render(<TokenText span={span} state="redacting" />);
+    expect(container.querySelector('[data-redacting="true"]')).toBeInTheDocument();
   });
 });
