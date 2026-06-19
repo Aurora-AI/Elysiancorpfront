@@ -13,6 +13,10 @@ interface Props {
 
 const SPAN_COUNT = PII_SPANS.length;
 
+// Width of the amber "redacting" flash window before a span flips to its token,
+// as a fraction of stage-1 local progress.
+const REDACTING_WINDOW = 0.12;
+
 // Derive a span's visual state from the current stage index, within-stage
 // progress, and the span's ordinal position among PII spans.
 function spanState(spanIndex: number, index: number, local: number): SpanState {
@@ -20,7 +24,7 @@ function spanState(spanIndex: number, index: number, local: number): SpanState {
   if (index <= 0) return 'plaintext';
   if (index === 1) {
     if (local >= threshold) return 'token';
-    if (local >= threshold - 0.12) return 'redacting';
+    if (local >= threshold - REDACTING_WINDOW) return 'redacting';
     return 'plaintext';
   }
   if (index >= 2 && index <= 3) return 'token';
