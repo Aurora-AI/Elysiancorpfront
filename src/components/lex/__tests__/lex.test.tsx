@@ -22,4 +22,8 @@ describe('isPiiSpan', () => {
     expect(isPiiSpan(null)).toBe(false);
     expect(isPiiSpan('TOK_CPF_3a9f1c7e2b8d4f06')).toBe(false);
   });
+
+  it('rejects an invalid PiiType value', () => {
+    expect(isPiiSpan({ text: 'x', type: 'invalid_type', token: 'TOK_INVALID_3a9f1c7e2b8d4f06' })).toBe(false);
+  });
 });
